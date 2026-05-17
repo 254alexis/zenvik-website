@@ -1,4 +1,7 @@
 import { motion } from "framer-motion"
+import Container from "../components/common/Container"
+import SectionHeader from "../components/common/SectionHeader"
+import Button from "../components/ui/Button"
 
 const hostingFeatures = [
   "High Performance Hosting",
@@ -12,26 +15,18 @@ const hostingFeatures = [
 function HostingSection() {
   return (
     <section id="hosting" className="bg-white py-24">
-      <div className="mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2">
+      <Container className="grid items-center gap-16 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-gold">
-            Hosting & Cloud Solutions
-          </p>
-
-          <h2 className="text-4xl font-black leading-tight text-primary md:text-5xl">
-            Reliable Infrastructure For Modern Businesses
-          </h2>
-
-          <p className="mt-6 text-lg leading-relaxed text-slate-600">
-            From websites and business emails to enterprise cloud infrastructure,
-            Zenvik Technologies provides secure, scalable, and performance-focused
-            hosting solutions designed for growth.
-          </p>
+          <SectionHeader
+            eyebrow="Hosting & Cloud Solutions"
+            title="Reliable Infrastructure For Modern Businesses"
+            description="From websites and business emails to enterprise cloud infrastructure, Zenvik Technologies provides secure, scalable, and performance-focused hosting solutions designed for growth."
+          />
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {hostingFeatures.map((feature) => (
@@ -45,19 +40,19 @@ function HostingSection() {
           </div>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a
+            <Button
               href="https://portal.zenviktechnologies.com"
-              className="rounded-full bg-primary px-8 py-4 text-center font-semibold text-white transition hover:-translate-y-1"
+              variant="primary"
             >
               View Hosting Plans
-            </a>
+            </Button>
 
-            <a
+            <Button
               href="#contact"
-              className="rounded-full border border-primary px-8 py-4 text-center font-semibold text-primary transition hover:bg-primary hover:text-white"
+              variant="outline"
             >
               Request Consultation
-            </a>
+            </Button>
           </div>
         </motion.div>
 
@@ -93,7 +88,7 @@ function HostingSection() {
             </div>
           </div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   )
 }
