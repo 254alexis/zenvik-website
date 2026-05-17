@@ -1,6 +1,7 @@
 import MainLayout from "./layouts/MainLayout"
 import HeroSection from "./sections/HeroSection"
 import ServicesSection from "./sections/ServicesSection"
+import HostingSection from "./sections/HostingSection"
 
 function App() {
   return (
