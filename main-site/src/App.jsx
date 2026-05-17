@@ -1,3 +1,16 @@
+
+import MainLayout from "./layouts/MainLayout"
+
+function App() {
+  return (
+    <MainLayout>
+      <main className="min-h-screen bg-white text-dark">
+        ...
+      </main>
+    </MainLayout>
+  )
+}
+
 function App() {
   return (
     <main className="min-h-screen bg-white text-dark">
