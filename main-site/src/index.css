@@ -1,16 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-html,
-body,
-#root {
-  min-height: 100%;
+@theme {
+  --color-primary: #043a7e;
+  --color-gold: #7a6200;
+  --color-accent: #dfa408;
+  --color-dark: #0f172a;
+  --color-light: #f8fafc;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-body {
-  margin: 0;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #ffffff;
-  color: #0f172a;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: #ffffff;
+    color: #0f172a;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+  }
 }
