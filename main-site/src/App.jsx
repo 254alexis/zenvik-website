@@ -5,6 +5,12 @@ import HostingSection from "./sections/HostingSection"
 import SoftwareSection from "./sections/SoftwareSection"
 import MarketingSection from "./sections/MarketingSection"
 import WhyChooseSection from "./sections/WhyChooseSection"
+import PortfolioSection from "./sections/PortfolioSection"
+import TestimonialsSection from "./sections/TestimonialsSection"
+import PricingSection from "./sections/PricingSection"
+import FAQSection from "./sections/FAQSection"
+import ContactSection from "./sections/ContactSection"
+import BlogPreviewSection from "./sections/BlogPreviewSection"
 import CTASection from "./sections/CTASection"
 
 function App() {
@@ -17,6 +23,12 @@ function App() {
         <SoftwareSection />
         <MarketingSection />
         <WhyChooseSection />
+        <PortfolioSection />
+        <TestimonialsSection />
+        <PricingSection />
+        <FAQSection />
+        <BlogPreviewSection />
+        <ContactSection />
         <CTASection />
       </main>
     </MainLayout>
