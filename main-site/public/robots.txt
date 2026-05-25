@@ -1,0 +1,37 @@
+# Zenvik Technologies - Search Engine Crawler Rules
+# Last updated: 2026-05-25
+
+# Allow all bots by default
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /*.json$
+Disallow: *?utm_*
+Crawl-delay: 1
+
+# Specific crawler rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Disallow known bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Sitemap reference
+Sitemap: https://zenviktechnologies.com/sitemap.xml
+Sitemap: https://zenviktechnologies.com/sitemap-news.xml
