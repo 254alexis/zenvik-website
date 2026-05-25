@@ -3,16 +3,17 @@ function Button({
   href = "#",
   variant = "primary",
   className = "",
+  onClick,
 }) {
   const baseStyles =
-    "inline-flex items-center justify-center rounded-full px-8 py-4 font-semibold transition duration-300"
+    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition duration-300"
 
   const variants = {
     primary:
-      "bg-primary text-white hover:-translate-y-1 hover:shadow-soft",
+      "bg-primary text-white hover:-translate-y-0.5 hover:shadow-soft",
 
     accent:
-      "bg-accent text-white hover:-translate-y-1 hover:shadow-soft",
+      "bg-accent text-white hover:-translate-y-0.5 hover:shadow-soft",
 
     outline:
       "border border-primary text-primary hover:bg-primary hover:text-white",
@@ -24,6 +25,7 @@ function Button({
   return (
     <a
       href={href}
+      onClick={onClick}
       className={`${baseStyles} ${variants[variant]} ${className}`}
     >
       {children}
