@@ -76,7 +76,7 @@ function PricingSection() {
         <SectionHeader
           eyebrow="Pricing Plans"
           title="Flexible Hosting & Service Packages"
-          description="Choose the right plan for your business. All plans include professional support and enterprise-grade security."
+          description="Choose the right plan for your business. All plans include professional support and enterprise-grade security. Available in multiple currencies for regional markets."
         />
 
         <motion.div

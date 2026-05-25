@@ -1,15 +1,16 @@
 import { motion } from "framer-motion"
+import Container from "../components/common/Container"
 
 function CTASection() {
   return (
     <section className="bg-slate-950 py-24 text-white">
-      <div className="mx-auto max-w-7xl px-6">
+      <Container>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="overflow-hidden rounded-[2.5rem] bg-primary p-10 md:p-16"
+          className="overflow-hidden rounded-[2.5rem] bg-primary p-10 shadow-soft md:p-16"
         >
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
@@ -31,21 +32,21 @@ function CTASection() {
             <div className="flex flex-col gap-5 lg:items-end">
               <a
                 href="https://portal.zenviktechnologies.com"
-                className="w-full rounded-full bg-accent px-8 py-5 text-center text-lg font-semibold text-white transition hover:-translate-y-1 lg:w-auto"
+                className="w-full rounded-full bg-accent px-8 py-5 text-center text-lg font-semibold text-white transition duration-200 hover:-translate-y-1 hover:shadow-soft lg:w-auto"
               >
                 Visit Client Portal
               </a>
 
               <a
                 href="#contact"
-                className="w-full rounded-full border border-white/20 px-8 py-5 text-center text-lg font-semibold text-white transition hover:bg-white hover:text-primary lg:w-auto"
+                className="w-full rounded-full border border-white/20 px-8 py-5 text-center text-lg font-semibold text-white transition duration-200 hover:bg-white hover:text-primary lg:w-auto"
               >
                 Request Consultation
               </a>
             </div>
           </div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   )
 }

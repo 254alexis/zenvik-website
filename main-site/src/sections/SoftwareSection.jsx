@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import Container from "../components/common/Container"
 
 const softwareSolutions = [
   "Business Management Systems",
@@ -12,7 +13,7 @@ const softwareSolutions = [
 function SoftwareSection() {
   return (
     <section id="software" className="bg-slate-950 py-24 text-white">
-      <div className="mx-auto max-w-7xl px-6">
+      <Container>
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -48,14 +49,14 @@ function SoftwareSection() {
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
                 href="#contact"
-                className="rounded-full bg-accent px-8 py-4 text-center font-semibold text-white transition hover:-translate-y-1"
+                className="rounded-full bg-accent px-8 py-4 text-center font-semibold text-white transition duration-200 hover:-translate-y-1 hover:shadow-soft"
               >
                 Start Your Project
               </a>
 
               <a
                 href="#services"
-                className="rounded-full border border-white/20 px-8 py-4 text-center font-semibold text-white transition hover:bg-white hover:text-slate-950"
+                className="rounded-full border border-white/20 px-8 py-4 text-center font-semibold text-white transition duration-200 hover:bg-white hover:text-slate-950"
               >
                 Explore Solutions
               </a>
@@ -94,7 +95,7 @@ function SoftwareSection() {
             </div>
           </motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }

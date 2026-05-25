@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import Container from "../components/common/Container"
 
 const marketingServices = [
   "Brand Identity Design",
@@ -12,7 +13,7 @@ const marketingServices = [
 function MarketingSection() {
   return (
     <section className="bg-light py-24">
-      <div className="mx-auto max-w-7xl px-6">
+      <Container>
         <div className="text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-gold">
             Marketing & Branding
@@ -37,7 +38,7 @@ function MarketingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="rounded-3xl bg-white p-8 shadow-soft transition hover:-translate-y-2"
+              className="rounded-3xl bg-white p-8 shadow-soft transition duration-300 hover:shadow-lg hover:-translate-y-2"
             >
               <div className="mb-6 inline-flex rounded-2xl bg-primary px-4 py-2 text-sm font-semibold text-white">
                 Growth Solution
@@ -55,33 +56,39 @@ function MarketingSection() {
           ))}
         </div>
 
-        <div className="mt-16 rounded-[2rem] bg-primary px-8 py-14 text-center text-white md:px-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-16 rounded-[2rem] bg-primary px-8 py-14 text-center text-white shadow-soft md:px-16"
+        >
           <h3 className="text-3xl font-black md:text-4xl">
             Ready To Grow Your Brand?
           </h3>
 
           <p className="mx-auto mt-5 max-w-2xl text-lg text-white/80">
-            Let’s help your business stand out with modern branding,
+            Let's help your business stand out with modern branding,
             marketing strategies, and digital growth solutions.
           </p>
 
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <a
               href="#contact"
-              className="rounded-full bg-accent px-8 py-4 font-semibold text-white transition hover:-translate-y-1"
+              className="rounded-full bg-accent px-8 py-4 font-semibold text-white transition duration-200 hover:-translate-y-1 hover:shadow-soft"
             >
               Request Consultation
             </a>
 
             <a
               href="#services"
-              className="rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition hover:bg-white hover:text-primary"
+              className="rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition duration-200 hover:bg-white hover:text-primary"
             >
               Explore More Services
             </a>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </Container>
     </section>
   )
 }
