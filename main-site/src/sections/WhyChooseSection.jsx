@@ -12,7 +12,7 @@ const reasons = [
 
 function WhyChooseSection() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-20">
       <Container>
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <motion.div
@@ -34,9 +34,12 @@ function WhyChooseSection() {
               branding, marketing, and ICT support under one professional
               technology partner.
             </p>
+            <p className="mt-4 text-sm font-medium text-slate-500">
+              Local insight, global standards.
+            </p>
           </motion.div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             {reasons.map((reason, index) => (
               <motion.div
                 key={reason}
@@ -44,12 +47,12 @@ function WhyChooseSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="rounded-3xl border border-slate-200 bg-light p-6 shadow-soft"
+                className="rounded-3xl border border-slate-200 bg-light p-5 shadow-soft"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary font-bold text-white">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-sm font-bold text-white">
                   {index + 1}
                 </div>
-                <h3 className="text-xl font-bold text-primary">{reason}</h3>
+                <h3 className="text-lg font-bold text-primary">{reason}</h3>
               </motion.div>
             ))}
           </div>

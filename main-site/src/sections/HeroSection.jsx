@@ -10,7 +10,7 @@ function HeroSection() {
         <div className="absolute bottom-10 right-10 h-72 w-72 rounded-full bg-blue-400 blur-3xl" />
       </div>
 
-      <Container className="relative grid min-h-screen items-center gap-12 py-20 lg:grid-cols-2">
+      <Container className="relative grid min-h-[88vh] items-center gap-10 py-20 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -20,11 +20,15 @@ function HeroSection() {
             Enterprise ICT & Hosting Solutions
           </p>
 
-          <h1 className="text-5xl font-black leading-tight md:text-7xl">
+          <h1 className="text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
             Powering Modern Businesses Through Technology
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg text-white/80">
+          <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-gold/90">
+            Empowering Growth Through Technology
+          </p>
+
+          <p className="mt-5 max-w-2xl text-base text-white/80 md:text-lg">
             Hosting, software development, websites, branding, digital marketing,
             and enterprise ICT solutions built for modern businesses and growing brands.
           </p>
@@ -45,7 +49,7 @@ function HeroSection() {
             </Button>
           </div>
 
-          <div className="mt-12 flex flex-wrap gap-6 text-sm text-white/70">
+          <div className="mt-10 flex flex-wrap gap-4 text-sm text-white/70">
             <span>Secure Hosting</span>
             <span>Custom Software</span>
             <span>Business Websites</span>
@@ -59,31 +63,31 @@ function HeroSection() {
           transition={{ duration: 0.9 }}
           className="relative"
         >
-          <div className="rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-xl">
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded-2xl bg-white/10 p-6">
-                <h3 className="text-xl font-bold">Hosting</h3>
+          <div className="rounded-[2rem] border border-white/15 bg-white/10 p-6 shadow-soft backdrop-blur-xl md:p-8">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-3xl bg-white/10 p-5">
+                <h3 className="text-lg font-bold">Hosting</h3>
                 <p className="mt-2 text-sm text-white/70">
                   Fast, secure & scalable infrastructure.
                 </p>
               </div>
 
-              <div className="rounded-2xl bg-white/10 p-6">
-                <h3 className="text-xl font-bold">Software</h3>
+              <div className="rounded-3xl bg-white/10 p-5">
+                <h3 className="text-lg font-bold">Software</h3>
                 <p className="mt-2 text-sm text-white/70">
                   Custom systems & SaaS platforms.
                 </p>
               </div>
 
-              <div className="rounded-2xl bg-white/10 p-6">
-                <h3 className="text-xl font-bold">Websites</h3>
+              <div className="rounded-3xl bg-white/10 p-5">
+                <h3 className="text-lg font-bold">Websites</h3>
                 <p className="mt-2 text-sm text-white/70">
                   Modern conversion-focused experiences.
                 </p>
               </div>
 
-              <div className="rounded-2xl bg-white/10 p-6">
-                <h3 className="text-xl font-bold">Marketing</h3>
+              <div className="rounded-3xl bg-white/10 p-5">
+                <h3 className="text-lg font-bold">Marketing</h3>
                 <p className="mt-2 text-sm text-white/70">
                   Branding & digital growth strategies.
                 </p>

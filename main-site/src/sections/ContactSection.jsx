@@ -24,15 +24,15 @@ function ContactSection() {
   }
 
   return (
-    <section id="contact" className="bg-white py-24">
+    <section id="contact" className="bg-white py-20">
       <Container>
         <SectionHeader
           eyebrow="Get in Touch"
           title="Let's Build Something Great Together"
-          description="Have a question or ready to start a project? Our team is ready to help. Contact us today for a free consultation."
+          description="Have a question or ready to start a project? Our mission is to empower businesses through innovative technology and creative digital experiences that drive measurable growth."
         />
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-2">
+        <div className="mt-14 grid gap-10 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -40,10 +40,10 @@ function ContactSection() {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <div className="rounded-2xl bg-light p-8">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white">
+            <div className="rounded-3xl border border-slate-200 bg-light p-6 shadow-soft">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-white">
                 <svg
-                  className="h-6 w-6"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -67,10 +67,10 @@ function ContactSection() {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-light p-8">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white">
+            <div className="rounded-3xl border border-slate-200 bg-light p-6 shadow-soft">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-white">
                 <svg
-                  className="h-6 w-6"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -94,10 +94,10 @@ function ContactSection() {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-light p-8">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white">
+            <div className="rounded-3xl border border-slate-200 bg-light p-6 shadow-soft">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-white">
                 <svg
-                  className="h-6 w-6"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -128,7 +128,7 @@ function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="rounded-3xl bg-light p-8 shadow-soft"
+            className="rounded-3xl border border-slate-200 bg-light p-7 shadow-soft"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
