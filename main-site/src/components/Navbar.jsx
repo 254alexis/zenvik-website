@@ -26,13 +26,14 @@ function Navbar() {
   }, [])
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-primary/95 shadow-soft backdrop-blur-xl">
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-slate-200 bg-white shadow-soft">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
-        <a href="#" className="text-xl font-bold tracking-tight text-white" onClick={closeMenu}>
+        <a href="#" onClick={closeMenu} className="flex items-center">
           <img
-           src="/logo.png"
-           alt="Zenvik Technologies"
-           className="h-12 w-auto rounded-xl bg-white px-2 py-1 shadow-sm"
+            src="/logo.png"
+            alt="Zenvik Technologies"
+            className="h-16 w-auto object-contain"
+            style={{ maxWidth: "260px" }}
           />
         </a>
 
@@ -41,7 +42,7 @@ function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-white/85 transition duration-200 hover:text-accent"
+              className="text-sm font-semibold text-slate-700 transition duration-200 hover:text-accent"
             >
               {link.label}
             </a>
@@ -52,18 +53,14 @@ function Navbar() {
           <div className="relative" ref={locationDropdownRef}>
             <button
               type="button"
-              className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 transition duration-200 hover:border-white/40 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
-              onClick={() =>
-                setIsLocationDropdownOpen((open) => !open)
-              }
+              className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition duration-200 hover:border-accent/60 hover:bg-white focus:outline-none focus:ring-2 focus:ring-accent"
+              onClick={() => setIsLocationDropdownOpen((open) => !open)}
               aria-label="Select country and currency"
               aria-expanded={isLocationDropdownOpen}
               aria-controls="location-dropdown-menu"
             >
               <span>{selectedLocation.flag}</span>
-              <span className="hidden sm:inline">
-                {selectedLocation.currency}
-              </span>
+              <span className="hidden sm:inline">{selectedLocation.currency}</span>
               <svg
                 className={`h-4 w-4 transition duration-200 ${
                   isLocationDropdownOpen ? "rotate-180" : ""
@@ -84,47 +81,30 @@ function Navbar() {
             {isLocationDropdownOpen && (
               <div
                 id="location-dropdown-menu"
-                className="absolute right-0 top-full z-50 mt-2 min-w-56 overflow-hidden rounded-3xl border border-white/20 bg-primary shadow-soft backdrop-blur-xl"
+                className="absolute right-0 top-full z-50 mt-2 min-w-56 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft"
               >
                 <div className="p-2">
                   {locations.map((location) => (
                     <button
                       key={location.id}
                       type="button"
-                      className={`w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition duration-200 ${
+                      className={`w-full rounded-xl px-4 py-3 text-left text-sm font-semibold transition duration-200 ${
                         selectedLocation.id === location.id
                           ? "bg-accent text-primary"
-                          : "text-white/80 hover:bg-white/10 hover:text-white"
-                      } focus:outline-none focus:ring-2 focus:ring-accent`}
+                          : "text-slate-700 hover:bg-slate-50 hover:text-primary"
+                      }`}
                       onClick={() => {
                         setSelectedLocation(location)
                         setIsLocationDropdownOpen(false)
                       }}
                     >
-                      <div className="flex items-center justify-between">
-                        <span className="flex items-center gap-3">
-                          <span className="text-lg">{location.flag}</span>
-                          <span>
-                            {location.country} ·{" "}
-                            <span className="font-bold">
-                              {location.currency}
-                            </span>
-                          </span>
+                      <span className="flex items-center gap-3">
+                        <span className="text-lg">{location.flag}</span>
+                        <span>
+                          {location.country} ·{" "}
+                          <span className="font-bold">{location.currency}</span>
                         </span>
-                        {selectedLocation.id === location.id && (
-                          <svg
-                            className="h-4 w-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        )}
-                      </div>
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -134,7 +114,7 @@ function Navbar() {
 
           <a
             href={siteConfig.portalUrl}
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-primary shadow-sm shadow-black/10 transition duration-200 hover:-translate-y-0.5 hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-primary shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent"
           >
             Client Portal
           </a>
@@ -142,13 +122,12 @@ function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition duration-200 hover:border-accent/70 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-primary transition duration-200 hover:border-accent hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-accent md:hidden"
           aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-navigation"
           onClick={() => setIsMenuOpen((open) => !open)}
         >
-          <span className="sr-only">{isMenuOpen ? "Close navigation menu" : "Open navigation menu"}</span>
           <span className="relative h-5 w-5" aria-hidden="true">
             <span
               className={`absolute left-0 top-1 block h-0.5 w-5 rounded-full bg-current transition duration-200 ${
@@ -171,36 +150,37 @@ function Navbar() {
 
       <div
         id="mobile-navigation"
-        className={`overflow-hidden border-t border-white/10 bg-primary transition-all duration-300 ease-out md:hidden ${
-          isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`overflow-hidden border-t border-slate-200 bg-white transition-all duration-300 ease-out md:hidden ${
+          isMenuOpen ? "max-h-[640px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4 sm:px-6" aria-label="Mobile navigation">
+        <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4 sm:px-6">
           {navigationLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-base font-medium text-white/90 transition duration-200 hover:bg-white/10 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
+              className="rounded-xl px-3 py-3 text-base font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent"
             >
               {link.label}
             </a>
           ))}
 
-          <div className="mt-4 border-t border-white/10 pt-4">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/70">
+          <div className="mt-4 border-t border-slate-200 pt-4">
+            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">
               Location & Currency
             </p>
+
             <div className="space-y-2">
               {locations.map((location) => (
                 <button
                   key={location.id}
                   type="button"
-                  className={`w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition duration-200 ${
+                  className={`w-full rounded-xl px-4 py-3 text-left text-sm font-semibold transition duration-200 ${
                     selectedLocation.id === location.id
                       ? "bg-accent text-primary"
-                      : "text-white/80 hover:bg-white/10 hover:text-white"
-                  } focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary`}
+                      : "text-slate-700 hover:bg-slate-50 hover:text-primary"
+                  }`}
                   onClick={() => {
                     setSelectedLocation(location)
                     closeMenu()
@@ -221,7 +201,7 @@ function Navbar() {
           <a
             href={siteConfig.portalUrl}
             onClick={closeMenu}
-            className="mt-4 inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-primary transition duration-200 hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
+            className="mt-4 inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-bold text-primary transition duration-200 hover:bg-accent/90"
           >
             Client Portal
           </a>

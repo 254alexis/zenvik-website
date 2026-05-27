@@ -22,12 +22,13 @@ export const siteConfig = {
 
   hostingEmail: "hosting@zenviktechnologies.com",
 
-  socials: {
-    instagram: "https://www.instagram.com/zenviktechnologies/",
-    facebook: "https://www.facebook.com/zenviktechnologies/",
-    tiktok: "https://www.tiktok.com/@zenviktechnologies",
-    threads: "https://www.threads.com/@zenviktechnologies",
-  },
+socials: {
+  instagram: "https://www.instagram.com/zenviktechnologies/",
+  facebook: "https://www.facebook.com/zenviktechnologies/",
+  tiktok: "https://www.tiktok.com/@zenviktechnologies",
+  x: "https://x.com/ZenvikTech",
+  linkedin: "https://www.linkedin.com/company/zenvik-technologies-ltd/",
+},
 
   stats: {
     websitesDeveloped: "120+",
