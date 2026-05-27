@@ -9,7 +9,11 @@ function Footer() {
 
           <div>
             <h3 className="text-2xl font-black">
-              Zenvik<span className="text-accent">.</span>
+              <img
+               src="/logo.png"
+               alt="Zenvik Technologies"
+               className="h-14 w-auto rounded-xl bg-white px-3 py-2 shadow-sm"
+              />
             </h3>
 
             <p className="mt-5 leading-relaxed text-slate-400">

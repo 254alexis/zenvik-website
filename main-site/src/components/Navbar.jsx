@@ -29,7 +29,11 @@ function Navbar() {
     <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-primary/95 shadow-soft backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
         <a href="#" className="text-xl font-bold tracking-tight text-white" onClick={closeMenu}>
-          Zenvik<span className="text-accent">.</span>
+          <img
+           src="/logo.png"
+           alt="Zenvik Technologies"
+           className="h-12 w-auto rounded-xl bg-white px-2 py-1 shadow-sm"
+          />
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
