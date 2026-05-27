@@ -1,6 +1,71 @@
 import { siteConfig } from "../constants/site"
 
+function SocialIcon({ name }) {
+  const commonProps = {
+    className: "h-5 w-5",
+    fill: "none",
+    stroke: "currentColor",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "1.8",
+    viewBox: "0 0 24 24",
+    "aria-hidden": "true",
+  }
+
+  if (name === "Instagram") {
+    return (
+      <svg {...commonProps}>
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+      </svg>
+    )
+  }
+
+  if (name === "Facebook") {
+    return (
+      <svg {...commonProps}>
+        <path d="M14 8h2V4h-2c-2.8 0-5 2.2-5 5v2H7v4h2v5h4v-5h3l1-4h-4V9c0-.6.4-1 1-1Z" />
+      </svg>
+    )
+  }
+
+  if (name === "TikTok") {
+    return (
+      <svg {...commonProps}>
+        <path d="M14 4v10.5a4.5 4.5 0 1 1-4.5-4.5" />
+        <path d="M14 4c.6 3 2.5 4.8 5 5" />
+      </svg>
+    )
+  }
+
+  if (name === "X") {
+    return (
+      <svg {...commonProps}>
+        <path d="m4 4 16 16" />
+        <path d="M20 4 4 20" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg {...commonProps}>
+      <path d="M6.5 10V20" />
+      <path d="M10.5 20v-5.4c0-2.8 1.8-4.6 4.2-4.6 2.3 0 3.8 1.6 3.8 4.5V20" />
+      <path d="M6.5 6.5h.01" />
+    </svg>
+  )
+}
+
 function Footer() {
+  const socialLinks = [
+    ["Instagram", siteConfig.socials.instagram],
+    ["Facebook", siteConfig.socials.facebook],
+    ["TikTok", siteConfig.socials.tiktok],
+    ["X", siteConfig.socials.x],
+    ["LinkedIn", siteConfig.socials.linkedin],
+  ]
+
   return (
     <footer className="bg-dark text-white">
       <div className="mx-auto max-w-7xl px-6 py-20">
@@ -9,8 +74,7 @@ function Footer() {
             <img
               src="/logo.png"
               alt="Zenvik Technologies"
-              className="h-16 w-auto object-contain"
-              style={{ maxWidth: "280px" }}
+              className="h-16 w-auto rounded-2xl bg-white px-3 py-2 shadow-md"
             />
 
             <p className="mt-5 leading-relaxed text-slate-400">
@@ -59,22 +123,19 @@ function Footer() {
               </li>
             </ul>
 
-            <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-400">
-              <a href={siteConfig.socials.instagram} target="_blank" rel="noreferrer" className="transition hover:text-white">Instagram</a>
-              <a href={siteConfig.socials.facebook} target="_blank" rel="noreferrer" className="transition hover:text-white">Facebook</a>
-              <a href={siteConfig.socials.tiktok} target="_blank" rel="noreferrer" className="transition hover:text-white">TikTok</a>
-              <a href={siteConfig.socials.x} target="_blank" rel="noreferrer" className="transition hover:text-white">X</a>
-              <a href={siteConfig.socials.linkedin} target="_blank" rel="noreferrer" className="transition hover:text-white">LinkedIn</a>
-            </div>
-
-            <div className="mt-6">
-              <h5 className="text-sm font-bold text-white">Accepted Payments</h5>
-              <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-400">
-                <span className="rounded-full border border-white/10 px-3 py-1">Bank Transfer</span>
-                <span className="rounded-full border border-white/10 px-3 py-1">M-Pesa</span>
-                <span className="rounded-full border border-white/10 px-3 py-1">PayPal</span>
-                <span className="rounded-full border border-white/10 px-3 py-1">Card Payments</span>
-              </div>
+            <div className="mt-6 flex flex-wrap gap-3 text-slate-400">
+              {socialLinks.map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 transition hover:border-white/30 hover:bg-white/10 hover:text-white"
+                >
+                  <SocialIcon name={label} />
+                </a>
+              ))}
             </div>
           </div>
         </div>

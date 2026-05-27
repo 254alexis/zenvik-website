@@ -12,6 +12,7 @@ import FAQSection from "./sections/FAQSection"
 import ContactSection from "./sections/ContactSection"
 import BlogPreviewSection from "./sections/BlogPreviewSection"
 import CTASection from "./sections/CTASection"
+import WhatsAppFloat from "./components/WhatsAppFloat"
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <BlogPreviewSection />
         <ContactSection />
         <CTASection />
+        <WhatsAppFloat />
       </main>
     </MainLayout>
   )
