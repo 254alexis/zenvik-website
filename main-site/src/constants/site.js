@@ -1,14 +1,50 @@
 export const siteConfig = {
   name: "Zenvik Technologies",
-  domain: "zenviktechnologies.com",
-  portalUrl: "https://portal.zenviktechnologies.com",
-  email: "info@zenviktechnologies.com",
-  supportEmail: "support@zenviktechnologies.com",
+
   tagline: "Empowering Growth Through Technology",
-  vision: "To become Africa's most trusted partner for integrated digital transformation.",
-  mission:
-    "To empower businesses through innovative technology, compelling branding, and creative digital experiences that drive measurable growth and long-term success.",
+
   trustPhrase: "Local insight, global standards.",
+
   positioning:
     "A full-service ICT and digital solutions company serving local, regional, and international businesses.",
+
+  websiteUrl: "https://zenviktechnologies.com",
+
+  portalUrl: "https://portal.zenviktechnologies.com",
+
+  whatsapp: "+254717990272",
+
+  phone: "+254 717 990 272",
+
+  email: "info@zenviktechnologies.com",
+
+  supportEmail: "support@zenviktechnologies.com",
+
+  hostingEmail: "hosting@zenviktechnologies.com",
+
+  socials: {
+    instagram: "https://www.instagram.com/zenviktechnologies/",
+    facebook: "https://www.facebook.com/zenviktechnologies/",
+    tiktok: "https://www.tiktok.com/@zenviktechnologies",
+    threads: "https://www.threads.com/@zenviktechnologies",
+  },
+
+  stats: {
+    websitesDeveloped: "120+",
+    websitesHosted: "200+",
+    supportCoverage: "24/7",
+    clientSatisfaction: "98%",
+  },
+
+  legal: {
+    privacy: "/privacy-policy",
+    terms: "/terms-and-conditions",
+  },
+
+  liveChat: {
+    enabled: true,
+    provider: "WhatsApp",
+  },
+
+  copyrightYear: new Date().getFullYear(),
 }
