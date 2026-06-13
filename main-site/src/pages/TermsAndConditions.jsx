@@ -7,66 +7,79 @@ import { siteConfig } from "../constants/site"
 
 const termsSections = [
   {
+    id: "hosting-terms",
     title: "Hosting Terms",
     content:
       "Our hosting agreements cover uptime, maintenance windows, backup responsibility, and automatic renewal notices. Clients receive proactive renewal reminders before each hosting term expires.",
   },
   {
+    id: "domain-registration-terms",
     title: "Domain Registration Terms",
     content:
       "Domain registration is processed on your behalf through accredited registrars. Renewals are the client's responsibility, and we provide guidance to keep domain ownership active.",
   },
   {
+    id: "payment-billing",
     title: "Payment & Billing",
     content:
       "Invoices are issued in advance and must be paid on schedule. Accepted payment methods include M-Pesa, Bank Transfer, PayPal, and card payments. Late payments may affect service availability.",
   },
   {
+    id: "refund-policy",
     title: "Refund Policy",
     content:
       "We offer a 30-day money-back guarantee on eligible hosting and service agreements. Refund requests should be submitted within 30 days of purchase and are evaluated according to contract terms.",
   },
   {
+    id: "website-development-services",
     title: "Website Development Services",
     content:
       "Project scopes, timelines, and deliverables are agreed in writing before work begins. Additional revisions beyond the agreed scope may incur extra fees.",
   },
   {
+    id: "marketing-branding-services",
     title: "Marketing & Branding Services",
     content:
       "Marketing campaigns, creative assets, and brand strategy are delivered with clear milestones. Strategy revisions are managed through our standard approval and change-request process.",
   },
   {
+    id: "acceptable-use-policy",
     title: "Acceptable Use Policy",
     content:
       "Clients must not use our services for abusive, spam, fraudulent, or illegal activity. Any misuse may result in immediate suspension of accounts without refund.",
   },
   {
+    id: "client-responsibilities",
     title: "Client Responsibilities",
     content:
       "Clients are responsible for maintaining backups, protecting login credentials, and ensuring that submitted content complies with applicable laws and guidelines.",
   },
   {
+    id: "service-availability",
     title: "Service Availability",
     content:
       "We strive for dependable service availability. Scheduled maintenance will be communicated in advance, while emergency maintenance may occur as required for security and stability.",
   },
   {
+    id: "suspension-termination",
     title: "Suspension & Termination",
     content:
       "Zenvik Technologies may suspend or terminate service for payment delinquency, policy violations, or security concerns. Termination notices are sent according to the contract terms.",
   },
   {
+    id: "intellectual-property",
     title: "Intellectual Property",
     content:
       "All intellectual property rights in project deliverables are handled per agreement terms. Our work remains protected until final payment and rights transfer are complete.",
   },
   {
+    id: "liability-limitation",
     title: "Liability Limitation",
     content:
       "Our liability is limited to the amount paid for the relevant service and excludes consequential or indirect damages. We focus on measured, professional outcomes for every engagement.",
   },
   {
+    id: "governing-law",
     title: "Governing Law",
     content:
       "These terms are governed by the applicable laws of the jurisdiction where Zenvik Technologies operates. Any disputes are addressed through the procedures described in the service agreement.",
@@ -110,7 +123,9 @@ export default function TermsAndConditions() {
           <div className="grid gap-6 lg:grid-cols-2">
             {termsSections.slice(0, 6).map((section, index) => (
               <motion.div
+                id={section.id}
                 key={section.title}
+                className="scroll-mt-28"
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
@@ -128,7 +143,9 @@ export default function TermsAndConditions() {
           <div className="grid gap-6 lg:grid-cols-2">
             {termsSections.slice(6).map((section, index) => (
               <motion.div
+                id={section.id}
                 key={section.title}
+                className="scroll-mt-28"
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}

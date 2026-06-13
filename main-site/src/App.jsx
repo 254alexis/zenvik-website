@@ -12,7 +12,6 @@ import FAQSection from "./sections/FAQSection"
 import ContactSection from "./sections/ContactSection"
 import BlogPreviewSection from "./sections/BlogPreviewSection"
 import CTASection from "./sections/CTASection"
-import WhatsAppFloat from "./components/WhatsAppFloat"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
 import TermsAndConditions from "./pages/TermsAndConditions"
 
@@ -39,7 +38,6 @@ function App() {
           <BlogPreviewSection />
           <ContactSection />
           <CTASection />
-          <WhatsAppFloat />
         </main>
       )
 

@@ -58,6 +58,7 @@ function SocialIcon({ name }) {
 }
 
 function Footer() {
+  const footerLinkClass = "transition hover:text-[#dfa408]"
   const socialLinks = [
     ["Instagram", siteConfig.socials.instagram],
     ["Facebook", siteConfig.socials.facebook],
@@ -69,7 +70,7 @@ function Footer() {
   return (
     <footer className="bg-dark text-white">
       <div className="mx-auto w-full max-w-[1280px] px-5 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,0.9fr)_minmax(0,0.9fr)_minmax(0,1.2fr)]">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,0.82fr)_minmax(0,0.82fr)_minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div>
             <img
               src="/logo.png"
@@ -85,58 +86,76 @@ function Footer() {
           <div>
             <h4 className="text-lg font-bold">Services</h4>
             <ul className="mt-5 space-y-3 text-slate-400">
-              <li><a href="#hosting" className="transition hover:text-white">Hosting & Cloud</a></li>
-              <li><a href="#software" className="transition hover:text-white">Software Development</a></li>
-              <li><a href="#services" className="transition hover:text-white">Website Development</a></li>
-              <li><a href="#services" className="transition hover:text-white">Marketing & Branding</a></li>
-              <li><a href="#services" className="transition hover:text-white">ICT Services</a></li>
+              <li><a href="#hosting" className={footerLinkClass}>Hosting & Cloud</a></li>
+              <li><a href="#software" className={footerLinkClass}>Software Development</a></li>
+              <li><a href="#services" className={footerLinkClass}>Website Development</a></li>
+              <li><a href="#services" className={footerLinkClass}>Marketing & Branding</a></li>
+              <li><a href="#services" className={footerLinkClass}>ICT Services</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-bold">Company</h4>
             <ul className="mt-5 space-y-3 text-slate-400">
-              <li><a href="#" className="transition hover:text-white">Home</a></li>
-              <li><a href="#services" className="transition hover:text-white">Our Services</a></li>
-              <li><a href="#portfolio" className="transition hover:text-white">Portfolio</a></li>
-              <li><a href={siteConfig.portalUrl} className="transition hover:text-white">Client Portal</a></li>
-              <li><a href="#contact" className="transition hover:text-white">Contact</a></li>
+              <li><a href="#" className={footerLinkClass}>Home</a></li>
+              <li><a href="#services" className={footerLinkClass}>Our Services</a></li>
+              <li><a href="#portfolio" className={footerLinkClass}>Portfolio</a></li>
+              <li><a href="/blog" className={footerLinkClass}>Blog</a></li>
+              <li><a href={siteConfig.portalUrl} className={footerLinkClass}>Client Portal</a></li>
+              <li><a href="#contact" className={footerLinkClass}>Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-bold">Legal</h4>
+            <ul className="mt-5 space-y-3 text-slate-400">
+              <li><a href={siteConfig.legal.terms} className={footerLinkClass}>Terms & Conditions</a></li>
+              <li><a href={siteConfig.legal.privacy} className={footerLinkClass}>Privacy Policy</a></li>
+              <li><a href={siteConfig.legal.refund} className={footerLinkClass}>Refund Policy</a></li>
+              <li><a href={siteConfig.legal.aup} className={footerLinkClass}>Acceptable Use Policy (AUP)</a></li>
+              <li><a href={siteConfig.legal.sla} className={footerLinkClass}>Service Level Agreement (SLA)</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-bold">Get In Touch</h4>
             <ul className="mt-5 space-y-3 text-slate-400">
-              <li><a href={`tel:${siteConfig.whatsapp}`} className="transition hover:text-white">+254 717 990 272</a></li>
-              <li><a href={`mailto:${siteConfig.email}`} className="transition hover:text-white">{siteConfig.email}</a></li>
-              <li><a href={`mailto:${siteConfig.supportEmail}`} className="transition hover:text-white">{siteConfig.supportEmail}</a></li>
-              <li><a href={`mailto:${siteConfig.hostingEmail}`} className="transition hover:text-white">{siteConfig.hostingEmail}</a></li>
+              <li><a href={`tel:${siteConfig.whatsapp}`} className={footerLinkClass}>+254 717 990 272</a></li>
+              <li><a href={`mailto:${siteConfig.email}`} className={footerLinkClass}>{siteConfig.email}</a></li>
+              <li><a href={`mailto:${siteConfig.supportEmail}`} className={footerLinkClass}>{siteConfig.supportEmail}</a></li>
+              <li><a href={`mailto:${siteConfig.hostingEmail}`} className={footerLinkClass}>{siteConfig.hostingEmail}</a></li>
               <li>
                 <a
                   href={`https://wa.me/${siteConfig.whatsapp.replace(/\+/g, "")}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="transition hover:text-white"
+                  className={footerLinkClass}
                 >
                   WhatsApp Support
                 </a>
               </li>
             </ul>
 
-            <div className="mt-6 flex flex-wrap gap-3 text-slate-400">
-              {socialLinks.map(([label, href]) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 transition hover:border-white/30 hover:bg-white/10 hover:text-white"
+            <div className="mt-6 text-slate-400">
+              <h4 className="text-lg font-bold text-white">Address</h4>
+              <p className="mt-5 flex items-center gap-3">
+                <svg
+                  className="h-5 w-5 shrink-0 text-slate-500"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.8"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
-                  <SocialIcon name={label} />
-                </a>
-              ))}
+                  <path d="M12 21s7-5.1 7-11a7 7 0 0 0-14 0c0 5.9 7 11 7 11Z" />
+                  <circle cx="12" cy="10" r="2.5" />
+                </svg>
+                <span>Nairobi, Kenya</span>
+              </p>
             </div>
+
           </div>
         </div>
 
@@ -145,9 +164,19 @@ function Footer() {
             © {siteConfig.copyrightYear} Zenvik Technologies. All rights reserved.
           </p>
 
-          <div className="flex flex-wrap gap-5">
-            <a href={siteConfig.legal.privacy} className="transition hover:text-white">Privacy Policy</a>
-            <a href={siteConfig.legal.terms} className="transition hover:text-white">Terms & Conditions</a>
+          <div className="flex flex-wrap gap-3 text-slate-400">
+            {socialLinks.map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 transition hover:border-[#dfa408]/60 hover:bg-[#dfa408]/10 hover:text-[#dfa408]"
+              >
+                <SocialIcon name={label} />
+              </a>
+            ))}
           </div>
         </div>
       </div>

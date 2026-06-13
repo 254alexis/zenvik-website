@@ -40,11 +40,14 @@ socials: {
   legal: {
     privacy: "/privacy-policy",
     terms: "/terms-and-conditions",
+    refund: "/terms-and-conditions#refund-policy",
+    aup: "/terms-and-conditions#acceptable-use-policy",
+    sla: "/terms-and-conditions#service-availability",
   },
 
   liveChat: {
     enabled: true,
-    provider: "WhatsApp",
+    provider: "Tawk.to",
   },
 
   copyrightYear: new Date().getFullYear(),
