@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 import {
   accountMenuLinks,
+  legalMenuLinks,
   navigationLinks,
   servicesMenuLinks,
 } from "../data/navigation"
@@ -9,20 +10,25 @@ import { siteConfig } from "../constants/site"
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
+  const [isLegalDropdownOpen, setIsLegalDropdownOpen] = useState(false)
   const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false)
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
+  const [isMobileLegalOpen, setIsMobileLegalOpen] = useState(false)
   const [isMobileAccountOpen, setIsMobileAccountOpen] = useState(false)
   const servicesDropdownRef = useRef(null)
+  const legalDropdownRef = useRef(null)
   const accountDropdownRef = useRef(null)
 
   const closeMenu = () => {
     setIsMenuOpen(false)
     setIsMobileServicesOpen(false)
+    setIsMobileLegalOpen(false)
     setIsMobileAccountOpen(false)
   }
 
   const closeDesktopDropdowns = () => {
     setIsServicesDropdownOpen(false)
+    setIsLegalDropdownOpen(false)
     setIsAccountDropdownOpen(false)
   }
 
@@ -33,6 +39,13 @@ function Navbar() {
         !servicesDropdownRef.current.contains(e.target)
       ) {
         setIsServicesDropdownOpen(false)
+      }
+
+      if (
+        legalDropdownRef.current &&
+        !legalDropdownRef.current.contains(e.target)
+      ) {
+        setIsLegalDropdownOpen(false)
       }
 
       if (
@@ -143,6 +156,79 @@ function Navbar() {
                   </div>
                 </div>
               </div>
+            ) : link.type === "legal" ? (
+              <div
+                key={link.label}
+                ref={legalDropdownRef}
+                className="relative"
+                onMouseEnter={() => setIsLegalDropdownOpen(true)}
+                onMouseLeave={() => setIsLegalDropdownOpen(false)}
+              >
+                <button
+                  type="button"
+                  className={`inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold transition duration-200 ${
+                    isLegalDropdownOpen ? "text-accent" : "text-slate-700 hover:text-accent"
+                  }`}
+                  onClick={() => setIsLegalDropdownOpen((open) => !open)}
+                  aria-expanded={isLegalDropdownOpen}
+                  aria-controls="legal-dropdown-menu"
+                >
+                  {link.label}
+                  <svg
+                    className={`h-4 w-4 transition duration-200 ${
+                      isLegalDropdownOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+
+                <div
+                  id="legal-dropdown-menu"
+                  className={`absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-4 transition duration-200 ${
+                    isLegalDropdownOpen
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible -translate-y-2 opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <div className="rounded-3xl border border-slate-200 bg-white p-2 shadow-soft">
+                    <div className="space-y-1">
+                      {legalMenuLinks.map((item) => (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          className="group flex items-center justify-between gap-3 rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent"
+                        >
+                          <span>{item.label}</span>
+                          <svg
+                            className="h-4 w-4 shrink-0 text-slate-400 transition duration-200 group-hover:translate-x-0.5 group-hover:text-accent"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="m9 5 7 7-7 7"
+                            />
+                          </svg>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             ) : (
               <a
                 key={link.label}
@@ -173,8 +259,8 @@ function Navbar() {
               type="button"
               className={`inline-flex h-11 w-11 items-center justify-center rounded-full border transition duration-200 focus:outline-none focus:ring-2 focus:ring-accent ${
                 isAccountDropdownOpen
-                  ? "border-accent bg-white text-accent shadow-sm"
-                  : "border-slate-200 bg-slate-50 text-primary hover:border-accent/60 hover:bg-white hover:text-accent"
+                  ? "border-accent bg-white text-[#dfa408] shadow-sm"
+                  : "border-slate-200 bg-white text-[#dfa408] hover:border-accent/60"
               }`}
               onClick={() => setIsAccountDropdownOpen((open) => !open)}
               aria-label="Account menu"
@@ -279,7 +365,7 @@ function Navbar() {
       <div
         id="mobile-navigation"
         className={`overflow-hidden border-t border-slate-200 bg-white transition-all duration-300 ease-out xl:hidden ${
-          isMenuOpen ? "max-h-[860px] opacity-100" : "max-h-0 opacity-0"
+          isMenuOpen ? "max-h-[1120px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <nav className="mx-auto flex w-full max-w-[1280px] flex-col gap-1 px-5 py-4 sm:px-6">
@@ -332,6 +418,54 @@ function Navbar() {
                   </div>
                 </div>
               </div>
+            ) : link.type === "legal" ? (
+              <div key={link.label}>
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-base font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent"
+                  onClick={() => setIsMobileLegalOpen((open) => !open)}
+                  aria-expanded={isMobileLegalOpen}
+                  aria-controls="mobile-legal-menu"
+                >
+                  <span>{link.label}</span>
+                  <svg
+                    className={`h-4 w-4 transition duration-200 ${
+                      isMobileLegalOpen ? "rotate-180 text-accent" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+
+                <div
+                  id="mobile-legal-menu"
+                  className={`overflow-hidden transition-all duration-300 ease-out ${
+                    isMobileLegalOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="mt-1 space-y-1 rounded-2xl bg-slate-50 p-2">
+                    {legalMenuLinks.map((item) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={closeMenu}
+                        className="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 transition duration-200 hover:bg-white hover:text-accent"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
             ) : (
               <a
                 key={link.label}
@@ -353,7 +487,7 @@ function Navbar() {
               aria-controls="mobile-account-menu"
             >
               <span className="flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-primary">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-[#dfa408]">
                   <svg
                     className="h-5 w-5"
                     fill="none"
