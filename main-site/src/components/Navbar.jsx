@@ -1,28 +1,73 @@
 import { useState, useRef, useEffect } from "react"
-import { locations } from "../data/locations"
-import { navigationLinks } from "../data/navigation"
+import {
+  accountMenuLinks,
+  legalMenuLinks,
+  navigationLinks,
+  servicesMenuLinks,
+} from "../data/navigation"
 import { siteConfig } from "../constants/site"
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [selectedLocation, setSelectedLocation] = useState(locations[0])
-  const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false)
-  const locationDropdownRef = useRef(null)
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
+  const [isLegalDropdownOpen, setIsLegalDropdownOpen] = useState(false)
+  const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false)
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
+  const [isMobileLegalOpen, setIsMobileLegalOpen] = useState(false)
+  const [isMobileAccountOpen, setIsMobileAccountOpen] = useState(false)
+  const servicesDropdownRef = useRef(null)
+  const legalDropdownRef = useRef(null)
+  const accountDropdownRef = useRef(null)
 
-  const closeMenu = () => setIsMenuOpen(false)
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+    setIsMobileServicesOpen(false)
+    setIsMobileLegalOpen(false)
+    setIsMobileAccountOpen(false)
+  }
+
+  const closeDesktopDropdowns = () => {
+    setIsServicesDropdownOpen(false)
+    setIsLegalDropdownOpen(false)
+    setIsAccountDropdownOpen(false)
+  }
 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
-        locationDropdownRef.current &&
-        !locationDropdownRef.current.contains(e.target)
+        servicesDropdownRef.current &&
+        !servicesDropdownRef.current.contains(e.target)
       ) {
-        setIsLocationDropdownOpen(false)
+        setIsServicesDropdownOpen(false)
+      }
+
+      if (
+        legalDropdownRef.current &&
+        !legalDropdownRef.current.contains(e.target)
+      ) {
+        setIsLegalDropdownOpen(false)
+      }
+
+      if (
+        accountDropdownRef.current &&
+        !accountDropdownRef.current.contains(e.target)
+      ) {
+        setIsAccountDropdownOpen(false)
+      }
+    }
+
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        closeDesktopDropdowns()
       }
     }
 
     document.addEventListener("click", handleClickOutside)
-    return () => document.removeEventListener("click", handleClickOutside)
+    document.addEventListener("keydown", handleEscape)
+    return () => {
+      document.removeEventListener("click", handleClickOutside)
+      document.removeEventListener("keydown", handleEscape)
+    }
   }, [])
 
   return (
@@ -37,86 +82,256 @@ function Navbar() {
         </a>
 
         <nav className="hidden min-w-0 items-center gap-5 xl:flex 2xl:gap-8">
-          {navigationLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="whitespace-nowrap text-sm font-semibold text-slate-700 transition duration-200 hover:text-accent"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navigationLinks.map((link) =>
+            link.type === "services" ? (
+              <div
+                key={link.label}
+                ref={servicesDropdownRef}
+                className="relative"
+                onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                onMouseLeave={() => setIsServicesDropdownOpen(false)}
+              >
+                <button
+                  type="button"
+                  className={`inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold transition duration-200 ${
+                    isServicesDropdownOpen ? "text-accent" : "text-slate-700 hover:text-accent"
+                  }`}
+                  onClick={() => setIsServicesDropdownOpen((open) => !open)}
+                  aria-expanded={isServicesDropdownOpen}
+                  aria-controls="services-dropdown-menu"
+                >
+                  {link.label}
+                  <svg
+                    className={`h-4 w-4 transition duration-200 ${
+                      isServicesDropdownOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+
+                <div
+                  id="services-dropdown-menu"
+                  className={`absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-4 transition duration-200 ${
+                    isServicesDropdownOpen
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible -translate-y-2 opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <div className="rounded-3xl border border-slate-200 bg-white p-2 shadow-soft">
+                    <div className="space-y-1">
+                      {servicesMenuLinks.map((item) => (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          className="group flex items-center justify-between gap-3 rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent"
+                        >
+                          <span>{item.label}</span>
+                          <svg
+                            className="h-4 w-4 text-slate-400 transition duration-200 group-hover:translate-x-0.5 group-hover:text-accent"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="m9 5 7 7-7 7"
+                            />
+                          </svg>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : link.type === "legal" ? (
+              <div
+                key={link.label}
+                ref={legalDropdownRef}
+                className="relative"
+                onMouseEnter={() => setIsLegalDropdownOpen(true)}
+                onMouseLeave={() => setIsLegalDropdownOpen(false)}
+              >
+                <button
+                  type="button"
+                  className={`inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold transition duration-200 ${
+                    isLegalDropdownOpen ? "text-accent" : "text-slate-700 hover:text-accent"
+                  }`}
+                  onClick={() => setIsLegalDropdownOpen((open) => !open)}
+                  aria-expanded={isLegalDropdownOpen}
+                  aria-controls="legal-dropdown-menu"
+                >
+                  {link.label}
+                  <svg
+                    className={`h-4 w-4 transition duration-200 ${
+                      isLegalDropdownOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+
+                <div
+                  id="legal-dropdown-menu"
+                  className={`absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-4 transition duration-200 ${
+                    isLegalDropdownOpen
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible -translate-y-2 opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <div className="rounded-3xl border border-slate-200 bg-white p-2 shadow-soft">
+                    <div className="space-y-1">
+                      {legalMenuLinks.map((item) => (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          className="group flex items-center justify-between gap-3 rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent"
+                        >
+                          <span>{item.label}</span>
+                          <svg
+                            className="h-4 w-4 shrink-0 text-slate-400 transition duration-200 group-hover:translate-x-0.5 group-hover:text-accent"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="m9 5 7 7-7 7"
+                            />
+                          </svg>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                className="whitespace-nowrap text-sm font-semibold text-slate-700 transition duration-200 hover:text-accent"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="hidden shrink-0 items-center gap-3 xl:flex 2xl:gap-4">
-          <div className="relative" ref={locationDropdownRef}>
-            <button
-              type="button"
-              className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition duration-200 hover:border-accent/60 hover:bg-white focus:outline-none focus:ring-2 focus:ring-accent"
-              onClick={() => setIsLocationDropdownOpen((open) => !open)}
-              aria-label="Select country and currency"
-              aria-expanded={isLocationDropdownOpen}
-              aria-controls="location-dropdown-menu"
-            >
-              <span>{selectedLocation.flag}</span>
-              <span className="hidden sm:inline">{selectedLocation.currency}</span>
-              <svg
-                className={`h-4 w-4 transition duration-200 ${
-                  isLocationDropdownOpen ? "rotate-180" : ""
-                }`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </button>
-
-            {isLocationDropdownOpen && (
-              <div
-                id="location-dropdown-menu"
-                className="absolute right-0 top-full z-50 mt-2 w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft"
-              >
-                <div className="p-2">
-                  {locations.map((location) => (
-                    <button
-                      key={location.id}
-                      type="button"
-                      className={`w-full rounded-xl px-4 py-3 text-left text-sm font-semibold transition duration-200 ${
-                        selectedLocation.id === location.id
-                          ? "bg-accent text-primary"
-                          : "text-slate-700 hover:bg-slate-50 hover:text-primary"
-                      }`}
-                      onClick={() => {
-                        setSelectedLocation(location)
-                        setIsLocationDropdownOpen(false)
-                      }}
-                    >
-                      <span className="flex items-center gap-3">
-                        <span className="text-lg">{location.flag}</span>
-                        <span>
-                          {location.country} ·{" "}
-                          <span className="font-bold">{location.currency}</span>
-                        </span>
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
           <a
             href={siteConfig.portalUrl}
             className="whitespace-nowrap rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-primary shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent"
           >
             Client Portal
           </a>
+
+          <div
+            className="relative"
+            ref={accountDropdownRef}
+            onMouseEnter={() => setIsAccountDropdownOpen(true)}
+            onMouseLeave={() => setIsAccountDropdownOpen(false)}
+          >
+            <button
+              type="button"
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-full border transition duration-200 focus:outline-none focus:ring-2 focus:ring-accent ${
+                isAccountDropdownOpen
+                  ? "border-accent bg-white text-[#dfa408] shadow-sm"
+                  : "border-slate-200 bg-white text-[#dfa408] hover:border-accent/60"
+              }`}
+              onClick={() => setIsAccountDropdownOpen((open) => !open)}
+              aria-label="Account menu"
+              aria-expanded={isAccountDropdownOpen}
+              aria-controls="account-dropdown-menu"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15.75 7.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4.5 20.25a7.5 7.5 0 0 1 15 0"
+                />
+              </svg>
+            </button>
+
+            <div
+              id="account-dropdown-menu"
+              className={`absolute right-0 top-full z-50 w-64 pt-4 transition duration-200 ${
+                isAccountDropdownOpen
+                  ? "visible translate-y-0 opacity-100"
+                  : "invisible -translate-y-2 opacity-0 pointer-events-none"
+              }`}
+            >
+              <div className="rounded-3xl border border-slate-200 bg-white p-2 shadow-soft">
+                <div className="rounded-2xl bg-slate-50 px-4 py-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                    Account
+                  </p>
+                </div>
+
+                <div className="mt-1 space-y-1">
+                  {accountMenuLinks.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent"
+                    >
+                      <span>{item.label}</span>
+                      <svg
+                        className="h-4 w-4 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="m9 5 7 7-7 7"
+                        />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <button
@@ -150,50 +365,189 @@ function Navbar() {
       <div
         id="mobile-navigation"
         className={`overflow-hidden border-t border-slate-200 bg-white transition-all duration-300 ease-out xl:hidden ${
-          isMenuOpen ? "max-h-[640px] opacity-100" : "max-h-0 opacity-0"
+          isMenuOpen ? "max-h-[1120px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <nav className="mx-auto flex w-full max-w-[1280px] flex-col gap-1 px-5 py-4 sm:px-6">
-          {navigationLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={closeMenu}
-              className="rounded-xl px-3 py-3 text-base font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navigationLinks.map((link) =>
+            link.type === "services" ? (
+              <div key={link.label}>
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-base font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent"
+                  onClick={() => setIsMobileServicesOpen((open) => !open)}
+                  aria-expanded={isMobileServicesOpen}
+                  aria-controls="mobile-services-menu"
+                >
+                  <span>{link.label}</span>
+                  <svg
+                    className={`h-4 w-4 transition duration-200 ${
+                      isMobileServicesOpen ? "rotate-180 text-accent" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+
+                <div
+                  id="mobile-services-menu"
+                  className={`overflow-hidden transition-all duration-300 ease-out ${
+                    isMobileServicesOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="mt-1 space-y-1 rounded-2xl bg-slate-50 p-2">
+                    {servicesMenuLinks.map((item) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={closeMenu}
+                        className="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 transition duration-200 hover:bg-white hover:text-accent"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : link.type === "legal" ? (
+              <div key={link.label}>
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-base font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent"
+                  onClick={() => setIsMobileLegalOpen((open) => !open)}
+                  aria-expanded={isMobileLegalOpen}
+                  aria-controls="mobile-legal-menu"
+                >
+                  <span>{link.label}</span>
+                  <svg
+                    className={`h-4 w-4 transition duration-200 ${
+                      isMobileLegalOpen ? "rotate-180 text-accent" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+
+                <div
+                  id="mobile-legal-menu"
+                  className={`overflow-hidden transition-all duration-300 ease-out ${
+                    isMobileLegalOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="mt-1 space-y-1 rounded-2xl bg-slate-50 p-2">
+                    {legalMenuLinks.map((item) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={closeMenu}
+                        className="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 transition duration-200 hover:bg-white hover:text-accent"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={closeMenu}
+                className="rounded-xl px-3 py-3 text-base font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent"
+              >
+                {link.label}
+              </a>
+            )
+          )}
 
           <div className="mt-4 border-t border-slate-200 pt-4">
-            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">
-              Location & Currency
-            </p>
+            <button
+              type="button"
+              className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-base font-semibold text-slate-700 transition duration-200 hover:bg-slate-50 hover:text-accent"
+              onClick={() => setIsMobileAccountOpen((open) => !open)}
+              aria-expanded={isMobileAccountOpen}
+              aria-controls="mobile-account-menu"
+            >
+              <span className="flex items-center gap-3">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-[#dfa408]">
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15.75 7.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4.5 20.25a7.5 7.5 0 0 1 15 0"
+                    />
+                  </svg>
+                </span>
+                <span>Account</span>
+              </span>
 
-            <div className="space-y-2">
-              {locations.map((location) => (
-                <button
-                  key={location.id}
-                  type="button"
-                  className={`w-full rounded-xl px-4 py-3 text-left text-sm font-semibold transition duration-200 ${
-                    selectedLocation.id === location.id
-                      ? "bg-accent text-primary"
-                      : "text-slate-700 hover:bg-slate-50 hover:text-primary"
-                  }`}
-                  onClick={() => {
-                    setSelectedLocation(location)
-                    closeMenu()
-                  }}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-lg">{location.flag}</span>
-                    <span>
-                      {location.country} ·{" "}
-                      <span className="font-bold">{location.currency}</span>
-                    </span>
-                  </span>
-                </button>
-              ))}
+              <svg
+                className={`h-4 w-4 transition duration-200 ${
+                  isMobileAccountOpen ? "rotate-180 text-accent" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="m6 9 6 6 6-6"
+                />
+              </svg>
+            </button>
+
+            <div
+              id="mobile-account-menu"
+              className={`overflow-hidden transition-all duration-300 ease-out ${
+                isMobileAccountOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <div className="mt-1 space-y-1 rounded-2xl bg-slate-50 p-2">
+                {accountMenuLinks.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={closeMenu}
+                    className="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 transition duration-200 hover:bg-white hover:text-accent"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
