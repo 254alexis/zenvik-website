@@ -1,0 +1,224 @@
+SERVICES SECTION — SERVICE SPOTLIGHT ANIMATION
+
+Replace the previously planned ecosystem chain animation.
+
+Do not modify:
+
+* Service card layout
+* Service card visuals
+* Service card illustrations
+* Service card content
+* Service card spacing
+* Service card structure
+
+Only add the Service Spotlight animation system.
+
+==================================================
+
+OBJECTIVE
+
+Guide the visitor through all six services.
+
+The animation should create focus.
+
+The animation should feel premium, controlled, and intentional.
+
+Visitors should naturally look at each service one after another.
+
+==================================================
+
+SERVICE ORDER
+
+Use the existing card order:
+
+1. Hosting & Cloud Solutions
+2. Website Development
+3. Software Development
+4. AI Solutions
+5. Marketing & Branding
+6. ICT Services
+
+==================================================
+
+SCROLL ACTIVATION
+
+When the Services section enters the viewport:
+
+Run one spotlight sequence.
+
+Run once only.
+
+Do not continuously loop.
+
+Do not repeat during scrolling.
+
+==================================================
+
+SPOTLIGHT SEQUENCE
+
+The spotlight activates one service card at a time.
+
+Current card becomes the temporary focal point.
+
+After completion:
+
+Return card to normal state.
+
+Move to the next service card.
+
+==================================================
+
+CARD ACTIVATION
+
+When a card becomes active:
+
+Scale:
+
+* 103% to 105% maximum
+
+Glow:
+
+* Slight increase only
+* Maintain premium appearance
+
+Illustration:
+
+* Slight brightness increase
+* Existing service animations remain active
+
+Duration:
+
+0.8 to 1.2 seconds
+
+==================================================
+
+ORBIT RING
+
+When a card becomes active:
+
+Create one orbit ring around the illustration area only.
+
+Requirements:
+
+* Not around the entire card
+* Surround illustration section only
+* Gold color (#dfa408)
+* Stroke width: 2px–3px
+
+Ring Style:
+
+* Partial orbit ring
+* Approximately 70%–80% of a full circle
+* Small gap remaining
+
+Do not create:
+
+* Loading spinners
+* Complete circular borders
+* Dashboard loaders
+
+==================================================
+
+ORBIT MOTION
+
+The orbit ring performs:
+
+* One smooth revolution around the illustration
+* Controlled speed
+* Premium movement
+
+After completing one revolution:
+
+* Ring fades out
+* Card returns to normal
+
+Then move to the next card.
+
+==================================================
+
+SEQUENCE FLOW
+
+Hosting & Cloud Solutions
+→ spotlight
+→ orbit completes
+→ return to normal
+
+Website Development
+→ spotlight
+→ orbit completes
+→ return to normal
+
+Software Development
+→ spotlight
+→ orbit completes
+→ return to normal
+
+AI Solutions
+→ spotlight
+→ orbit completes
+→ return to normal
+
+Marketing & Branding
+→ spotlight
+→ orbit completes
+→ return to normal
+
+ICT Services
+→ spotlight
+→ orbit completes
+→ return to normal
+
+==================================================
+
+FINAL MOMENT
+
+After the last card completes:
+
+All cards briefly enter a synchronized state.
+
+Requirements:
+
+* Very subtle glow increase
+* Duration: 0.8 seconds
+* No scaling
+* No orbit rings
+
+Then return to normal.
+
+==================================================
+
+HOVER INTERACTION
+
+When a user hovers a service card:
+
+* Activate only that card
+* Show orbit ring around illustration area
+* Slight illustration emphasis
+* No section-wide activation
+
+Do not affect other cards.
+
+==================================================
+
+RESTRICTIONS
+
+Do not add:
+
+* Connection lines
+* Flowcharts
+* Signal chains
+* Additional nodes
+* Background beams
+* Marquee effects
+
+The spotlight effect alone must guide attention.
+
+==================================================
+
+VISUAL GOAL
+
+The visitor should naturally move through all six services in sequence.
+
+The animation should feel like a premium product showcase rather than a technical diagram.
+
+The effect must remain clean, modern, professional, and consistent with the Zenvik ecosystem design language.
