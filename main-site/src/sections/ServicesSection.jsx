@@ -1,5 +1,5 @@
-import { motion, useInView } from "framer-motion"
-import { useEffect, useRef, useState } from "react"
+import { motion, useInView, AnimatePresence } from "framer-motion"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { coreServices } from "../data/services"
 import Container from "../components/common/Container"
 import SectionHeader from "../components/common/SectionHeader"
@@ -7,15 +7,15 @@ import SectionHeader from "../components/common/SectionHeader"
 // ─── Background ───────────────────────────────────────────────────────────────
 
 const technologyBackgroundItems = [
-  { type: "laravel",   left: "7%",  top: "9%",  size: "clamp(5rem,11vw,10rem)",   rotate: "-10deg", color: "#043a7e" },
-  { type: "wordpress", left: "70%", top: "7%",  size: "clamp(5rem,10vw,9.5rem)",  rotate: "8deg",   color: "#7a6200" },
-  { type: "react",     left: "24%", top: "30%", size: "clamp(6rem,12vw,11.5rem)", rotate: "9deg",   color: "#043a7e" },
-  { type: "mysql",     left: "77%", top: "34%", size: "clamp(5.5rem,11vw,10rem)", rotate: "-8deg",  color: "#dfa408" },
-  { type: "cloud",     left: "6%",  top: "53%", size: "clamp(5.5rem,11vw,10.5rem)",rotate: "4deg",  color: "#043a7e" },
-  { type: "ai",        left: "57%", top: "55%", size: "clamp(5rem,10vw,9.5rem)",  rotate: "-5deg",  color: "#7a6200" },
-  { type: "cyber",     left: "14%", top: "76%", size: "clamp(5rem,11vw,10rem)",   rotate: "-7deg",  color: "#dfa408" },
-  { type: "hosting",   left: "73%", top: "75%", size: "clamp(5.5rem,11vw,10.5rem)",rotate: "7deg",  color: "#043a7e" },
-  { type: "software",  left: "40%", top: "86%", size: "clamp(5rem,10vw,9.5rem)",  rotate: "-3deg",  color: "#7a6200" },
+  { type: "laravel",   left: "7%",  top: "9%",  size: "clamp(5rem,11vw,10rem)",    rotate: "-10deg", color: "#043a7e" },
+  { type: "wordpress", left: "70%", top: "7%",  size: "clamp(5rem,10vw,9.5rem)",   rotate: "8deg",   color: "#7a6200" },
+  { type: "react",     left: "24%", top: "30%", size: "clamp(6rem,12vw,11.5rem)",  rotate: "9deg",   color: "#043a7e" },
+  { type: "mysql",     left: "77%", top: "34%", size: "clamp(5.5rem,11vw,10rem)",  rotate: "-8deg",  color: "#dfa408" },
+  { type: "cloud",     left: "6%",  top: "53%", size: "clamp(5.5rem,11vw,10.5rem)",rotate: "4deg",   color: "#043a7e" },
+  { type: "ai",        left: "57%", top: "55%", size: "clamp(5rem,10vw,9.5rem)",   rotate: "-5deg",  color: "#7a6200" },
+  { type: "cyber",     left: "14%", top: "76%", size: "clamp(5rem,11vw,10rem)",    rotate: "-7deg",  color: "#dfa408" },
+  { type: "hosting",   left: "73%", top: "75%", size: "clamp(5.5rem,11vw,10.5rem)",rotate: "7deg",   color: "#043a7e" },
+  { type: "software",  left: "40%", top: "86%", size: "clamp(5rem,10vw,9.5rem)",   rotate: "-3deg",  color: "#7a6200" },
 ]
 
 function TechnologyBackgroundIcon({ type }) {
@@ -86,49 +86,145 @@ function TechnologyBackgroundLayer() {
   )
 }
 
-// ─── Orbit Ring ───────────────────────────────────────────────────────────────
-// Renders over the illustration panel (inset-[20px] = p-5 padding offset)
-// The arc is ~75% of a circle, spinning once then fading out.
+// ─── Card-level Orbit Ring ────────────────────────────────────────────────────
 
-const ORBIT_R        = 52                        // radius in the 100×100 viewBox
-const ORBIT_CIRC     = 2 * Math.PI * ORBIT_R     // ≈ 326.7
-const ORBIT_ARC      = ORBIT_CIRC * 0.76         // 76% visible arc
-const ORBIT_GAP      = ORBIT_CIRC - ORBIT_ARC    // 24% gap
+// Generates a rounded-rectangle SVG path string.
+function rrPath(x, y, w, h, rx) {
+  return [
+    `M${x + rx},${y}`,
+    `L${x + w - rx},${y}`,
+    `Q${x + w},${y} ${x + w},${y + rx}`,
+    `L${x + w},${y + h - rx}`,
+    `Q${x + w},${y + h} ${x + w - rx},${y + h}`,
+    `L${x + rx},${y + h}`,
+    `Q${x},${y + h} ${x},${y + h - rx}`,
+    `L${x},${y + rx}`,
+    `Q${x},${y} ${x + rx},${y}`,
+    "Z",
+  ].join(" ")
+}
 
-function OrbitRing({ visible }) {
+// Perimeter of a rounded rectangle: straight edges + quarter-circles.
+function rrPerimeter(w, h, rx) {
+  return 2 * (w + h) + 2 * rx * (Math.PI - 4)
+}
+
+// The SVG orbit overlay. Mounted via AnimatePresence so it fades on exit.
+function CardOrbitSVG({ dims, filterId, loop }) {
+  const PAD = 6          // px outside the card edge
+  const RX  = 30         // card border-radius (24px) + PAD (6px)
+
+  const svgW = dims.w + 2 * PAD
+  const svgH = dims.h + 2 * PAD
+  const d    = rrPath(PAD, PAD, dims.w, dims.h, RX)
+  const peri = rrPerimeter(dims.w, dims.h, RX)
+
+  const beamLen = peri * 0.22   // 22% of perimeter visible
+  const gapLen  = peri - beamLen
+
+  const REVOLUTION = 2.5        // seconds per revolution
+
   return (
     <motion.svg
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-[20px] z-10 overflow-visible"
-      viewBox="0 0 100 100"
-      preserveAspectRatio="xMidYMid meet"
-      initial={false}
-      animate={{ opacity: visible ? 1 : 0 }}
-      transition={{ duration: visible ? 0.18 : 0.28, ease: "easeOut" }}
+      width={svgW}
+      height={svgH}
+      style={{ position: "absolute", top: -PAD, left: -PAD, zIndex: 20, pointerEvents: "none", overflow: "visible" }}
+      fill="none"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.28, ease: "easeOut" }}
     >
-      <motion.g
-        style={{ transformOrigin: "50px 50px" }}
-        initial={false}
-        animate={visible ? { rotate: 360 } : { rotate: 0 }}
-        transition={visible
-          ? { rotate: { duration: 1.0, ease: "easeInOut" } }
-          : { rotate: { duration: 0 } }
-        }
-      >
-        <circle
-          cx="50"
-          cy="50"
-          r={ORBIT_R}
-          fill="none"
-          stroke="#dfa408"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeDasharray={`${ORBIT_ARC} ${ORBIT_GAP}`}
-          strokeOpacity="0.88"
-          style={{ filter: "drop-shadow(0 0 6px rgba(223,164,8,0.52))" }}
-        />
-      </motion.g>
+      <defs>
+        <filter id={filterId} x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      {/* Base trail — thin, dark gold, always visible when orbit is shown */}
+      <path
+        d={d}
+        stroke="#7a6200"
+        strokeWidth="1"
+        strokeOpacity="0.30"
+      />
+
+      {/* Moving beam — animated dashoffset, gold with glow */}
+      <motion.path
+        d={d}
+        stroke="#dfa408"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeDasharray={`${beamLen} ${gapLen}`}
+        filter={`url(#${filterId})`}
+        initial={{ strokeDashoffset: 0, strokeOpacity: 0 }}
+        animate={{
+          strokeDashoffset: [0, -peri],
+          strokeOpacity: [0, 0.9, 0.9, 0],
+        }}
+        transition={{
+          strokeDashoffset: {
+            duration: REVOLUTION,
+            ease: "linear",
+            repeat: loop ? Infinity : 0,
+          },
+          strokeOpacity: {
+            duration: REVOLUTION,
+            times: [0, 0.08, loop ? 0.92 : 0.88, 1],
+            ease: "easeOut",
+            repeat: loop ? Infinity : 0,
+          },
+        }}
+      />
     </motion.svg>
+  )
+}
+
+// Self-contained card wrapper: owns its ref, measures itself, shows orbit.
+function CardWrapper({ index, active, hovered, children }) {
+  const ref  = useRef(null)
+  const [dims, setDims] = useState(null)
+
+  useLayoutEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new ResizeObserver(() => {
+      const r = el.getBoundingClientRect()
+      if (r.width > 0 && r.height > 0) {
+        setDims({ w: Math.round(r.width), h: Math.round(r.height) })
+      }
+    })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, []) // stable — ref never changes
+
+  const visible  = active || hovered
+  const loop     = hovered && !active
+  const orbitKey = active ? `s-${index}` : `h-${index}`
+
+  return (
+    <motion.div
+      ref={ref}
+      animate={{ scale: active ? 1.07 : 1, zIndex: active ? 10 : 1 }}
+      transition={{ type: "spring", stiffness: 260, damping: 26 }}
+      className="relative h-full"
+    >
+      <AnimatePresence>
+        {visible && dims && (
+          <CardOrbitSVG
+            key={orbitKey}
+            dims={dims}
+            filterId={`og-${index}`}
+            loop={loop}
+          />
+        )}
+      </AnimatePresence>
+      {children}
+    </motion.div>
   )
 }
 
@@ -229,15 +325,15 @@ function ServiceVisual({ type, index }) {
         <GoldLine key={to} d={`M${from} L${to}`} opacity={0.58} />
       ))}
       <rect x="86" y="40" width="48" height="48" rx="12" fill="rgba(4,58,126,0.1)" stroke="rgba(4,58,126,0.44)" strokeWidth="1.8" />
-      {[94, 102, 118, 126].map((x) => (
+      {[94,102,118,126].map((x) => (
         <path key={`tp-${x}`} d={`M${x} 40v-7M${x} 88v7`} stroke="rgba(4,58,126,0.36)" strokeLinecap="round" strokeWidth="1.5" />
       ))}
-      {[48, 56, 72, 80].map((y) => (
+      {[48,56,72,80].map((y) => (
         <path key={`sp-${y}`} d={`M86 ${y}h-7M134 ${y}h7`} stroke="rgba(4,58,126,0.36)" strokeLinecap="round" strokeWidth="1.5" />
       ))}
       <motion.g animate={{ rotate: 360 }} style={{ transformBox: "view-box", transformOrigin: "110px 64px" }} transition={{ duration: 7.5, repeat: Infinity, ease: "linear" }}>
         <circle cx="110" cy="64" r="13" fill="rgba(223,164,8,0.16)" stroke="#dfa408" strokeWidth="1.5" />
-        {[0, 60, 120, 180, 240, 300].map((angle) => (
+        {[0,60,120,180,240,300].map((angle) => (
           <path key={angle} d="M110 47v7" stroke="#dfa408" strokeLinecap="round" strokeWidth="2" transform={`rotate(${angle} 110 64)`} />
         ))}
         <circle cx="110" cy="64" r="4" fill="#dfa408" />
@@ -267,7 +363,7 @@ function ServiceVisual({ type, index }) {
       {[[48,92,"S"],[78,74,"C"],[116,52,"SEO"],[156,32,"AD"]].map(([x, y, label]) => (
         <g key={label}>
           <circle cx={x} cy={y} r="9" fill="rgba(4,58,126,0.08)" stroke="rgba(4,58,126,0.24)" strokeWidth="1.5" />
-          <text x={x} y={Number(y) + 3} textAnchor="middle" fontSize={label === "SEO" ? "6" : "7"} fontWeight="800" fill="#dfa408">{label}</text>
+          <text x={x} y={Number(y)+3} textAnchor="middle" fontSize={label==="SEO"?"6":"7"} fontWeight="800" fill="#dfa408">{label}</text>
         </g>
       ))}
       <rect x="139" y="20" width="34" height="18" rx="7" fill="rgba(4,58,126,0.08)" stroke="rgba(4,58,126,0.2)" strokeWidth="1.4" />
@@ -284,27 +380,29 @@ function ServiceVisual({ type, index }) {
       <path d="M110 24v66M92 90h36M99 100h22" stroke="rgba(4,58,126,0.55)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
       <path d="M110 24 87 90M110 24l23 66M97 58h26" stroke="rgba(4,58,126,0.42)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" />
       <circle cx="110" cy="24" r="6" fill="#dfa408" stroke="rgba(4,58,126,0.2)" strokeWidth="1.4" />
-      {[16, 27, 38].map((offset, item) => (
+      {[16,27,38].map((offset, item) => (
         <g key={offset}>
-          <motion.path d={`M${110-offset} ${24+item*7} C${92-offset} ${42+item*7} ${92-offset} ${58-item*2} ${110-offset} ${76-item*3}`} stroke="#dfa408" strokeLinecap="round" strokeOpacity="0.42" strokeWidth="1.5" animate={{ opacity: [0.2, 0.75, 0.2] }} transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: delay + item * 0.22 }} />
-          <motion.path d={`M${110+offset} ${24+item*7} C${128+offset} ${42+item*7} ${128+offset} ${58-item*2} ${110+offset} ${76-item*3}`} stroke="#dfa408" strokeLinecap="round" strokeOpacity="0.42" strokeWidth="1.5" animate={{ opacity: [0.2, 0.75, 0.2] }} transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: delay + item * 0.22 }} />
+          <motion.path d={`M${110-offset} ${24+item*7} C${92-offset} ${42+item*7} ${92-offset} ${58-item*2} ${110-offset} ${76-item*3}`} stroke="#dfa408" strokeLinecap="round" strokeOpacity="0.42" strokeWidth="1.5" animate={{ opacity:[0.2,0.75,0.2] }} transition={{ duration:3.4, repeat:Infinity, ease:"easeInOut", delay:delay+item*0.22 }} />
+          <motion.path d={`M${110+offset} ${24+item*7} C${128+offset} ${42+item*7} ${128+offset} ${58-item*2} ${110+offset} ${76-item*3}`} stroke="#dfa408" strokeLinecap="round" strokeOpacity="0.42" strokeWidth="1.5" animate={{ opacity:[0.2,0.75,0.2] }} transition={{ duration:3.4, repeat:Infinity, ease:"easeInOut", delay:delay+item*0.22 }} />
         </g>
       ))}
       {["M110 100 L110 24","M110 24 L97 58 L87 90","M110 24 L123 58 L133 90"].map((path, item) => (
         <circle key={path} r="2.8" fill="#dfa408">
-          <animateMotion dur="4.2s" begin={`${delay + item * 0.22}s`} repeatCount="indefinite" path={path} />
-          <animate attributeName="opacity" values="0;1;0.7;0" dur="4.2s" begin={`${delay + item * 0.22}s`} repeatCount="indefinite" />
+          <animateMotion dur="4.2s" begin={`${delay+item*0.22}s`} repeatCount="indefinite" path={path} />
+          <animate attributeName="opacity" values="0;1;0.7;0" dur="4.2s" begin={`${delay+item*0.22}s`} repeatCount="indefinite" />
         </circle>
       ))}
     </ServiceStage>
   )
 }
 
-// ─── Timing constants ─────────────────────────────────────────────────────────
+// ─── Timing ───────────────────────────────────────────────────────────────────
 
-const SPOTLIGHT_MS = 1200  // time each card is active (orbit completes in 1.0s, fade out 0.2s)
-const GAP_MS       = 120   // brief pause between cards
-const FINAL_MS     = 800   // synchronized final glow duration
+// One spotlight = orbit revolution (2.5s) + small buffer for the beam fade
+const SPOTLIGHT_MS = 2700
+// Gap between cards: long enough for the orbit exit animation (0.28s) to finish
+const GAP_MS       = 420
+const FINAL_MS     = 800
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
@@ -368,40 +466,29 @@ function ServicesSection() {
             const isHovered   = hoveredCard === index
             const isConnected = allConnected
 
-            // Illustration brightness
-            const illustrationFilter = isActive
-              ? "brightness(1.15)"
-              : isConnected
-              ? "brightness(1.07)"
-              : isHovered
-              ? "brightness(1.08)"
-              : "brightness(1)"
+            const illustrationFilter =
+              isActive    ? "brightness(1.15)" :
+              isConnected ? "brightness(1.07)" :
+              isHovered   ? "brightness(1.08)" :
+              "brightness(1)"
 
-            // Card border & shadow
-            const borderColor = isActive
-              ? "rgba(223,164,8,0.52)"
-              : isConnected
-              ? "rgba(223,164,8,0.28)"
-              : isHovered
-              ? "rgba(223,164,8,0.36)"
-              : "rgba(255,255,255,0.7)"
+            const borderColor =
+              isActive    ? "rgba(223,164,8,0.50)" :
+              isConnected ? "rgba(223,164,8,0.26)" :
+              isHovered   ? "rgba(223,164,8,0.34)" :
+              "rgba(255,255,255,0.7)"
 
-            const boxShadow = isActive
-              ? "0 12px 40px rgba(223,164,8,0.13), 0 3px 12px rgba(4,58,126,0.09)"
-              : isConnected
-              ? "0 4px 22px rgba(223,164,8,0.08)"
-              : undefined
+            const boxShadow =
+              isActive    ? "0 14px 44px rgba(223,164,8,0.13), 0 3px 14px rgba(4,58,126,0.10)" :
+              isConnected ? "0 4px 24px rgba(223,164,8,0.08)" :
+              undefined
 
             return (
-              // Wrapper handles scale so it doesn't fight with whileInView on the article
-              <motion.div
+              <CardWrapper
                 key={service.title}
-                animate={{
-                  scale: isActive ? 1.04 : 1,
-                  zIndex: isActive ? 10 : 1,
-                }}
-                transition={{ type: "spring", stiffness: 280, damping: 24 }}
-                className="relative h-full"
+                index={index}
+                active={isActive}
+                hovered={isHovered}
               >
                 <motion.article
                   initial={{ opacity: 0, y: 32 }}
@@ -417,16 +504,10 @@ function ServicesSection() {
                     transition: "border-color 0.32s ease, box-shadow 0.32s ease",
                   }}
                 >
-                  {/* Illustration panel — orbit ring lives here */}
                   <div
-                    className="relative bg-primary p-5"
-                    style={{
-                      filter: illustrationFilter,
-                      transition: "filter 0.35s ease",
-                    }}
+                    className="bg-primary p-5"
+                    style={{ filter: illustrationFilter, transition: "filter 0.35s ease" }}
                   >
-                    {/* Orbit ring — only around illustration area */}
-                    <OrbitRing visible={isActive || isHovered} />
                     <ServiceVisual type={service.visual} index={index} />
                   </div>
 
@@ -443,7 +524,7 @@ function ServicesSection() {
                     </a>
                   </div>
                 </motion.article>
-              </motion.div>
+              </CardWrapper>
             )
           })}
         </div>
