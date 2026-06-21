@@ -1,0 +1,188 @@
+WHY CHOOSE ZENVIK — CONTENT REFINEMENT
+
+Keep the existing section layout.
+
+Do not modify:
+
+* Two-column layout
+* Card positions
+* Section spacing
+* Overall structure
+
+==================================================
+
+SECTION HEADER
+
+Eyebrow:
+
+WHY CHOOSE ZENVIK
+
+Headline:
+
+Technology That Powers Business Growth, Innovation & Scale
+
+Description:
+
+Zenvik Technologies brings together software, websites, hosting, AI, marketing, and ICT services into one connected technology ecosystem designed to help businesses launch, grow, automate, secure, and scale.
+
+==================================================
+
+CARD 1
+
+ICON TYPE
+
+Connected Layers Icon
+
+Visual Meaning:
+
+Multiple technology layers working together
+
+Title:
+
+Technology Ecosystem
+
+Description:
+
+All technology services delivered through one connected and reliable technology partner.
+
+==================================================
+
+CARD 2
+
+ICON TYPE
+
+Cloud Infrastructure Icon
+
+Visual Meaning:
+
+Cloud, hosting, domains, servers
+
+Title:
+
+Hosting & Infrastructure
+
+Description:
+
+Reliable hosting, cloud infrastructure, business email, domains, and security foundations.
+
+==================================================
+
+CARD 3
+
+ICON TYPE
+
+Code Brackets + Application Window Icon
+
+Visual Meaning:
+
+Software engineering and development
+
+Title:
+
+Custom Development
+
+Description:
+
+Tailored websites, software platforms, portals, and business systems built around your needs.
+
+==================================================
+
+CARD 4
+
+ICON TYPE
+
+Target + Briefcase Icon
+
+Visual Meaning:
+
+Business strategy and measurable outcomes
+
+Title:
+
+Business-Focused Solutions
+
+Description:
+
+Technology solutions aligned with operational efficiency, customer growth, and business objectives.
+
+==================================================
+
+CARD 5
+
+ICON TYPE
+
+Upward Growth Arrow Icon
+
+Visual Meaning:
+
+Growth, expansion, scalability
+
+Title:
+
+Built To Scale
+
+Description:
+
+Modern solutions designed to support long-term growth without limiting future opportunities.
+
+==================================================
+
+CARD 6
+
+ICON TYPE
+
+Shield + Handshake Icon
+
+Visual Meaning:
+
+Security, support, long-term partnership
+
+Title:
+
+Long-Term Partnership
+
+Description:
+
+Ongoing support, maintenance, guidance, and technology improvements beyond project delivery.
+
+==================================================
+
+ICON DESIGN RULES
+
+Use one consistent icon family.
+
+Requirements:
+
+* Modern line icons
+* Rounded edges
+* Consistent stroke width
+* Premium appearance
+* Enterprise style
+
+Colors:
+
+Primary:
+#043a7e
+
+Accent:
+#dfa408
+
+Premium Gold:
+#7a6200
+
+Do not use:
+
+* Emoji icons
+* Cartoon icons
+* Filled icons mixed with outline icons
+* Random icon styles
+
+All six icons must feel like part of the same design system.
+
+==================================================
+
+VISUAL GOAL
+
+The cards should immediately communicate value before users read the descriptions.
+
+Icons should reinforce the trust pillars and make each reason visually distinct while maintaining a premium enterprise appearance.
