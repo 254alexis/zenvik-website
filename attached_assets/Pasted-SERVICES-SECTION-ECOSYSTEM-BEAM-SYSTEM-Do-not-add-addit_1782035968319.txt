@@ -1,0 +1,197 @@
+SERVICES SECTION — ECOSYSTEM BEAM SYSTEM
+
+Do not add additional nodes.
+
+Do not add additional network maps.
+
+Do not add additional connection dots.
+
+The Hero and Partners sections already use those patterns.
+
+The Services section must introduce a different visual language.
+
+==================================================
+
+OBJECTIVE
+
+The six services must feel connected through a shared technology ecosystem.
+
+The connection must feel premium, intelligent, and subtle.
+
+Visitors should understand:
+
+These services work together.
+
+Not:
+
+These are six separate service cards.
+
+==================================================
+
+ECOSYSTEM BEAM
+
+Create one continuous ecosystem beam embedded into the section background.
+
+The beam is not a visible diagram.
+
+The beam is not a flowchart.
+
+The beam is not a connector line.
+
+The beam should feel like an intelligent technology current flowing through the section.
+
+==================================================
+
+BEAM APPEARANCE
+
+Shape:
+
+* Smooth curved path
+* Organic flow
+* Soft directional movement
+
+Color:
+
+Primary:
+#043a7e
+
+Highlight:
+#dfa408
+
+Opacity:
+
+Very low in idle state.
+
+The beam must appear integrated into the section background.
+
+==================================================
+
+BEAM POSITION
+
+The beam should weave naturally behind the service cards.
+
+Requirements:
+
+* Never overlap text
+* Never overlap illustrations
+* Never cover card content
+
+The beam should visually pass near each card.
+
+The beam should feel like the invisible connection between all services.
+
+==================================================
+
+SERVICE ACTIVATION FLOW
+
+When the section enters the viewport:
+
+The ecosystem beam activates once.
+
+Sequence:
+
+Hosting & Cloud Solutions
+→ Website Development
+→ Software Development
+→ AI Solutions
+→ Marketing & Branding
+→ ICT Services
+
+As the beam reaches each card:
+
+* Illustration gains slight brightness
+* Card border gains subtle emphasis
+* Card becomes the temporary focal point
+
+Duration:
+
+0.5–0.8 seconds per card
+
+The sequence should occur once only.
+
+==================================================
+
+BEAM TRAVEL EFFECT
+
+The beam should not look like a moving line.
+
+Instead:
+
+Create a travelling highlight within the beam.
+
+Requirements:
+
+* Soft gold accent
+* Smooth motion
+* Controlled speed
+* Premium appearance
+
+The beam itself remains mostly invisible.
+
+The moving highlight reveals the beam path.
+
+==================================================
+
+CARD INTERACTION
+
+On hover:
+
+* The nearest beam segment becomes visible
+* Illustration gains emphasis
+* Card receives subtle highlight
+
+Do not activate all cards.
+
+Do not illuminate the entire ecosystem.
+
+Only the hovered card should react.
+
+==================================================
+
+IDLE STATE
+
+After the initial activation:
+
+The ecosystem beam returns to a low-visibility state.
+
+Every 15–20 seconds:
+
+* One subtle highlight travels through the ecosystem path.
+* No card animations occur.
+* No large motion occurs.
+
+The effect should feel alive but not distracting.
+
+==================================================
+
+BACKGROUND INTEGRATION
+
+The beam must appear integrated into the section background.
+
+Do not create:
+
+* Obvious flowcharts
+* Visible arrows
+* Heavy connector lines
+* Technology nodes
+* Network maps
+* Dashboard wireframes
+
+The beam should feel like a premium technology current flowing beneath the service ecosystem.
+
+==================================================
+
+VISUAL GOAL
+
+Hero:
+Technology Core
+
+Partners:
+Technology Stack
+
+Services:
+Technology Ecosystem
+
+The Services section should feel like the place where all Zenvik capabilities converge into one connected business solution ecosystem.
+
+The beam should reinforce that story without changing the approved card design, content, layout, spacing, or structure.
