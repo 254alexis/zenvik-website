@@ -1,176 +1,268 @@
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 import Container from "../components/common/Container"
-import SectionHeader from "../components/common/SectionHeader"
 
-// ─── Icons ────────────────────────────────────────────────────────────────────
+// ─── Icons — enterprise line style, gold on dark ──────────────────────────────
 
 function IconConnectedLayers() {
   return (
-    <svg viewBox="0 0 44 44" fill="none" aria-hidden="true" className="h-full w-full">
-      <rect x="8"  y="19" width="28" height="7" rx="3.5" stroke="#043a7e" strokeWidth="1.8" strokeLinejoin="round" />
-      <rect x="11" y="12" width="22" height="7" rx="3.5" stroke="#7a6200" strokeWidth="1.8" strokeLinejoin="round" />
-      <rect x="5"  y="26" width="34" height="7" rx="3.5" stroke="#043a7e" strokeWidth="1.8" strokeLinejoin="round" />
-      <path d="M16 19v-1M22 19v-1M28 19v-1" stroke="#dfa408" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M13 26v-1M22 26v-1M31 26v-1" stroke="#dfa408" strokeWidth="1.8" strokeLinecap="round" />
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" className="h-full w-full">
+      <rect x="6"  y="17" width="28" height="7"  rx="3.5" stroke="#dfa408" strokeWidth="1.8" strokeLinejoin="round" />
+      <rect x="10" y="10" width="20" height="7"  rx="3.5" stroke="#7a6200" strokeWidth="1.8" strokeLinejoin="round" />
+      <rect x="3"  y="24" width="34" height="7"  rx="3.5" stroke="#dfa408" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M14 17v-1M20 17v-1M26 17v-1" stroke="#dfa408" strokeWidth="1.7" strokeLinecap="round" />
+      <path d="M11 24v-1M20 24v-1M29 24v-1" stroke="#7a6200" strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   )
 }
 
 function IconCloudInfra() {
   return (
-    <svg viewBox="0 0 44 44" fill="none" aria-hidden="true" className="h-full w-full">
-      <path d="M13 30h18a7 7 0 0 0 1-13.93A10 10 0 0 0 13.2 18 8 8 0 0 0 13 30Z" stroke="#043a7e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M16 34h12M19 37h6" stroke="#dfa408" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M16 30v4M22 30v4M28 30v4" stroke="#7a6200" strokeWidth="1.6" strokeLinecap="round" />
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" className="h-full w-full">
+      <path d="M11 29h18a7 7 0 0 0 1-13.93A9.5 9.5 0 0 0 11.2 17 7.5 7.5 0 0 0 11 29Z" stroke="#dfa408" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M15 33h10M18 36h4" stroke="#7a6200" strokeWidth="1.7" strokeLinecap="round" />
+      <path d="M15 29v4M20 29v4M25 29v4" stroke="#dfa408" strokeWidth="1.6" strokeLinecap="round" />
     </svg>
   )
 }
 
 function IconCodeBrackets() {
   return (
-    <svg viewBox="0 0 44 44" fill="none" aria-hidden="true" className="h-full w-full">
-      <rect x="6" y="8" width="32" height="28" rx="5" stroke="#043a7e" strokeWidth="1.8" strokeLinejoin="round" />
-      <path d="M6 14h32" stroke="#043a7e" strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="10.5" cy="11" r="1.2" fill="#dfa408" />
-      <circle cx="14.5" cy="11" r="1.2" fill="#7a6200" />
-      <circle cx="18.5" cy="11" r="1.2" fill="#043a7e" />
-      <path d="M17 22l-4 4 4 4" stroke="#7a6200" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M27 22l4 4-4 4" stroke="#7a6200" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M24 20l-4 12" stroke="#dfa408" strokeWidth="1.8" strokeLinecap="round" />
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" className="h-full w-full">
+      <rect x="5" y="7" width="30" height="26" rx="5" stroke="#dfa408" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M5 13h30" stroke="#dfa408" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="9.5"  cy="10" r="1.1" fill="#7a6200" />
+      <circle cx="13"   cy="10" r="1.1" fill="#dfa408" />
+      <circle cx="16.5" cy="10" r="1.1" fill="#dfa408" opacity="0.5" />
+      <path d="M15 21l-4 4 4 4"  stroke="#7a6200" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M25 21l4 4-4 4"   stroke="#7a6200" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M22 18l-4 12"     stroke="#dfa408" strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   )
 }
 
-function IconTargetBriefcase() {
+function IconTarget() {
   return (
-    <svg viewBox="0 0 44 44" fill="none" aria-hidden="true" className="h-full w-full">
-      <rect x="7" y="19" width="20" height="16" rx="4" stroke="#043a7e" strokeWidth="1.8" strokeLinejoin="round" />
-      <path d="M11 19v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" stroke="#043a7e" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M7 27h20" stroke="#7a6200" strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="34" cy="15" r="7" stroke="#dfa408" strokeWidth="1.8" />
-      <circle cx="34" cy="15" r="3.5" stroke="#dfa408" strokeWidth="1.6" />
-      <circle cx="34" cy="15" r="1" fill="#dfa408" />
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" className="h-full w-full">
+      <circle cx="20" cy="20" r="14" stroke="#dfa408" strokeWidth="1.8" />
+      <circle cx="20" cy="20" r="9"  stroke="#7a6200" strokeWidth="1.7" />
+      <circle cx="20" cy="20" r="4"  stroke="#dfa408" strokeWidth="1.7" />
+      <circle cx="20" cy="20" r="1.4" fill="#dfa408" />
+      <path d="M27 8l2 2-4 4-2-2 4-4Z" stroke="#dfa408" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M29 10l2-2" stroke="#dfa408" strokeWidth="1.6" strokeLinecap="round" />
     </svg>
   )
 }
 
 function IconGrowthArrow() {
   return (
-    <svg viewBox="0 0 44 44" fill="none" aria-hidden="true" className="h-full w-full">
-      <path d="M7 34l9-10 7 5 12-16" stroke="#043a7e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M30 13h6v6" stroke="#dfa408" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M9 38h26" stroke="#7a6200" strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="16" cy="24" r="2" fill="#7a6200" />
-      <circle cx="23" cy="29" r="2" fill="#7a6200" />
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" className="h-full w-full">
+      <path d="M5 32l8-9 6 5 11-14" stroke="#dfa408" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M27 14h6v6"           stroke="#dfa408" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M7 36h26"             stroke="#7a6200" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="13" cy="23" r="1.8" fill="#7a6200" />
+      <circle cx="19" cy="28" r="1.8" fill="#7a6200" />
     </svg>
   )
 }
 
-function IconShieldHandshake() {
+function IconShield() {
   return (
-    <svg viewBox="0 0 44 44" fill="none" aria-hidden="true" className="h-full w-full">
-      <path d="M22 6 36 11v11c0 9-5.6 15.4-14 18C13.6 37.4 8 31 8 22V11l14-5Z" stroke="#043a7e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M15 21.5l2.5 2.5c.8.8 2 .8 2.8 0L22 22.3l1.7 1.7c.8.8 2 .8 2.8 0L29 21.5" stroke="#dfa408" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M17 21.5c0-1.1.9-2 2-2s2 .9 2 2M22 21.5c0-1.1.9-2 2-2s2 .9 2 2" stroke="#7a6200" strokeWidth="1.6" strokeLinecap="round" />
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" className="h-full w-full">
+      <path d="M20 4 34 9v10c0 9-5.5 15-14 18C11.5 34 6 28 6 19V9l14-5Z" stroke="#dfa408" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M13 20l5 5 9-11" stroke="#7a6200" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
 
-// ─── Card Data ────────────────────────────────────────────────────────────────
+// ─── Card data ────────────────────────────────────────────────────────────────
 
 const reasons = [
   {
-    icon: IconConnectedLayers,
+    Icon: IconConnectedLayers,
     title: "Technology Ecosystem",
     description: "All technology services delivered through one connected and reliable technology partner.",
-    accent: "bg-primary/8",
-    ring: "ring-primary/12",
   },
   {
-    icon: IconCloudInfra,
+    Icon: IconCloudInfra,
     title: "Hosting & Infrastructure",
     description: "Reliable hosting, cloud infrastructure, business email, domains, and security foundations.",
-    accent: "bg-accent/8",
-    ring: "ring-accent/20",
   },
   {
-    icon: IconCodeBrackets,
+    Icon: IconCodeBrackets,
     title: "Custom Development",
     description: "Tailored websites, software platforms, portals, and business systems built around your needs.",
-    accent: "bg-primary/8",
-    ring: "ring-primary/12",
   },
   {
-    icon: IconTargetBriefcase,
+    Icon: IconTarget,
     title: "Business-Focused Solutions",
     description: "Technology solutions aligned with operational efficiency, customer growth, and business objectives.",
-    accent: "bg-accent/8",
-    ring: "ring-accent/20",
   },
   {
-    icon: IconGrowthArrow,
+    Icon: IconGrowthArrow,
     title: "Built To Scale",
     description: "Modern solutions designed to support long-term growth without limiting future opportunities.",
-    accent: "bg-primary/8",
-    ring: "ring-primary/12",
   },
   {
-    icon: IconShieldHandshake,
+    Icon: IconShield,
     title: "Long-Term Partnership",
     description: "Ongoing support, maintenance, guidance, and technology improvements beyond project delivery.",
-    accent: "bg-accent/8",
-    ring: "ring-accent/20",
   },
 ]
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// ─── Animation helpers ────────────────────────────────────────────────────────
+
+const fadeUp = (delay = 0) => ({
+  initial:  { opacity: 0, y: 14 },
+  animate:  { opacity: 1, y: 0 },
+  transition: { duration: 0.52, delay, ease: "easeOut" },
+})
+
+const fadeIn = (delay = 0) => ({
+  initial:  { opacity: 0 },
+  animate:  { opacity: 1 },
+  transition: { duration: 0.45, delay, ease: "easeOut" },
+})
+
+// ─── Section ──────────────────────────────────────────────────────────────────
 
 function WhyChooseSection() {
+  const sectionRef = useRef(null)
+  const isInView   = useInView(sectionRef, { once: true, margin: "-100px 0px" })
+
   return (
-    <section className="bg-white py-16 lg:py-20">
-      <Container>
-        <div className="grid items-center gap-10 lg:gap-14 xl:grid-cols-[minmax(0,1.05fr)_minmax(380px,0.95fr)]">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden py-16 lg:py-24"
+      style={{
+        background: "linear-gradient(145deg, #0f172a 0%, #062561 38%, #043a7e 62%, #0f172a 100%)",
+      }}
+    >
+      {/* Ambient depth glows — no grid, no nodes */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-40 top-0 h-[480px] w-[480px] rounded-full bg-[#043a7e] opacity-25 blur-[120px]" />
+        <div className="absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[#062561] opacity-30 blur-[100px]" />
+        <div className="absolute left-1/2 top-1/2 h-[300px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#043a7e] opacity-10 blur-[80px]" />
+      </div>
 
-          {/* Left column — text */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-gold">
+      <Container className="relative">
+        <div className="grid items-center gap-12 xl:grid-cols-[minmax(0,1.05fr)_minmax(380px,0.95fr)] xl:gap-14">
+
+          {/* ── Left: text ──────────────────────────────────────────────── */}
+          <div>
+            {/* Eyebrow */}
+            <motion.p
+              {...fadeUp(0)}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+              className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-[#dfa408]"
+            >
               Why Choose Zenvik
-            </p>
+            </motion.p>
 
-            <h2 className="text-4xl font-black leading-tight text-primary md:text-5xl">
-              Technology That Powers Business Growth, Innovation &amp; Scale
-            </h2>
-
-            <p className="mt-5 text-lg leading-relaxed text-slate-600">
-              Zenvik Technologies brings together software, websites, hosting, AI, marketing, and ICT services into one connected technology ecosystem designed to help businesses launch, grow, automate, secure, and scale.
-            </p>
-          </motion.div>
-
-          {/* Right column — cards */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            {reasons.map(({ icon: Icon, title, description, accent, ring }, index) => (
-              <motion.div
-                key={title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
-                viewport={{ once: true }}
-                className={`group h-full rounded-3xl border border-slate-100 bg-light p-5 shadow-soft ring-1 ${ring} transition-shadow duration-300 hover:shadow-md`}
+            {/* Headline + sweep */}
+            <div className="relative overflow-hidden rounded-sm">
+              <motion.h2
+                {...fadeUp(0.28)}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                className="text-[2rem] font-black leading-tight text-white md:text-[2.55rem]"
               >
-                {/* Icon container */}
-                <div className={`mb-4 flex h-11 w-11 items-center justify-center rounded-2xl p-2.5 ${accent} ring-1 ${ring}`}>
-                  <Icon />
-                </div>
+                Technology That Powers Business Growth, Innovation &amp; Scale
+              </motion.h2>
 
-                <h3 className="text-base font-bold text-primary">{title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-500">{description}</p>
-              </motion.div>
-            ))}
+              {/* Gold light sweep behind headline */}
+              <motion.div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0"
+                initial={{ x: "-110%", opacity: 0 }}
+                animate={isInView ? { x: "210%", opacity: [0, 1, 0] } : { x: "-110%", opacity: 0 }}
+                transition={{ duration: 1.1, delay: 0.68, ease: "easeInOut" }}
+                style={{
+                  background: "linear-gradient(90deg, transparent 0%, rgba(223,164,8,0.18) 45%, rgba(223,164,8,0.08) 55%, transparent 100%)",
+                }}
+              />
+            </div>
+
+            {/* Description */}
+            <motion.p
+              {...fadeIn(0.95)}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              className="mt-5 text-base leading-relaxed text-white/70 md:text-[1.0625rem]"
+            >
+              Zenvik Technologies brings together software, websites, hosting, AI,
+              marketing, and ICT services into one connected technology ecosystem
+              designed to help businesses launch, grow, automate, secure, and scale.
+            </motion.p>
+
+            {/* Supporting line */}
+            <motion.p
+              {...fadeIn(1.2)}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              className="mt-4 text-sm font-semibold tracking-wide text-[#dfa408]/80"
+            >
+              Built on expertise. Focused on results.
+            </motion.p>
+          </div>
+
+          {/* ── Right: cards grid ────────────────────────────────────────── */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {reasons.map(({ Icon, title, description }, index) => {
+              const cardDelay  = 1.32 + index * 0.13
+              const lineDelay  = cardDelay + 0.22
+
+              return (
+                <motion.div
+                  key={title}
+                  initial={{ opacity: 0, filter: "blur(7px)", y: 10 }}
+                  animate={
+                    isInView
+                      ? { opacity: 1, filter: "blur(0px)", y: 0 }
+                      : { opacity: 0, filter: "blur(7px)", y: 10 }
+                  }
+                  transition={{ duration: 0.55, delay: cardDelay, ease: "easeOut" }}
+                  whileHover={{ y: -5, transition: { type: "spring", stiffness: 340, damping: 22 } }}
+                  className="group relative flex flex-col overflow-hidden rounded-2xl p-5 backdrop-blur-sm"
+                  style={{
+                    background: "rgba(255,255,255,0.07)",
+                    border: "1px solid rgba(255,255,255,0.14)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.24)"
+                    e.currentTarget.style.background   = "rgba(255,255,255,0.10)"
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)"
+                    e.currentTarget.style.background   = "rgba(255,255,255,0.07)"
+                  }}
+                >
+                  {/* Gold accent line — top edge */}
+                  <motion.div
+                    aria-hidden="true"
+                    className="absolute left-4 top-0 h-px origin-left"
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={isInView ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
+                    transition={{ duration: 0.45, delay: lineDelay, ease: "easeOut" }}
+                    style={{
+                      width: "calc(100% - 2rem)",
+                      background: "linear-gradient(90deg, #dfa408, #7a6200 70%, transparent)",
+                    }}
+                  />
+                  {/* Hover: line expands briefly */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute left-0 top-0 h-px w-full origin-left scale-x-0 opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-60"
+                    style={{ background: "linear-gradient(90deg, #dfa408, transparent)" }}
+                  />
+
+                  {/* Icon */}
+                  <div className="mb-4 h-9 w-9 transition-all duration-300 group-hover:brightness-125 group-hover:drop-shadow-[0_0_8px_rgba(223,164,8,0.55)]">
+                    <Icon />
+                  </div>
+
+                  <h3 className="text-sm font-bold text-white">{title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-white/58">{description}</p>
+                </motion.div>
+              )
+            })}
           </div>
 
         </div>

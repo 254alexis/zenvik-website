@@ -1,0 +1,302 @@
+WHY CHOOSE ZENVIK — SECTION REFINEMENT
+
+Modify only the Why Choose Zenvik section.
+
+Do not modify:
+
+* Hero section
+* Partners & Technologies section
+* Services section
+* Featured Projects section
+* Header
+* Footer
+* Overall page structure
+
+==================================================
+
+SECTION BACKGROUND
+
+Change the section background from white to Zenvik blue.
+
+Background colors:
+
+Primary Blue:
+#043a7e
+
+Dark:
+#0f172a
+
+Use a premium dark-blue gradient.
+
+Do not use:
+
+* Plain flat blue
+* White background
+* Grid patterns
+* Network nodes
+* Ecosystem maps
+* Service-card style backgrounds
+
+This section must have its own visual identity.
+
+==================================================
+
+SECTION CONTENT
+
+Replace the current content with the following exact text.
+
+Eyebrow:
+
+WHY CHOOSE ZENVIK
+
+Headline:
+
+Technology That Powers Business Growth, Innovation & Scale
+
+Description:
+
+Zenvik Technologies brings together software, websites, hosting, AI, marketing, and ICT services into one connected technology ecosystem designed to help businesses launch, grow, automate, secure, and scale.
+
+Supporting line:
+
+Built on expertise. Focused on results.
+
+==================================================
+
+CARD CONTENT
+
+Replace numbered cards with icon-based trust pillars.
+
+Remove the numbers 1, 2, 3, 4, 5, and 6.
+
+Use exactly one icon per card.
+
+CARD 1
+
+Icon:
+
+Connected Layers
+
+Title:
+
+Technology Ecosystem
+
+Description:
+
+All technology services delivered through one connected and reliable technology partner.
+
+CARD 2
+
+Icon:
+
+Cloud Infrastructure
+
+Title:
+
+Hosting & Infrastructure
+
+Description:
+
+Reliable hosting, cloud infrastructure, business email, domains, and security foundations.
+
+CARD 3
+
+Icon:
+
+Code Brackets
+
+Title:
+
+Custom Development
+
+Description:
+
+Tailored websites, software platforms, portals, and business systems built around your needs.
+
+CARD 4
+
+Icon:
+
+Target
+
+Title:
+
+Business-Focused Solutions
+
+Description:
+
+Technology solutions aligned with operational efficiency, customer growth, and business objectives.
+
+CARD 5
+
+Icon:
+
+Upward Growth Arrow
+
+Title:
+
+Built To Scale
+
+Description:
+
+Modern solutions designed to support long-term growth without limiting future opportunities.
+
+CARD 6
+
+Icon:
+
+Shield
+
+Title:
+
+Long-Term Partnership
+
+Description:
+
+Ongoing support, maintenance, guidance, and technology improvements beyond project delivery.
+
+==================================================
+
+ICON RULES
+
+Use one consistent icon family.
+
+Requirements:
+
+* One icon per card only
+* Modern line icons
+* Rounded edges
+* Consistent stroke width
+* Enterprise-grade appearance
+
+Icon colors:
+
+Default:
+#dfa408
+
+Secondary accent allowed:
+#7a6200
+
+Do not use:
+
+* Emoji icons
+* Mixed icon styles
+* Multiple icons inside one card
+* Filled cartoon icons
+* Random decorative icons
+
+==================================================
+
+CARD DESIGN
+
+Use dark glass-style cards.
+
+Card background:
+
+rgba(255,255,255,0.06) to rgba(255,255,255,0.08)
+
+Card border:
+
+rgba(255,255,255,0.14)
+
+Text:
+
+* Titles: white
+* Descriptions: white with reduced opacity
+
+Accent:
+
+* Add one subtle gold accent line per card
+* Accent line color: #dfa408
+* Accent line must be thin and premium
+
+Do not use white cards.
+
+Do not use numbered badges.
+
+==================================================
+
+CONTENT SIZING
+
+Reduce the headline size slightly compared to the current version.
+
+Target:
+
+* 10% to 15% smaller than the current headline
+
+Keep the headline strong but not oversized.
+
+Improve description readability.
+
+The left content should feel balanced with the card grid.
+
+==================================================
+
+SECTION ENTRY ANIMATION
+
+Add a unique section entry animation.
+
+Run once when the section enters viewport.
+
+Do not loop.
+
+Animation sequence:
+
+1. Eyebrow fades in.
+2. Headline reveals.
+3. One gold light sweep passes behind the headline and fades.
+4. Description fades in.
+5. Supporting line fades in.
+6. Cards reveal one by one.
+
+Card reveal behavior:
+
+* Card starts slightly blurred.
+* Card opacity starts low.
+* Card sharpens into focus.
+* Icon illuminates.
+* Gold accent line appears.
+
+Cards reveal in order from 1 to 6.
+
+Do not use:
+
+* Orbit rings
+* Spotlight animation
+* Logo signal animation
+* Marquee movement
+* Large scaling effects
+* Bouncing effects
+
+==================================================
+
+HOVER INTERACTION
+
+When hovering a card:
+
+* Card lifts 4px to 6px
+* Icon brightens
+* Gold accent line expands slightly
+* Border becomes slightly more visible
+
+Do not affect other cards.
+
+Do not trigger the section entry animation again.
+
+==================================================
+
+VISUAL GOAL
+
+This section must communicate trust, capability, and professional differentiation.
+
+It must feel more authoritative than the Services section.
+
+It must not repeat the animation language from:
+
+* Hero
+* Partners & Technologies
+* Services
+
+Final result:
+
+A premium dark-blue trust section explaining why businesses should choose Zenvik Technologies.
