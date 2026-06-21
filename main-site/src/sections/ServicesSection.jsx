@@ -209,7 +209,7 @@ function CardWrapper({ index, active, hovered, children }) {
   return (
     <motion.div
       ref={ref}
-      animate={{ scale: active ? 1.07 : 1, zIndex: active ? 10 : 1 }}
+      animate={{ scale: active || hovered ? 1.07 : 1, zIndex: active || hovered ? 10 : 1 }}
       transition={{ type: "spring", stiffness: 260, damping: 26 }}
       className="relative h-full"
     >
