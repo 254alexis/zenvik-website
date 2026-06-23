@@ -346,22 +346,51 @@ function ProjectCard({ project, index }) {
       whileHover={{ y: -4, transition: { type: "spring", stiffness: 320, damping: 24 } }}
       className="group flex flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-soft transition-shadow duration-300 hover:shadow-lg"
     >
-      {/* Preview — 47% of card, fixed height */}
-      <div className="relative h-44 overflow-hidden">
-        <motion.div
-          className="h-full w-full"
-          initial={{ clipPath: "inset(0 0 100% 0)" }}
-          animate={isInView ? { clipPath: "inset(0 0 0% 0)" } : {}}
-          transition={{ duration: 0.65, delay: index * 0.13, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]">
+      {/* ── Premium preview stage ─────────────────────────────── */}
+      <div
+        className="relative h-52 overflow-hidden"
+        style={{ background: "linear-gradient(145deg, #062561 0%, #043a7e 55%, #0e1c30 100%)" }}
+      >
+        {/* Gold radial glow — resting state */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 transition-opacity duration-400"
+          style={{ background: "radial-gradient(ellipse 90% 55% at 50% 115%, rgba(223,164,8,0.13) 0%, transparent 65%)" }}
+        />
+        {/* Gold radial glow — hover (stronger) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{ background: "radial-gradient(ellipse 90% 55% at 50% 115%, rgba(223,164,8,0.24) 0%, transparent 65%)" }}
+        />
+        {/* Glass shimmer — top edge */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-16"
+          style={{ background: "linear-gradient(to bottom, rgba(248,251,255,0.07) 0%, transparent 100%)" }}
+        />
+        {/* Subtle inner border highlight */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px"
+          style={{ background: "rgba(255,255,255,0.12)" }}
+        />
+
+        {/* Mockup — centered at 82% width, drop shadow for depth */}
+        <div className="absolute inset-0 flex items-center justify-center" style={{ padding: "14px 10px 0" }}>
+          <motion.div
+            className="w-[82%] overflow-hidden rounded-lg transition-transform duration-500 group-hover:scale-[1.03]"
+            style={{ boxShadow: "0 10px 40px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3)" }}
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={isInView ? { clipPath: "inset(0 0 0% 0)" } : {}}
+            transition={{ duration: 0.65, delay: index * 0.13, ease: [0.22, 1, 0.36, 1] }}
+          >
             {Preview && <Preview />}
-          </div>
-        </motion.div>
-        <div className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-[0.04]" />
+          </motion.div>
+        </div>
       </div>
 
-      {/* Content — 53% of card */}
+      {/* Content */}
       <div className="flex flex-1 flex-col p-5">
         <motion.span
           initial={{ opacity: 0 }}
