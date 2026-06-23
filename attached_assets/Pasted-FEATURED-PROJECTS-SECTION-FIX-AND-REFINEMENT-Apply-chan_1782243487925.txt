@@ -1,0 +1,157 @@
+FEATURED PROJECTS SECTION — FIX AND REFINEMENT
+
+Apply changes only to the Featured Projects / Portfolio area.
+
+==================================================
+
+REMOVE DUPLICATE SECTION
+
+Remove the old Portfolio & Case Studies section completely.
+
+There must be only one Featured Projects section on the homepage.
+
+Keep the new Featured Projects section with:
+
+* Stats strip
+* 4 featured project cards
+* CTA section below
+
+Do not leave duplicate portfolio cards or duplicate headings.
+
+==================================================
+
+PROJECT CARD SIZE
+
+Reduce project card height.
+
+Current project cards are too large.
+
+New card sizing:
+
+* Reduce overall card height by approximately 18%–25%
+* Keep cards premium and readable
+* Maintain 2×2 layout on desktop
+
+==================================================
+
+PROJECT PREVIEW AREA
+
+Reduce preview image/mockup area.
+
+Current preview area is too tall.
+
+Set preview area to:
+
+45%–50% of card height
+
+Content area:
+
+50%–55% of card height
+
+Do not allow preview graphics to dominate the card.
+
+==================================================
+
+PROJECT CARD CONTENT
+
+Keep:
+
+* Category badge
+* Project title
+* Summary
+* View Project →
+
+Ensure all content is visible without excessive card height.
+
+==================================================
+
+STATS STRIP DESIGN
+
+Improve the stats strip.
+
+Each stat card should feel more premium.
+
+Stat card structure:
+
+* Number
+* Label
+* Thin gold accent line below number
+
+Colors:
+
+Number:
+#043a7e
+
+Gold accent:
+#dfa408
+
+Label:
+#0f172a
+
+Card background:
+#ffffff
+
+Border:
+rgba(4,58,126,0.10)
+
+==================================================
+
+STATS ANIMATION
+
+Add count-up animation when stats enter viewport.
+
+Run once only.
+
+Numbers:
+
+125+
+35+
+200+
+360+
+
+Animation behavior:
+
+* Count from 0 to final value
+* Duration: 1.2 to 1.8 seconds
+* Stagger each card by 0.15 seconds
+* Keep plus sign visible at the end
+
+Do not loop.
+
+Do not restart repeatedly on scroll.
+
+==================================================
+
+STAT CARD ENTRY
+
+When stats enter viewport:
+
+* Cards fade in
+* Numbers count up
+* Gold accent line expands from left to right
+
+Do not use bouncing animation.
+
+Do not use large scaling.
+
+==================================================
+
+PROJECT CARD ENTRY
+
+Keep project reveal animation.
+
+Refine it:
+
+* Preview reveals first
+* Then content appears
+* Each card staggered slightly
+
+Do not use slide-in from far left or far right.
+
+==================================================
+
+FINAL RESULT
+
+The Featured Projects section must be a single clean proof section.
+
+It must feel premium, compact, dynamic, and ready for future backend-powered project data.

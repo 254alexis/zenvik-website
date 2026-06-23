@@ -64,15 +64,15 @@ const stats = [
 // ─── Category badge styles ────────────────────────────────────────────────────
 
 const badgeStyle = {
-  "Software Development":    "bg-primary/8 text-primary ring-1 ring-primary/16",
-  "Website Development":     "bg-[#dfa408]/10 text-[#7a6200] ring-1 ring-[#dfa408]/20",
-  "Hosting & Infrastructure":"bg-primary/8 text-primary ring-1 ring-primary/16",
-  "AI Solutions":            "bg-[#dfa408]/10 text-[#7a6200] ring-1 ring-[#dfa408]/20",
+  "Software Development":     "bg-primary/8 text-primary ring-1 ring-primary/16",
+  "Website Development":      "bg-[#dfa408]/10 text-[#7a6200] ring-1 ring-[#dfa408]/20",
+  "Hosting & Infrastructure": "bg-primary/8 text-primary ring-1 ring-primary/16",
+  "AI Solutions":             "bg-[#dfa408]/10 text-[#7a6200] ring-1 ring-[#dfa408]/20",
 }
 
-// ─── Count-up ─────────────────────────────────────────────────────────────────
+// ─── Stat card with count-up + gold accent line ───────────────────────────────
 
-function StatCounter({ value, suffix }) {
+function StatCard({ value, suffix, label, delay }) {
   const ref      = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-60px" })
   const count    = useMotionValue(0)
@@ -80,14 +80,34 @@ function StatCounter({ value, suffix }) {
 
   useEffect(() => {
     if (!isInView) return
-    const ctrl = animate(count, value, { duration: 1.6, ease: "easeOut" })
+    const ctrl = animate(count, value, { duration: 1.5, ease: "easeOut" })
     return ctrl.stop
   }, [isInView, count, value])
 
   return (
-    <span ref={ref} className="tabular-nums">
-      <motion.span>{display}</motion.span>{suffix}
-    </span>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 16 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.48, delay, ease: "easeOut" }}
+      whileHover={{ y: -3, boxShadow: "0 8px 28px rgba(4,58,126,0.10)", transition: { type: "spring", stiffness: 340, damping: 22 } }}
+      className="rounded-2xl border bg-white px-6 py-5 text-center shadow-soft"
+      style={{ borderColor: "rgba(4,58,126,0.10)" }}
+    >
+      <p className="text-3xl font-black tabular-nums text-primary lg:text-4xl">
+        <motion.span>{display}</motion.span>{suffix}
+      </p>
+
+      {/* Gold accent line — expands left→right */}
+      <motion.div
+        className="mx-auto mt-2 h-[2px] w-10 origin-left rounded-full bg-accent"
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : {}}
+        transition={{ duration: 0.55, delay: delay + 0.35, ease: "easeOut" }}
+      />
+
+      <p className="mt-2.5 text-sm font-medium text-dark">{label}</p>
+    </motion.div>
   )
 }
 
@@ -97,7 +117,6 @@ function PreviewPropertyMgmt() {
   return (
     <svg viewBox="0 0 480 270" fill="none" className="h-full w-full" aria-hidden="true">
       <rect width="480" height="270" fill="#0e1c30" />
-      {/* Sidebar */}
       <rect width="68" height="270" fill="#0a1525" />
       <rect x="14" y="20" width="40" height="8" rx="4" fill="#1e3a5f" />
       {[52, 72, 92, 112, 132].map((y) => (
@@ -106,44 +125,32 @@ function PreviewPropertyMgmt() {
           <rect x="22" y={y + 1} width="28" height="6" rx="3" fill={y === 52 ? "#1e3a6e" : "#152234"} />
         </g>
       ))}
-      {/* Top bar */}
       <rect x="68" y="0" width="412" height="38" fill="#0c1828" />
       <rect x="84" y="13" width="80" height="12" rx="6" fill="#152234" />
       <circle cx="434" cy="19" r="10" fill="#1e3a5f" />
       <circle cx="458" cy="19" r="8" fill="#162840" />
-      {/* Metric cards */}
       {[84, 212, 340].map((x) => (
         <rect key={x} x={x} y="52" width={x === 340 ? 120 : 118} height="62" rx="10" fill="#112033" stroke="#1e3a5f" strokeWidth="1" />
       ))}
-      {/* Metric 1 — Occupancy */}
       <rect x="96" y="63" width="36" height="7" rx="3.5" fill="#1a2d45" />
       <text x="96" y="100" fill="#dfa408" fontSize="18" fontWeight="800" fontFamily="system-ui">87%</text>
       <rect x="96" y="107" width="55" height="5" rx="2.5" fill="#1a2d45" />
       <rect x="96" y="107" width="48" height="5" rx="2.5" fill="#dfa408" opacity="0.7" />
-      {/* Metric 2 — Revenue */}
       <rect x="224" y="63" width="36" height="7" rx="3.5" fill="#1a2d45" />
       <text x="224" y="99" fill="#ffffff" fontSize="16" fontWeight="800" fontFamily="system-ui">$24.8K</text>
       <text x="224" y="111" fill="#22c55e" fontSize="8" fontFamily="system-ui">+12.4%</text>
-      {/* Metric 3 — Units */}
       <rect x="352" y="63" width="36" height="7" rx="3.5" fill="#1a2d45" />
       <text x="352" y="100" fill="#ffffff" fontSize="18" fontWeight="800" fontFamily="system-ui">142</text>
-      {/* Maintenance feed */}
       <rect x="84" y="126" width="188" height="132" rx="10" fill="#0d1a2b" stroke="#1e3a5f" strokeWidth="1" />
       <rect x="96" y="136" width="80" height="8" rx="4" fill="#1a2d45" />
-      {[
-        { y: 155, color: "#ef4444" },
-        { y: 179, color: "#dfa408" },
-        { y: 203, color: "#22c55e" },
-        { y: 227, color: "#22c55e" },
-      ].map(({ y, color }) => (
+      {[155, 179, 203, 227].map((y, i) => (
         <g key={y}>
-          <circle cx="100" cy={y + 4} r="5" fill={color} opacity="0.9" />
+          <circle cx="100" cy={y + 4} r="5" fill={i === 0 ? "#ef4444" : i === 1 ? "#dfa408" : "#22c55e"} opacity="0.9" />
           <rect x="111" y={y} width="90" height="7" rx="3.5" fill="#1e3050" />
           <rect x="111" y={y + 10} width="50" height="5" rx="2.5" fill="#152234" />
           <rect x="215" y={y} width="40" height="16" rx="4" fill="#152234" />
         </g>
       ))}
-      {/* Tenant list panel */}
       <rect x="282" y="126" width="178" height="132" rx="10" fill="#0d1a2b" stroke="#1e3a5f" strokeWidth="1" />
       <rect x="294" y="136" width="60" height="8" rx="4" fill="#1a2d45" />
       {["J", "S", "M", "A"].map((letter, i) => (
@@ -163,7 +170,6 @@ function PreviewCorporateWebsite() {
   return (
     <svg viewBox="0 0 480 270" fill="none" className="h-full w-full" aria-hidden="true">
       <rect width="480" height="270" fill="#eef3fb" />
-      {/* Browser chrome */}
       <rect x="24" y="14" width="432" height="242" rx="10" fill="#ffffff" stroke="#d1ddf0" strokeWidth="1.5" />
       <rect x="24" y="14" width="432" height="34" rx="10" fill="#f1f5fd" />
       <rect x="24" y="38" width="432" height="10" fill="#f1f5fd" />
@@ -172,7 +178,6 @@ function PreviewCorporateWebsite() {
       <circle cx="72" cy="31" r="5" fill="#22c55e" opacity="0.7" />
       <rect x="90" y="25" width="220" height="12" rx="6" fill="#ffffff" stroke="#d1ddf0" strokeWidth="1" />
       <rect x="100" y="29" width="100" height="4" rx="2" fill="#d1ddf0" />
-      {/* Nav bar */}
       <rect x="24" y="48" width="432" height="36" fill="#043a7e" />
       <rect x="38" y="58" width="40" height="8" rx="4" fill="rgba(255,255,255,0.9)" />
       {[100, 130, 160, 190, 220].map((x) => (
@@ -180,17 +185,14 @@ function PreviewCorporateWebsite() {
       ))}
       <rect x="402" y="55" width="42" height="18" rx="6" fill="#dfa408" />
       <rect x="410" y="60" width="26" height="8" rx="4" fill="rgba(255,255,255,0.9)" />
-      {/* Hero section */}
       <rect x="24" y="84" width="432" height="98" fill="#043a7e" />
       <rect x="80" y="100" width="180" height="12" rx="6" fill="rgba(255,255,255,0.9)" />
       <rect x="80" y="118" width="140" height="8" rx="4" fill="rgba(255,255,255,0.55)" />
       <rect x="80" y="132" width="110" height="8" rx="4" fill="rgba(255,255,255,0.35)" />
       <rect x="80" y="150" width="78" height="22" rx="8" fill="#dfa408" />
       <rect x="168" y="150" width="68" height="22" rx="8" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-      {/* Decorative ring */}
       <circle cx="370" cy="133" r="46" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" strokeWidth="1.5" />
       <circle cx="370" cy="133" r="28" fill="rgba(223,164,8,0.1)" stroke="rgba(223,164,8,0.2)" strokeWidth="1.5" />
-      {/* Content cards */}
       {[36, 176, 316].map((x) => (
         <g key={x}>
           <rect x={x} y="196" width={x === 316 ? 120 : 130} height="60" rx="8" fill="#f8fbff" stroke="#e2eaf6" strokeWidth="1" />
@@ -208,18 +210,15 @@ function PreviewHostingPortal() {
   return (
     <svg viewBox="0 0 480 270" fill="none" className="h-full w-full" aria-hidden="true">
       <rect width="480" height="270" fill="#0b1929" />
-      {/* Header */}
       <rect width="480" height="44" fill="#091422" />
       <rect x="16" y="14" width="56" height="16" rx="5" fill="#112038" />
       <rect x="84" y="17" width="40" height="10" rx="5" fill="#152a45" />
       <rect x="132" y="17" width="40" height="10" rx="5" fill="#152a45" />
       <circle cx="440" cy="22" r="10" fill="#1e3a5f" />
       <circle cx="462" cy="22" r="8" fill="#152234" />
-      {/* Breadcrumb */}
       <rect x="16" y="54" width="28" height="6" rx="3" fill="#1e3a5f" />
       <path d="M49 57l4 3-4 3" stroke="#2a4a7f" strokeWidth="1.5" strokeLinecap="round" />
       <rect x="58" y="54" width="40" height="6" rx="3" fill="#1e3a5f" />
-      {/* Service status cards */}
       {[
         { x: 16,  color: "#22c55e", pct: 94 },
         { x: 168, color: "#22c55e", pct: 98 },
@@ -234,14 +233,12 @@ function PreviewHostingPortal() {
           <rect x={x + 12} y="117" width="60" height="6" rx="3" fill="#152234" />
         </g>
       ))}
-      {/* Billing summary */}
       <rect x="16" y="152" width="282" height="58" rx="10" fill="#0f2035" stroke="#1e3a5f" strokeWidth="1" />
       <rect x="28" y="162" width="60" height="7" rx="3.5" fill="#1e3050" />
       <rect x="28" y="176" width="180" height="6" rx="3" fill="#152234" />
       <rect x="28" y="187" width="140" height="6" rx="3" fill="#152234" />
       <rect x="218" y="162" width="64" height="24" rx="7" fill="#043a7e" />
       <rect x="226" y="168" width="48" height="12" rx="4" fill="rgba(255,255,255,0.9)" />
-      {/* Support tickets */}
       <rect x="310" y="152" width="154" height="58" rx="10" fill="#0f2035" stroke="#1e3a5f" strokeWidth="1" />
       <rect x="322" y="162" width="50" height="7" rx="3.5" fill="#1e3050" />
       {["#ef4444", "#dfa408", "#22c55e"].map((color, i) => (
@@ -250,7 +247,6 @@ function PreviewHostingPortal() {
           <rect x="340" y={175 + i * 14} width="90" height="6" rx="3" fill="#152234" />
         </g>
       ))}
-      {/* Action buttons */}
       <rect x="16" y="222" width="96" height="30" rx="8" fill="#043a7e" />
       <rect x="28" y="231" width="72" height="12" rx="4" fill="rgba(255,255,255,0.85)" />
       <rect x="124" y="222" width="96" height="30" rx="8" fill="#0f2035" stroke="#1e3a5f" strokeWidth="1" />
@@ -263,7 +259,6 @@ function PreviewAIPlatform() {
   return (
     <svg viewBox="0 0 480 270" fill="none" className="h-full w-full" aria-hidden="true">
       <rect width="480" height="270" fill="#090f1e" />
-      {/* Top metrics */}
       {[
         { x: 16,  val: "1,284" },
         { x: 136, val: "98.6%" },
@@ -276,7 +271,6 @@ function PreviewAIPlatform() {
           <rect x={x + 10} y="44" width="70" height="5" rx="2.5" fill="#152234" />
         </g>
       ))}
-      {/* Workflow nodes */}
       {[
         { x: 20,  color: "#043a7e", center: false },
         { x: 108, color: "#062561", center: false },
@@ -301,10 +295,8 @@ function PreviewAIPlatform() {
           <rect x={x + 10} y="178" width="52" height="7" rx="3.5" fill="#1e3050" />
         </g>
       ))}
-      {/* AI node glow */}
       <circle cx="235" cy="145" r="14" fill="rgba(223,164,8,0.12)" stroke="rgba(223,164,8,0.3)" strokeWidth="1" />
       <circle cx="235" cy="145" r="6" fill="#dfa408" opacity="0.8" />
-      {/* Activity log */}
       <rect x="16" y="198" width="224" height="60" rx="10" fill="#0e1a2e" stroke="#1a3050" strokeWidth="1" />
       <rect x="28" y="208" width="60" height="7" rx="3.5" fill="#1e3050" />
       {["#22c55e", "#dfa408", "#22c55e"].map((color, i) => (
@@ -314,12 +306,10 @@ function PreviewAIPlatform() {
           <rect x="194" y={220 + i * 14} width="30" height="6" rx="3" fill="#0f1c2e" />
         </g>
       ))}
-      {/* Completion ring */}
       <rect x="252" y="198" width="80" height="60" rx="10" fill="#0e1a2e" stroke="#1a3050" strokeWidth="1" />
       <circle cx="292" cy="228" r="20" stroke="#1e3050" strokeWidth="3" />
       <circle cx="292" cy="228" r="20" stroke="#dfa408" strokeWidth="3" strokeDasharray="105 20" strokeLinecap="round" transform="rotate(-90 292 228)" />
       <text x="292" y="232" textAnchor="middle" fill="#dfa408" fontSize="11" fontWeight="800" fontFamily="system-ui">84%</text>
-      {/* Status badges */}
       <rect x="344" y="198" width="120" height="60" rx="10" fill="#0e1a2e" stroke="#1a3050" strokeWidth="1" />
       {["#dfa408", "#3b82f6", "#22c55e"].map((color, i) => (
         <g key={i}>
@@ -350,53 +340,52 @@ function ProjectCard({ project, index }) {
   return (
     <motion.article
       ref={ref}
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.14, ease: "easeOut" }}
+      transition={{ duration: 0.55, delay: index * 0.13, ease: "easeOut" }}
       whileHover={{ y: -4, transition: { type: "spring", stiffness: 320, damping: 24 } }}
       className="group flex flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-soft transition-shadow duration-300 hover:shadow-lg"
     >
-      {/* Preview area with reveal mask */}
-      <div className="relative overflow-hidden" style={{ aspectRatio: "16/9" }}>
+      {/* Preview — 47% of card, fixed height */}
+      <div className="relative h-44 overflow-hidden">
         <motion.div
           className="h-full w-full"
           initial={{ clipPath: "inset(0 0 100% 0)" }}
           animate={isInView ? { clipPath: "inset(0 0 0% 0)" } : {}}
-          transition={{ duration: 0.7, delay: index * 0.14, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.65, delay: index * 0.13, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]">
             {Preview && <Preview />}
           </div>
         </motion.div>
-        {/* Hover brightness overlay */}
         <div className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-[0.04]" />
       </div>
 
-      {/* Card content */}
-      <div className="flex flex-1 flex-col p-6">
+      {/* Content — 53% of card */}
+      <div className="flex flex-1 flex-col p-5">
         <motion.span
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.35, delay: index * 0.14 + 0.22 }}
+          transition={{ duration: 0.3, delay: index * 0.13 + 0.2 }}
           className={`inline-block self-start rounded-full px-3 py-1 text-xs font-semibold ${badge}`}
         >
           {project.category}
         </motion.span>
 
         <motion.h3
-          initial={{ opacity: 0, y: 6 }}
+          initial={{ opacity: 0, y: 5 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.38, delay: index * 0.14 + 0.32 }}
-          className="mt-3 text-xl font-bold text-primary"
+          transition={{ duration: 0.35, delay: index * 0.13 + 0.3 }}
+          className="mt-2.5 text-lg font-bold text-primary"
         >
           {project.title}
         </motion.h3>
 
         <motion.p
-          initial={{ opacity: 0, y: 6 }}
+          initial={{ opacity: 0, y: 5 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.38, delay: index * 0.14 + 0.42 }}
-          className="mt-2 flex-1 text-sm leading-relaxed text-slate-500"
+          transition={{ duration: 0.35, delay: index * 0.13 + 0.4 }}
+          className="mt-1.5 flex-1 text-sm leading-relaxed text-slate-500"
         >
           {project.summary}
         </motion.p>
@@ -404,8 +393,8 @@ function ProjectCard({ project, index }) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.32, delay: index * 0.14 + 0.52 }}
-          className="mt-5"
+          transition={{ duration: 0.3, delay: index * 0.13 + 0.5 }}
+          className="mt-4"
         >
           <a
             href={project.project_url}
@@ -422,9 +411,6 @@ function ProjectCard({ project, index }) {
 // ─── Section ──────────────────────────────────────────────────────────────────
 
 function FeaturedProjectsSection() {
-  const statsRef    = useRef(null)
-  const statsInView = useInView(statsRef, { once: true, margin: "-60px" })
-
   return (
     <section id="featured-projects" className="bg-white py-16 lg:py-20">
       <Container>
@@ -435,27 +421,14 @@ function FeaturedProjectsSection() {
         />
 
         {/* Stats strip */}
-        <div ref={statsRef} className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
           {stats.map(({ value, suffix, label }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 18 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.48, delay: i * 0.1, ease: "easeOut" }}
-              whileHover={{ y: -3, transition: { type: "spring", stiffness: 340, damping: 22 } }}
-              className="rounded-2xl border bg-white p-6 text-center shadow-soft"
-              style={{ borderColor: "rgba(4,58,126,0.08)" }}
-            >
-              <p className="text-3xl font-black text-primary lg:text-4xl">
-                <StatCounter value={value} suffix={suffix} />
-              </p>
-              <p className="mt-1.5 text-sm font-medium text-dark/70">{label}</p>
-            </motion.div>
+            <StatCard key={label} value={value} suffix={suffix} label={label} delay={i * 0.15} />
           ))}
         </div>
 
         {/* Projects 2×2 grid */}
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:mt-16">
+        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:mt-14">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
