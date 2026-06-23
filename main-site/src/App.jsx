@@ -3,6 +3,7 @@ import HeroSection from "./sections/HeroSection"
 import PartnersTechnologiesSection from "./sections/PartnersTechnologiesSection"
 import ServicesSection from "./sections/ServicesSection"
 import WhyChooseSection from "./sections/WhyChooseSection"
+import FeaturedProjectsSection from "./sections/FeaturedProjectsSection"
 import PortfolioSection from "./sections/PortfolioSection"
 import ContactSection from "./sections/ContactSection"
 import BlogPreviewSection from "./sections/BlogPreviewSection"
@@ -23,6 +24,7 @@ function App() {
           <PartnersTechnologiesSection />
           <ServicesSection />
           <WhyChooseSection />
+          <FeaturedProjectsSection />
           <PortfolioSection />
           <BlogPreviewSection />
           <ContactSection />
