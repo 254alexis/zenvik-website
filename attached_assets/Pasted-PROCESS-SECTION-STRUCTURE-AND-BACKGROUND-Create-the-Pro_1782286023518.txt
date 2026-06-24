@@ -1,0 +1,336 @@
+PROCESS SECTION — STRUCTURE AND BACKGROUND
+
+Create the Process section immediately after the Featured Projects section and immediately before the homepage CTA section.
+
+==================================================
+
+SECTION PURPOSE
+
+Explain how Zenvik delivers technology projects from concept to deployment and long-term support.
+
+This section must feel structured, organized, and methodical.
+
+==================================================
+
+SECTION BACKGROUND
+
+Background Color:
+
+#ffffff
+
+Secondary Accent:
+
+#f8fbff
+
+Do not use:
+
+* Network nodes
+* Ecosystem diagrams
+* Light columns
+* Grids
+* Technology maps
+* Floating cards
+* Blueprint boxes
+
+==================================================
+
+BACKGROUND SYSTEM
+
+Create a technical routing-path background.
+
+This background must represent workflow progression.
+
+==================================================
+
+ROUTING PATHS
+
+Create exactly 3 background routing paths.
+
+Path 1:
+
+Start:
+Top-left area
+
+End:
+Center-right area
+
+Path Shape:
+
+* Horizontal segment
+* Rounded 90° turn
+* Vertical segment
+* Rounded 90° turn
+* Horizontal segment
+
+Path 2:
+
+Start:
+Upper-right area
+
+End:
+Lower-left area
+
+Path Shape:
+
+* Horizontal segment
+* Rounded turn
+* Vertical segment
+* Rounded turn
+
+Path 3:
+
+Start:
+Center-left area
+
+End:
+Bottom-right area
+
+Path Shape:
+
+* Smooth routed path
+* Multiple directional changes
+* Rounded corners only
+
+==================================================
+
+PATH STYLE
+
+Color:
+
+#043a7e
+
+Opacity:
+
+0.04 to 0.06
+
+Width:
+
+1px
+
+Corners:
+
+Rounded
+
+Do not use:
+
+* Sharp corners
+* Thick lines
+* Visible arrows
+
+==================================================
+
+PATH HIGHLIGHTS
+
+Add small route markers.
+
+Requirements:
+
+* Maximum 8 markers total
+* Circular
+* Size: 4px to 6px
+
+Color:
+
+#dfa408
+
+Opacity:
+
+0.10
+
+Markers must appear attached to routing paths.
+
+==================================================
+
+SECTION HEADER
+
+Eyebrow:
+
+OUR PROCESS
+
+Headline:
+
+From Strategy To Success
+
+Description:
+
+A proven approach that combines planning, design, development, deployment, and continuous improvement to deliver technology solutions that create measurable business value.
+
+==================================================
+
+PROCESS LAYOUT
+
+Use a zig-zag journey layout.
+
+Desktop:
+
+01                 02
+
+```
+    PATH
+```
+
+03                 04
+
+```
+    PATH
+
+        05
+```
+
+Tablet:
+
+2 columns
+
+Mobile:
+
+Single column
+
+==================================================
+
+PROCESS STEPS
+
+STEP 01
+
+Title:
+
+Strategy & Discovery
+
+Description:
+
+Understand goals, challenges, requirements, and business opportunities.
+
+==================================================
+
+STEP 02
+
+Title:
+
+Planning & Solution Design
+
+Description:
+
+Define architecture, workflows, technologies, and project roadmap.
+
+==================================================
+
+STEP 03
+
+Title:
+
+Development & Implementation
+
+Description:
+
+Build, integrate, test, and optimize the solution.
+
+==================================================
+
+STEP 04
+
+Title:
+
+Launch & Deployment
+
+Description:
+
+Deploy securely, configure infrastructure, and prepare for production.
+
+==================================================
+
+STEP 05
+
+Title:
+
+Growth & Support
+
+Description:
+
+Monitor, improve, maintain, and scale the solution over time.
+
+==================================================
+
+STEP DESIGN
+
+Each step must contain:
+
+* Large step number
+* Step title
+* Step description
+
+Do not use cards.
+
+Do not use glass panels.
+
+Do not use boxed containers.
+
+Each step should appear integrated into the journey path.
+
+==================================================
+
+JOURNEY PATH
+
+Create one visible journey path connecting all five steps.
+
+Path Color:
+
+#043a7e
+
+Active Highlight:
+
+#dfa408
+
+Path Width:
+
+2px
+
+Path Style:
+
+Smooth routed path with rounded corners.
+
+==================================================
+
+SECTION ENTRY ANIMATION
+
+Run once when section enters viewport.
+
+Sequence:
+
+1. Header appears.
+2. Journey path draws itself.
+3. Step 01 activates.
+4. Path extends.
+5. Step 02 activates.
+6. Path extends.
+7. Step 03 activates.
+8. Path extends.
+9. Step 04 activates.
+10. Path extends.
+11. Step 05 activates.
+
+==================================================
+
+STEP ACTIVATION
+
+When a step activates:
+
+* Number gains emphasis
+* Title becomes fully visible
+* Description fades in
+* Gold highlight briefly appears on the connected journey path
+
+Duration:
+
+0.5 to 0.8 seconds
+
+==================================================
+
+FINAL STATE
+
+After the animation completes:
+
+* All steps remain visible
+* Path remains visible
+* No looping
+* No continuous movement
+
+The section should feel like a completed journey from idea to long-term success.
