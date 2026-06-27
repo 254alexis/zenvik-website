@@ -10,15 +10,27 @@ import ContactSection from "./sections/ContactSection"
 import BlogPreviewSection from "./sections/BlogPreviewSection"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
 import TermsAndConditions from "./pages/TermsAndConditions"
+import RefundPolicy from "./pages/RefundPolicy"
+import AcceptableUsePolicy from "./pages/AcceptableUsePolicy"
+import ServiceLevelAgreement from "./pages/ServiceLevelAgreement"
+import LegalCenter from "./pages/LegalCenter"
 
 function App() {
   const pathname = typeof window !== "undefined" ? window.location.pathname.replace(/\/$/, "") : "/"
 
   const content =
-    pathname === "/privacy-policy"
+    pathname === "/legal"
+      ? <LegalCenter />
+      : pathname === "/legal/privacy-policy" || pathname === "/privacy-policy"
       ? <PrivacyPolicy />
-      : pathname === "/terms-and-conditions"
+      : pathname === "/legal/terms-and-conditions" || pathname === "/terms-and-conditions"
       ? <TermsAndConditions />
+      : pathname === "/legal/refund-policy"
+      ? <RefundPolicy />
+      : pathname === "/legal/acceptable-use-policy"
+      ? <AcceptableUsePolicy />
+      : pathname === "/legal/service-level-agreement"
+      ? <ServiceLevelAgreement />
       : (
         <main className="min-h-screen bg-white text-dark">
           <HeroSection />

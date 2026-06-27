@@ -109,6 +109,7 @@ function Footer() {
           <div>
             <h4 className="text-lg font-bold">Legal</h4>
             <ul className="mt-5 space-y-3 text-slate-400">
+              <li><a href={siteConfig.legal.center} className={footerLinkClass}>Legal Center</a></li>
               <li><a href={siteConfig.legal.terms} className={footerLinkClass}>Terms & Conditions</a></li>
               <li><a href={siteConfig.legal.privacy} className={footerLinkClass}>Privacy Policy</a></li>
               <li><a href={siteConfig.legal.refund} className={footerLinkClass}>Refund Policy</a></li>

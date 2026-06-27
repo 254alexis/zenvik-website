@@ -38,11 +38,12 @@ socials: {
   },
 
   legal: {
-    privacy: "/privacy-policy",
-    terms: "/terms-and-conditions",
-    refund: "/terms-and-conditions#refund-policy",
-    aup: "/terms-and-conditions#acceptable-use-policy",
-    sla: "/terms-and-conditions#service-availability",
+    center: "/legal",
+    privacy: "/legal/privacy-policy",
+    terms: "/legal/terms-and-conditions",
+    refund: "/legal/refund-policy",
+    aup: "/legal/acceptable-use-policy",
+    sla: "/legal/service-level-agreement",
   },
 
   liveChat: {
