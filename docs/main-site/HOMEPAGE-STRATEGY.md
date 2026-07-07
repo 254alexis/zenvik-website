@@ -21,6 +21,16 @@ The portal homepage must never become a condensed version of the main website. A
 
 The main website is the design authority. Portal work should inspect and reuse the main-site's typography, spacing, buttons, shadows, border radius, colours, animations, and component styling instead of redesigning components that already exist here.
 
+For portal work, `template_v1` is not a design reference. It is only the WHMCS functionality authority. Codex should inspect `template_v1` to preserve Smarty logic, WHMCS variables, includes, hooks, routes, forms, cart/domain/ticket/account behavior, guest logic, logged-in logic, and loading constraints.
+
+`template_v2` is the creative implementation area for portal design. Codex may produce a premium, modern, polished portal homepage that visually aligns with the main-site and looks clearly different from default WHMCS, provided WHMCS behavior remains intact.
+
+Portal implementation may use compatible Bootstrap utilities/components from the installed WHMCS Bootstrap version and any compatible frontend technique that does not conflict with WHMCS scripts, Smarty rendering, routes, forms, overlays, or customer workflows.
+
+Portal implementation may create new supporting files when they are scoped to the editable implementation and do not affect WHMCS functionality. Safe examples include custom CSS, small `template_v2` partials, documentation, or local static assets loaded through WHMCS-compatible paths.
+
+Do not add another Bootstrap version, incompatible frontend libraries, dependency changes, or files that override WHMCS core behavior unless explicitly approved.
+
 ## Service Balance
 Do not make hosting plans the dominant homepage focus.
 
@@ -51,6 +61,7 @@ Inside the portal, cross-marketing must be much lighter:
 - Introduce only one idea at a time.
 - Spark curiosity without explaining an entire service.
 - Link back to the main website.
+- Stay optional, subtle, and contextual.
 - Avoid predictable service sections.
 - Avoid introducing every service.
 - Avoid pricing tables.

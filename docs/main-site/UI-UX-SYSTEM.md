@@ -12,14 +12,27 @@ Main-site style should feel:
 - Broad enough for software, hosting, marketing, ICT, and AI
 
 Portal style should feel:
-- Clear
-- Familiar
+- Premium
+- Modern
 - Account-focused
 - Supportive
 - Connected to the main-site brand
+- Clearly different from default WHMCS
 
 ## Visual Authority
 The main-site is the visual and design authority. Portal design should adapt the same brand colors, typography feel, button language, spacing, and trust tone while preserving WHMCS behavior.
+
+`template_v1` is not a visual reference for portal work. It is only the WHMCS functionality authority for Smarty logic, WHMCS variables, includes, hooks, routes, forms, cart/domain/ticket/account behavior, guest logic, logged-in logic, and loading constraints.
+
+`template_v2` is the creative portal implementation area. Codex may redesign portal layouts, visual hierarchy, sections, cards, buttons, spacing, shadows, animation, and responsive behavior inside `template_v2` when WHMCS behavior is preserved.
+
+Portal implementation may use any frontend technique compatible with the existing WHMCS/template stack, including the installed Bootstrap version, Bootstrap utilities/components, existing Font Awesome icons, semantic HTML, CSS gradients, glass effects, shadows, transitions, keyframe animations, responsive layouts, and custom `zt-` prefixed CSS.
+
+Portal implementation may create new supporting files when they are scoped to the editable implementation and do not affect WHMCS functionality. Safe examples include custom CSS files, small `template_v2` partials, documentation, or local static assets loaded through WHMCS-compatible paths.
+
+Do not add another Bootstrap version, external design libraries, conflicting framework assets, incompatible scripts, or dependency changes unless explicitly approved.
+
+Do not create files that override WHMCS core files, replace WHMCS scripts, bypass required includes, duplicate Bootstrap, or alter orderform, cart, invoice, ticket, or clientarea behavior.
 
 ## Layout Style
 - Wide clean sections
@@ -50,6 +63,7 @@ Portal header should prioritize:
 - Support access
 - Checkout continuity
 - WHMCS route safety
+- Compatibility with the installed Bootstrap version and WHMCS scripts
 
 ## Buttons
 Primary Button:
@@ -83,7 +97,7 @@ Avoid:
 - Distracting effects
 - Heavy video backgrounds
 
-Portal animation should be minimal and should not interfere with WHMCS workflows.
+Portal animation may be polished and modern, but it must not interfere with WHMCS workflows, loading behavior, overlays, forms, or routes.
 
 ## Mobile UX
 Priority:
@@ -104,3 +118,5 @@ Priority:
 - Navigation tone
 
 WHMCS should feel like part of the same Zenvik ecosystem, but it should remain a customer management system rather than a broad marketing website.
+
+The portal homepage should feel premium, modern, customer-focused, polished, and clearly different from default WHMCS. It may include subtle contextual cross-marketing, but it must not duplicate the main-site or compete with login, invoices, support, tickets, checkout, and account management.

@@ -25,8 +25,10 @@ This keeps the documentation as the single source of truth while still allowing 
 ## Permanent Architecture
 - `main-site` is the design and marketing authority for `zenviktechnologies.com`.
 - `portal-site` is the WHMCS customer management system for `portal.zenviktechnologies.com`.
-- `portal-site/template_v1` is the locked reference.
-- `portal-site/template_v2` is the editable implementation.
+- `portal-site/template_v1` is the locked WHMCS functionality authority only.
+- `portal-site/template_v2` is the editable creative implementation area.
+- `template_v2` is expected to visually diverge from `template_v1` and become a modern Zenvik customer portal.
+- Future portal header and footer work should move toward the main-site visual language; `template_v1` is never a design reference or design target.
 - The portal homepage must never become a condensed version of the main website.
 - The portal exists primarily for customer accounts, invoices, support, tickets, checkout, and account management.
 - The main website remains responsible for service marketing, pricing, hosting pages, blogs, FAQs, legal pages, domains, and detailed service information.
@@ -35,7 +37,9 @@ This keeps the documentation as the single source of truth while still allowing 
 - The main website is the design authority.
 - Before editing any portal page, inspect the main-site and reuse its typography, spacing, buttons, shadows, border radius, colours, animations, and component styling.
 - The portal must look like the same Zenvik ecosystem.
-- Never redesign components that already exist on the main website.
+- Do not use `template_v1` for visual decisions.
+- When the main-site already solves a visual pattern, adapt that quality and language inside the portal instead of copying WHMCS default styling.
+- Portal pages may be redesigned boldly inside `template_v2` as long as WHMCS functionality remains intact.
 
 ## Brand Rules
 - Use Zenvik brand colors only:
@@ -48,10 +52,12 @@ This keeps the documentation as the single source of truth while still allowing 
 ## WHMCS Rules
 - Do not edit `portal-site/template_v1`.
 - Only edit `portal-site/template_v2` for portal work.
-- Before modifying any WHMCS template, inspect `template_v1` and identify Smarty variables, includes, homepage conditions, guest logic, logged-in logic, and hooks.
-- Reuse existing functionality and wrap new UI around it.
-- Never rebuild homepage logic from scratch.
-- Do not upgrade or replace Bootstrap.
+- Before modifying any WHMCS template, inspect `template_v1` only to preserve Smarty logic, WHMCS variables, includes, hooks, routes, forms, cart/domain/ticket/account behavior, guest logic, logged-in logic, and loading constraints.
+- Reuse existing WHMCS functionality while creatively redesigning the presentation in `template_v2`.
+- Do not replace proven WHMCS logic with custom logic for visual reasons.
+- Use the existing WHMCS-compatible Bootstrap version already present in `template_v2`.
+- Compatible Bootstrap classes and components are allowed when they support the design and do not change WHMCS behavior.
+- Do not upgrade, replace, or introduce another Bootstrap version.
 - Do not remove WHMCS scripts, overlays, hooks, Smarty variables, or includes.
 - Do not remove or rewrite orderforms, invoice logic, ticket logic, cart logic, or clientarea logic.
 - Do not modify `scripts.js`, `scripts.min.js`, or `whmcs.js`.
@@ -60,6 +66,15 @@ This keeps the documentation as the single source of truth while still allowing 
 - Do not hide the body while waiting for custom JavaScript.
 - Do not add JavaScript that blocks DOM ready.
 
+## Compatible Frontend Freedom
+- Codex may use any frontend technique that is compatible with the existing WHMCS/template stack.
+- Allowed compatible techniques include existing Bootstrap utilities/components, existing Font Awesome icons, semantic HTML, CSS gradients, glass effects, CSS animations, responsive layouts, and custom `zt-` prefixed CSS.
+- Codex may create new supporting files when they are scoped to the editable implementation, compatible with WHMCS, and do not replace or disrupt WHMCS behavior.
+- Safe supporting files may include custom CSS, small template partials, documentation, or local static assets when the task needs them and they are loaded through existing WHMCS-compatible paths.
+- Do not add external design libraries, conflicting framework assets, incompatible scripts, or dependency changes unless explicitly approved.
+- Do not create files that override WHMCS core files, replace existing WHMCS scripts, bypass required includes, duplicate Bootstrap, or alter orderform/cart/invoice/ticket/clientarea behavior.
+- Compatibility means the page still works with WHMCS Smarty rendering, existing Bootstrap, WHMCS scripts, overlays, forms, routes, and customer workflows.
+
 ## WHMCS Development Principle
 When working on the WHMCS portal, functionality always takes priority over appearance.
 
@@ -67,7 +82,7 @@ Never sacrifice working WHMCS functionality for visual improvements.
 
 If there is a choice between redesigning a component and preserving existing WHMCS behaviour, always preserve the existing behaviour.
 
-Improve the user interface by extending, wrapping, or styling existing functionality instead of replacing it.
+Improve the user interface by extending, wrapping, styling, or reorganizing existing WHMCS functionality in `template_v2` instead of replacing the underlying behavior.
 
 The objective is to modernize the portal while remaining fully compatible with WHMCS updates and existing customer workflows.
 
@@ -75,13 +90,13 @@ The objective is to modernize the portal while remaining fully compatible with W
 Every portal task must follow this order:
 1. Read `AGENTS.md`.
 2. Read the relevant documentation.
-3. Inspect the main-site and reuse its design language.
-4. Inspect `template_v1` completely.
-5. Understand the existing WHMCS functionality.
-6. Improve the appearance.
-7. Preserve all behaviour.
-8. Test compatibility.
-9. Report files changed.
+3. Inspect the main-site for design direction.
+4. Inspect `template_v1` only for WHMCS functionality and logic.
+5. Edit `template_v2` creatively.
+6. Preserve WHMCS behavior.
+7. Use only the existing compatible Bootstrap version and compatible frontend techniques.
+8. Produce a polished result.
+9. Report files changed and tests needed.
 
 Never redesign functionality before understanding how WHMCS currently implements it.
 
@@ -110,11 +125,13 @@ Instead:
 - Inspect `template_v1`.
 - Understand the implementation.
 - Reuse it.
-- Wrap the new interface around it.
+- Build the new interface around the existing behavior.
 
 This project values long-term stability over aggressive redesign.
 
 A visually simpler page with 100% working functionality is always preferred over a more impressive design that introduces regressions.
+
+This safety rule protects functionality only. It does not prevent strong visual design, premium layout work, animation, custom CSS, or significant homepage redesign inside `template_v2`.
 
 ## Portal Cross-Marketing Rules
 - Marketing is secondary inside the portal.
@@ -126,7 +143,7 @@ A visually simpler page with 100% working functionality is always preferred over
 
 ## Scope Rules
 - Do not add unrelated features.
-- Keep changes incremental and reversible.
+- Keep changes reviewable and reversible; the final visual result may still be bold, polished, and significantly redesigned when the task calls for it.
 - Before main-site edits, inspect the main-site docs and current design/source files.
 - Before portal edits, inspect `docs/portal/WHMCS-ARCHITECTURE.md`, `template_v1`, and `template_v2`.
 - Always report files changed.
