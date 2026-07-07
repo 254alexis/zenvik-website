@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Zenvik Technologies",
+  name: "Zenvik Technologies Ltd",
 
   tagline: "Empowering Growth Through Technology",
 

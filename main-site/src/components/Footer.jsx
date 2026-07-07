@@ -106,11 +106,10 @@ function Footer() {
           <div>
             <h4 className="text-lg font-bold">Services</h4>
             <ul className="mt-5 space-y-3 text-slate-400">
-              <li><a href="#hosting" className={footerLinkClass}>Hosting & Cloud</a></li>
-              <li><a href="#software" className={footerLinkClass}>Software Development</a></li>
-              <li><a href="#services" className={footerLinkClass}>Website Development</a></li>
-              <li><a href="#services" className={footerLinkClass}>Marketing & Branding</a></li>
-              <li><a href="#services" className={footerLinkClass}>ICT Services</a></li>
+              <li><a href="/hosting-cloud-services" className={footerLinkClass}>Hosting & Cloud</a></li>
+              <li><a href="/digital-solutions" className={footerLinkClass}>Digital Solutions</a></li>
+              <li><a href="/marketing-branding" className={footerLinkClass}>Marketing & Branding</a></li>
+              <li><a href="/ict-services" className={footerLinkClass}>ICT Services</a></li>
             </ul>
           </div>
 

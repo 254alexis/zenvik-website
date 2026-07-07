@@ -3,21 +3,21 @@ export const coreServices = [
     title: "Hosting & Cloud Solutions",
     description:
       "Reliable hosting, domains, SSL certificates, business email, cloud infrastructure, and hosting solutions for growing businesses.",
-    href: "https://hosting.zenviktechnologies.com",
+    href: "/hosting-cloud-services",
     visual: "cloud",
   },
   {
     title: "Website Development",
     description:
       "Professional business websites, e-commerce stores, landing pages, and custom web solutions designed to convert visitors into customers.",
-    href: "/website-development",
+    href: "/digital-solutions",
     visual: "website",
   },
   {
     title: "Software Development",
     description:
       "Custom software, SaaS platforms, mobile applications, portals, business systems, and automation solutions tailored to your needs.",
-    href: "/software-development",
+    href: "/digital-solutions",
     visual: "software",
   },
   {

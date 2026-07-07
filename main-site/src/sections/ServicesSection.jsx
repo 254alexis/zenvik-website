@@ -461,7 +461,9 @@ function ServicesSection() {
 
         <div className="mt-10 grid grid-cols-[repeat(auto-fit,minmax(min(100%,20rem),1fr))] gap-6 lg:mt-12">
           {coreServices.map((service, index) => {
-            const isExternal  = service.href.startsWith("http")
+            const isExternal =
+              service.href.startsWith("http") &&
+              !service.href.startsWith("https://zenviktechnologies.com")
             const isActive    = activeCard === index
             const isHovered   = hoveredCard === index
             const isConnected = allConnected
