@@ -51,6 +51,67 @@ Codex should act like a senior frontend engineer within WHMCS compatibility limi
 
 Compatible implementation means the work remains compatible with the existing WHMCS template stack, Smarty rendering, Bootstrap version, WHMCS scripts, overlays, forms, routes, and customer workflows.
 
+## Forensic Audit Lessons
+The previous endless-loading and layout failures were caused by broken WHMCS template contracts, not by modern visual design itself.
+
+The key failure pattern was a mixed-generation or partial transplant:
+- copying large parts of a broken theme tree instead of rebuilding selectively
+- mixing incompatible Bootstrap/theme assets, markup, and scripts
+- replacing WHMCS shell files without preserving their paired header/footer/script contract
+- removing or bypassing dynamic WHMCS navigation, hooks, modals, overlays, and output blocks
+- masking layout or loader problems with destructive CSS instead of fixing the source
+
+Modern portal UI is still allowed inside `template_v2`, including ambitious homepage sections, authenticated workspace layouts, refined dashboards, and premium page styling. The limit is the WHMCS runtime contract.
+
+Current `template_v1` and `template_v2` are Twenty-One style templates using the same WHMCS-compatible generation. Do not treat old Bootstrap mismatch warnings as a ban on modern design. Treat them as a ban on mixing framework generations or copying partial shell stacks.
+
+## Change Risk Lanes
+Use these lanes before starting portal work.
+
+### Green Lane
+These changes are generally safe when scoped to `template_v2` and verified responsively:
+- custom CSS in the active template
+- `zt-` prefixed visual wrappers and layout classes
+- guest homepage section design
+- typography, spacing, shadows, gradients, card styling, and responsive polish
+- CSS-only animation that does not block loading
+- local visual assets loaded through WHMCS-compatible template paths
+
+### Amber Lane
+These changes are allowed, but need stricter comparison against `template_v1` and live WHMCS QA:
+- header and footer presentation changes
+- authenticated client area shell changes
+- dashboard layout wrappers
+- account/profile menu simplification
+- sidebar/navigation presentation changes
+- login/register presentation changes
+- service, billing, support, domain, download, invoice, and ticket page visual wrappers
+- small local UI JavaScript that does not replace WHMCS scripts or block DOM ready
+
+For amber-lane work, preserve the original WHMCS data surfaces and routes, then build the new interface around them.
+
+### Red Lane
+Do not do these without an explicit architecture decision and full WHMCS regression plan:
+- editing `scripts.js`, `scripts.min.js`, or `whmcs.js`
+- changing `theme.yaml` framework declarations
+- replacing Bootstrap or adding another Bootstrap version
+- replacing `theme.min.css` or other WHMCS foundation assets
+- copying an entire broken theme tree over a working template
+- hardcoding WHMCS navigation in place of dynamic `$primaryNavbar` or `$secondaryNavbar` without preserving equivalent WHMCS behavior
+- disabling or globally hiding WHMCS overlays, loaders, modals, or body scroll to mask bugs
+- changing orderform, cart, invoice, payment, ticket, or clientarea business logic
+
+## Loader And Overlay Safety
+Never hide loader or overlay problems with broad CSS.
+
+Avoid:
+- `#fullpage-overlay { display: none !important; }`
+- global `html, body { overflow-x: hidden; }` as a layout fix
+- custom preloaders or blocking loaders
+- JavaScript that must run before WHMCS can finish its own ready sequence
+
+If loading gets stuck, inspect the exact overlay element, asset path, hidden class, Bootstrap behavior, console errors, and WHMCS script contract before changing CSS.
+
 ## Safe File Creation
 Codex may create new files when they are needed for the task and do not affect WHMCS functionality.
 

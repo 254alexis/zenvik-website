@@ -4,7 +4,7 @@
 <link href="{assetPath file='theme.min.css'}?v={$versionHash}" rel="stylesheet">
 <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
 {assetExists file="custom.css"}
-<link href="{$__assetPath__}" rel="stylesheet">
+<link href="{$__assetPath__}?v={$versionHash}-zt-portal-v2" rel="stylesheet">
 {/assetExists}
 
 <script>

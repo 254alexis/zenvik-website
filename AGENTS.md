@@ -142,6 +142,11 @@ This safety rule protects functionality only. It does not prevent strong visual 
 - This priority is a business priority, not a homepage section order.
 
 ## Scope Rules
+- User-directed scope is mandatory. When the user names a specific section, file, component, behavior, or visual issue, change only that target.
+- Do not introduce new design ideas, new sections, new effects, new colors, new layout concepts, new copy, new files, or adjacent fixes unless the user explicitly asked for them.
+- If a requested fix reveals a tempting related improvement outside the named scope, stop and ask first before editing it.
+- Do not use broad "while I am here" cleanup. Do not make random improvements. Do not reinterpret a narrow request as permission to redesign surrounding areas.
+- Section-by-section portal work must stay section-by-section. For example, a Section 3 request must not alter Section 2, Hero, header, footer, scripts, or other homepage sections.
 - Do not add unrelated features.
 - Keep changes reviewable and reversible; the final visual result may still be bold, polished, and significantly redesigned when the task calls for it.
 - Before main-site edits, inspect the main-site docs and current design/source files.
