@@ -1,4 +1,5 @@
-<div class="card">
+<div class="zt-support-center zt-ticket-confirm-page">
+    <div class="card zt-support-form-card zt-support-confirm-card">
     <div class="card-body extra-padding">
 
         <h3 class="card-title">{lang key="createNewSupportRequest"}</h3>
@@ -25,5 +26,6 @@
             </a>
         </p>
 
+    </div>
     </div>
 </div>

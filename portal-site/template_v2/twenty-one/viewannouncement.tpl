@@ -1,4 +1,17 @@
-<div class="card">
+<div class="zt-resource-workspace zt-announcement-detail-page">
+    <div class="zt-resource-header">
+        <div>
+            <span class="zt-resource-eyebrow">Updates Center</span>
+            <h2>{$title}</h2>
+            <p>Published {$carbon->createFromTimestamp($timestamp)->format('l, jS F, Y')}.</p>
+        </div>
+        <a href="{routePath('announcement-index')}" class="btn btn-default zt-resource-header__action">
+            <i class="fas fa-arrow-left fa-fw"></i>
+            Announcements
+        </a>
+    </div>
+
+<div class="card zt-resource-article-card">
     <div class="card-body extra-padding">
         <h1>
             {$title}
@@ -48,7 +61,7 @@
 </div>
 
 {if $facebookcomments}
-    <div class="card">
+    <div class="card zt-resource-list-card">
         <div class="card-body p-5">
             <div id="fb-root">
             </div>
@@ -79,3 +92,4 @@
         {lang key='edit'}
     </a>
 {/if}
+</div>

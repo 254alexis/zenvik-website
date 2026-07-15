@@ -1,7 +1,7 @@
                     </div>
 
                     </div>
-                    {if !$inShoppingCart && $secondarySidebar->hasChildren()}
+                    {if !$ztWorkspaceShell && !$inShoppingCart && $secondarySidebar->hasChildren()}
                         <div class="d-lg-none sidebar sidebar-secondary">
                             {include file="$template/includes/sidebar.tpl" sidebar=$secondarySidebar}
                         </div>
@@ -141,6 +141,55 @@
     {/if}
 
     {include file="$template/includes/generate-password.tpl"}
+
+    {if $ztWorkspaceShell}
+        {literal}
+            <script>
+                (function () {
+                    var toggleButtons = document.querySelectorAll('[data-zt-shell-toggle]');
+                    var collapseButtons = document.querySelectorAll('[data-zt-shell-collapse]');
+                    var copyButtons = document.querySelectorAll('[data-zt-copy-pin]');
+
+                    toggleButtons.forEach(function (button) {
+                        button.addEventListener('click', function () {
+                            var isOpen = document.body.classList.toggle('zt-shell-sidebar-open');
+                            toggleButtons.forEach(function (item) {
+                                item.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                            });
+                        });
+                    });
+
+                    collapseButtons.forEach(function (button) {
+                        button.addEventListener('click', function () {
+                            document.body.classList.toggle('zt-shell-sidebar-collapsed');
+                        });
+                    });
+
+                    copyButtons.forEach(function (button) {
+                        button.addEventListener('click', function () {
+                            var pin = button.getAttribute('data-pin') || '';
+                            var status = button.parentNode.querySelector('[data-zt-copy-status]');
+
+                            if (!pin || !navigator.clipboard) {
+                                return;
+                            }
+
+                            navigator.clipboard.writeText(pin).then(function () {
+                                if (!status) {
+                                    return;
+                                }
+
+                                status.classList.add('is-visible');
+                                window.setTimeout(function () {
+                                    status.classList.remove('is-visible');
+                                }, 1400);
+                            });
+                        });
+                    });
+                }());
+            </script>
+        {/literal}
+    {/if}
 
     {$footeroutput}
 

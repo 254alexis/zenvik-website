@@ -16,6 +16,11 @@
     {include file="$template/includes/alert.tpl" type="warning" msg="<i class='fas fa-times fa-fw'></i> {lang key='paymentMethods.deleteFailed'}"}
 {/if}
 
+{assign var=ztAccountActive value='payment'}
+{assign var=ztAccountTitle value='Payment Methods'}
+{assign var=ztAccountIntro value='Manage saved payment methods while preserving the secure WHMCS payment workflow.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
 <div class="card">
     <div class="card-body">
 
@@ -84,6 +89,8 @@
 
     </div>
 </div>
+
+{include file="$template/includes/zt-account-layout-end.tpl"}
 
 <form method="post" action="" id="frmDeletePaymentMethod">
 <div class="modal fade" id="modalPaymentMethodDeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -1,4 +1,13 @@
-<div class="card">
+<div class="zt-domain-workspace zt-domain-epp-page">
+    <div class="zt-domain-header">
+        <div>
+            <span class="zt-domain-eyebrow">Domain Workspace</span>
+            <h2>{lang key='domaingeteppcode'}</h2>
+            <p>Request or review the authorization code using the existing registrar workflow.</p>
+        </div>
+    </div>
+
+<div class="card zt-domain-card">
     <div class="card-body">
         <h3 class="card-title">{lang key='domaingeteppcode'}</h3>
 
@@ -13,4 +22,5 @@
         {/if}
 
     </div>
+</div>
 </div>

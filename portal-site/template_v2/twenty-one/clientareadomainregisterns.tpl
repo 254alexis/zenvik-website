@@ -4,7 +4,16 @@
 
 {include file="$template/includes/alert.tpl" type="info" msg="{lang key='domainregisternsexplanation'}"}
 
-<div class="card">
+<div class="zt-domain-workspace zt-domain-registerns-page">
+    <div class="zt-domain-header">
+        <div>
+            <span class="zt-domain-eyebrow">Domain Workspace</span>
+            <h2>Private Nameservers</h2>
+            <p>Register, modify, or delete private nameservers for <strong>{$domain}</strong>.</p>
+        </div>
+    </div>
+
+<div class="card zt-domain-card zt-domain-form-card">
     <div class="card-body">
         <form role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domainregisterns">
             <input type="hidden" name="sub" value="register" />
@@ -40,7 +49,7 @@
     </div>
 </div>
 
-<div class="card">
+<div class="card zt-domain-card zt-domain-form-card">
     <div class="card-body">
         <form role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domainregisterns">
             <input type="hidden" name="sub" value="modify" />
@@ -82,7 +91,7 @@
     </div>
 </div>
 
-<div class="card">
+<div class="card zt-domain-card zt-domain-form-card">
     <div class="card-body">
         <form role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domainregisterns">
             <input type="hidden" name="sub" value="delete" />
@@ -110,4 +119,5 @@
 
         </form>
     </div>
+</div>
 </div>

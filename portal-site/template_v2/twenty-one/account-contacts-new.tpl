@@ -10,6 +10,11 @@
 </script>
 <script src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
 
+{assign var=ztAccountActive value='contacts'}
+{assign var=ztAccountTitle value='Contacts'}
+{assign var=ztAccountIntro value='Add a new account contact while keeping the existing WHMCS contact workflow.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
 <div class="alert alert-block alert-info">
     <form role="form" method="post" action="{routePath('account-contacts')}">
         <div class="row">
@@ -131,3 +136,5 @@
     </div>
 
 </form>
+
+{include file="$template/includes/zt-account-layout-end.tpl"}

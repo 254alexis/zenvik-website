@@ -14,6 +14,11 @@
 
 <script type="text/javascript" src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
 
+{assign var=ztAccountActive value='details'}
+{assign var=ztAccountTitle value='Account Details'}
+{assign var=ztAccountIntro value='Keep your billing profile, address, preferences, and account details up to date.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
 <form method="post" action="?action=details" role="form">
 
     <div class="card">
@@ -174,3 +179,5 @@
     </div>
 
 </form>
+
+{include file="$template/includes/zt-account-layout-end.tpl"}

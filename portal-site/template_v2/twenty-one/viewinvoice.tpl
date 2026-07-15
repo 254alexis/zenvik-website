@@ -10,13 +10,87 @@
     <link href="{assetPath file='theme.min.css'}?v={$versionHash}" rel="stylesheet">
     <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
     <link href="{assetPath file='invoice.min.css'}?v={$versionHash}" rel="stylesheet">
+    <style>
+        body.zt-invoice-detail-page {
+            background: linear-gradient(135deg, #f8fbff 0%, #eef7ff 48%, #ffffff 100%);
+            color: #153457;
+        }
+        .zt-invoice-detail {
+            max-width: 1120px;
+            margin: 24px auto;
+            padding: clamp(18px, 2.4vw, 30px);
+            border: 1px solid rgba(4, 58, 126, 0.08);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 24px 70px rgba(4, 58, 126, 0.12);
+        }
+        .zt-invoice-detail .invoice-header {
+            align-items: center;
+            padding: 18px;
+            border: 1px solid rgba(4, 58, 126, 0.08);
+            border-radius: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+        }
+        .zt-invoice-detail h2,
+        .zt-invoice-detail h3,
+        .zt-invoice-detail .card-title {
+            color: #043a7e;
+            font-weight: 850;
+        }
+        .zt-invoice-detail .invoice-status span {
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-weight: 850;
+        }
+        .zt-invoice-detail .card {
+            overflow: hidden;
+            border: 1px solid rgba(4, 58, 126, 0.08);
+            border-radius: 18px;
+            box-shadow: none;
+        }
+        .zt-invoice-detail .card-header {
+            border-bottom: 1px solid rgba(4, 58, 126, 0.08);
+            background: #ffffff;
+        }
+        .zt-invoice-detail .table td,
+        .zt-invoice-detail .table th {
+            border-color: rgba(4, 58, 126, 0.08);
+        }
+        .zt-invoice-detail .transactions-container {
+            margin-top: 18px;
+            padding: 14px;
+            border: 1px solid rgba(4, 58, 126, 0.08);
+            border-radius: 18px;
+            background: rgba(248, 251, 255, 0.78);
+        }
+        .zt-invoice-detail .btn {
+            border-radius: 999px;
+        }
+        .zt-invoice-back {
+            margin-bottom: 28px;
+        }
+        .zt-invoice-back a {
+            color: #043a7e;
+            font-weight: 800;
+        }
+        @media print {
+            body.zt-invoice-detail-page {
+                background: #ffffff;
+            }
+            .zt-invoice-detail {
+                margin: 0;
+                border: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
     <script>var whmcsBaseUrl = "{$WEB_ROOT}";</script>
     <script src="{assetPath file='scripts.min.js'}?v={$versionHash}"></script>
 
 </head>
-<body>
+<body class="zt-invoice-detail-page">
 
-    <div class="container-fluid invoice-container">
+    <div class="container-fluid invoice-container zt-invoice-detail">
 
         {if $invalidInvoiceIdRequested}
 
@@ -265,7 +339,7 @@
 
     </div>
 
-    <p class="text-center d-print-none"><a href="clientarea.php?action=invoices">{lang key='invoicesbacktoclientarea'}</a></p>
+    <p class="text-center d-print-none zt-invoice-back"><a href="clientarea.php?action=invoices">{lang key='invoicesbacktoclientarea'}</a></p>
 
     <div id="fullpage-overlay" class="w-hidden">
         <div class="outer-wrapper">

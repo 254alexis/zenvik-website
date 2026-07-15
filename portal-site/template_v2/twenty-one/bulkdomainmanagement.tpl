@@ -1,4 +1,13 @@
-<div class="card">
+<div class="zt-domain-workspace zt-domain-bulk-page">
+    <div class="zt-domain-header">
+        <div>
+            <span class="zt-domain-eyebrow">Domain Workspace</span>
+            <h2>Bulk Domain Management</h2>
+            <p>Apply the selected WHMCS domain action across the chosen domains.</p>
+        </div>
+    </div>
+
+<div class="card zt-domain-card zt-domain-form-card">
     <div class="card-body">
 
         <form method="post" action="{$smarty.server.PHP_SELF}?action=bulkdomain">
@@ -244,6 +253,7 @@
 <a href="clientarea.php?action=domains" class="btn btn-default">
     {lang key='clientareabacklink'}
 </a>
+</div>
 
 <script type="text/javascript">
     var disableInternalTabSelection = true;

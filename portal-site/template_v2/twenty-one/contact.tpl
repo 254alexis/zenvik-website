@@ -1,4 +1,17 @@
-<div class="card mb-4">
+<div class="zt-support-center zt-contact-support-page">
+    <div class="zt-support-header">
+        <div>
+            <span class="zt-support-eyebrow">Support Center</span>
+            <h2>{lang key='contactus'}</h2>
+            <p>{lang key='readyforquestions'}</p>
+        </div>
+        <a href="supporttickets.php" class="btn btn-default zt-support-header__action">
+            <i class="fas fa-inbox fa-fw"></i>
+            My Tickets
+        </a>
+    </div>
+
+<div class="card mb-4 zt-support-form-card">
     <div class="card-body extra-padding">
 
         <div class="mb-4">
@@ -57,4 +70,5 @@
         {/if}
 
     </div>
+</div>
 </div>

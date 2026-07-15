@@ -1,5 +1,10 @@
 <script src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
 
+{assign var=ztAccountActive value='payment'}
+{assign var=ztAccountTitle value='Payment Methods'}
+{assign var=ztAccountIntro value='Add or update a payment method using the existing secure WHMCS form.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
 <div class="card">
     <div class="card-body">
 
@@ -205,6 +210,8 @@
 
     </div>
 </div>
+
+{include file="$template/includes/zt-account-layout-end.tpl"}
 
 <div class="modal fade" id="modalBillingAddress" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">

@@ -1,10 +1,18 @@
-<form method="post" action="clientarea.php?action=masspay">
+<div class="zt-billing-workspace">
+    <section class="zt-billing-header">
+        <div>
+            <span class="zt-billing-eyebrow">Billing Workspace</span>
+            <h1>{lang key="masspaytitle"}</h1>
+            <p>{lang key="masspaydescription"}</p>
+        </div>
+    </section>
+
+<form method="post" action="clientarea.php?action=masspay" class="zt-billing-form">
     <input type="hidden" name="geninvoice" value="true" />
 
-    <div class="card">
+    <div class="card zt-billing-card">
         <div class="card-body">
-            <h3 class="card-title">{lang key="masspaytitle"}</h3>
-            <p class="text-muted">{lang key="masspaydescription"}</p>
+            <h3 class="card-title">{lang key="invoicelineitems"}</h3>
 
             <table class="table">
                 <thead>
@@ -71,7 +79,7 @@
 
     <div class="row">
         <div class="col-sm-6 offset-sm-3">
-            <div class="card bg-default">
+            <div class="card bg-default zt-billing-card">
                 <div class="card-header">
                     <h3 class="card-title m-0">{lang key='masspaymentselectgateway'}</h3>
                 </div>
@@ -99,3 +107,4 @@
     </div>
 
 </form>
+</div>

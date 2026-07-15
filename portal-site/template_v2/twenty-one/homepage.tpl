@@ -4115,16 +4115,10 @@
         .zt-control-network {
             isolation: isolate;
             padding: clamp(74px, 7vw, 112px) clamp(18px, 4vw, 56px);
-            background:
-                radial-gradient(circle at 8% 12%, rgba(4, 58, 126, 0.11), transparent 30%),
-                radial-gradient(circle at 92% 86%, rgba(4, 58, 126, 0.08), transparent 34%),
-                radial-gradient(circle at 78% 14%, rgba(223, 164, 8, 0.055), transparent 28%),
-                linear-gradient(rgba(4, 58, 126, 0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(4, 58, 126, 0.025) 1px, transparent 1px),
-                #f8fafc;
-            background-size: auto, auto, auto, 38px 38px, 38px 38px, auto;
+            background: #ffffff;
         }
 
+        .zt-control-network::before,
         .zt-control-network::after {
             display: none;
         }
@@ -4142,18 +4136,14 @@
             max-width: 1180px;
             margin: 0 auto;
             overflow: hidden;
-            border: 1px solid rgba(4, 58, 126, 0.12);
+            border: 1px solid rgba(4, 58, 126, 0.16);
             border-radius: 32px;
             padding: clamp(22px, 3vw, 34px);
-            background:
-                radial-gradient(circle at 14% 16%, rgba(4, 58, 126, 0.075), transparent 30%),
-                radial-gradient(circle at 88% 84%, rgba(223, 164, 8, 0.045), transparent 28%),
-                linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.88));
+            background: #ffffff;
             box-shadow:
-                0 34px 90px rgba(4, 58, 126, 0.13),
-                0 12px 34px rgba(4, 58, 126, 0.07),
-                inset 0 1px 0 rgba(255, 255, 255, 0.95);
-            animation: zt-workspace-breathe 8s ease-in-out infinite;
+                0 34px 86px rgba(4, 58, 126, 0.14),
+                0 12px 32px rgba(4, 58, 126, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.98);
         }
 
         .zt-workspace-shell::before,
@@ -4165,19 +4155,12 @@
 
         .zt-workspace-shell::before {
             inset: 16px;
-            border: 1px solid rgba(4, 58, 126, 0.055);
+            border: 1px solid rgba(4, 58, 126, 0.06);
             border-radius: 24px;
         }
 
         .zt-workspace-shell::after {
-            top: 86px;
-            right: 34px;
-            width: 126px;
-            height: 64px;
-            border-top: 1px solid rgba(4, 58, 126, 0.08);
-            border-bottom: 1px solid rgba(4, 58, 126, 0.06);
-            background: linear-gradient(90deg, transparent, rgba(4, 58, 126, 0.025), transparent);
-            opacity: 0.75;
+            display: none;
         }
 
         .zt-workspace-toolbar {
@@ -4283,10 +4266,7 @@
         }
 
         .zt-pcb-traces {
-            inset: 40px 22px 30px;
-            width: calc(100% - 44px);
-            height: calc(100% - 70px);
-            opacity: 0.2;
+            display: none;
         }
 
         .zt-pcb-trace {
@@ -4314,18 +4294,16 @@
             min-height: 190px;
             flex-direction: column;
             overflow: hidden;
-            border: 1px solid rgba(4, 58, 126, 0.13);
+            border: 1px solid rgba(4, 58, 126, 0.14);
             border-radius: 26px;
-            padding: clamp(18px, 2vw, 24px);
-            background:
-                linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
+            padding: clamp(20px, 2vw, 24px);
+            background: #ffffff;
             color: #0f172a;
             box-shadow:
-                0 22px 58px rgba(4, 58, 126, 0.1),
-                0 4px 16px rgba(4, 58, 126, 0.05),
-                inset 0 1px 0 rgba(255, 255, 255, 0.92);
+                0 20px 50px rgba(4, 58, 126, 0.09),
+                0 4px 14px rgba(4, 58, 126, 0.045),
+                inset 0 1px 0 rgba(255, 255, 255, 0.98);
             clip-path: none;
-            animation: zt-workspace-card-float 6.8s ease-in-out infinite;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -4342,25 +4320,11 @@
         }
 
         .zt-pcb-module::before {
-            inset: 0;
-            border: 0;
-            border-radius: inherit;
-            background:
-                linear-gradient(90deg, rgba(4, 58, 126, 0.12), transparent 48%, rgba(223, 164, 8, 0.1)),
-                linear-gradient(rgba(4, 58, 126, 0.035) 1px, transparent 1px);
-            background-size: auto, 100% 34px;
-            opacity: 0.55;
-            clip-path: none;
+            display: none;
         }
 
         .zt-pcb-module::after {
-            right: 22px;
-            bottom: 20px;
-            width: 48px;
-            height: 22px;
-            border-top: 1px solid rgba(4, 58, 126, 0.1);
-            border-bottom: 1px solid rgba(4, 58, 126, 0.08);
-            opacity: 0.8;
+            display: none;
         }
 
         .zt-pcb-module__header {
@@ -4368,11 +4332,10 @@
             z-index: 1;
             min-height: 0;
             align-items: flex-start;
-            border: 1px solid rgba(4, 58, 126, 0.08);
+            border: 1px solid rgba(4, 58, 126, 0.1);
             border-radius: 20px;
-            padding: 12px;
-            background:
-                linear-gradient(135deg, rgba(4, 58, 126, 0.1), rgba(4, 58, 126, 0.035));
+            padding: 12px 12px 12px;
+            background: rgba(4, 58, 126, 0.055);
             color: #043a7e;
         }
 
@@ -4415,6 +4378,8 @@
         }
 
         .zt-pcb-module__code {
+            justify-content: center;
+            min-width: 58px;
             border-color: rgba(4, 58, 126, 0.12);
             padding: 5px 8px;
             background: rgba(255, 255, 255, 0.78);
@@ -4433,9 +4398,9 @@
 
         .zt-pcb-module__body {
             z-index: 1;
-            flex: 1 1 auto;
+            flex: 0 0 auto;
             gap: 12px;
-            padding: clamp(20px, 2.3vw, 28px) 4px 4px;
+            padding: 22px 4px 4px;
         }
 
         .zt-pcb-module__text {
@@ -4454,9 +4419,10 @@
         }
 
         .zt-pcb-module__status {
-            top: 18px;
-            right: 18px;
+            top: 20px;
+            right: 20px;
             font-size: 0.64rem;
+            min-width: 76px;
         }
 
         .zt-pcb-module__status-dot {
@@ -4469,10 +4435,10 @@
             grid-column: 1 / span 6;
             grid-row: 1 / span 3;
             min-height: 560px;
-            border-color: rgba(4, 58, 126, 0.3);
+            border-color: rgba(4, 58, 126, 0.28);
             box-shadow:
-                0 30px 78px rgba(4, 58, 126, 0.16),
-                0 0 0 1px rgba(4, 58, 126, 0.06),
+                0 28px 72px rgba(4, 58, 126, 0.14),
+                0 0 0 1px rgba(4, 58, 126, 0.055),
                 inset 0 1px 0 rgba(255, 255, 255, 0.95);
         }
 
@@ -4480,7 +4446,8 @@
             position: relative;
             z-index: 1;
             display: block;
-            min-height: clamp(220px, 20vw, 286px);
+            flex: 1 1 auto;
+            min-height: clamp(184px, 17vw, 236px);
             margin-top: auto;
             overflow: hidden;
             border-radius: 22px;
@@ -4489,10 +4456,10 @@
 
         .zt-pcb-hosting-network__glow {
             position: absolute;
-            inset: 16% 9% 6%;
+            inset: 20% 12% 10%;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(4, 58, 126, 0.12), rgba(4, 58, 126, 0.045) 44%, transparent 72%);
-            opacity: 0.72;
+            background: radial-gradient(circle, rgba(4, 58, 126, 0.1), rgba(4, 58, 126, 0.036) 44%, transparent 72%);
+            opacity: 0.64;
             filter: blur(10px);
             transform: scale(0.96);
             transition: opacity 0.28s ease;
@@ -4509,8 +4476,8 @@
 
         .zt-pcb-hosting-network__line {
             fill: none;
-            stroke: rgba(4, 58, 126, 0.2);
-            stroke-width: 1.45;
+            stroke: rgba(4, 58, 126, 0.16);
+            stroke-width: 1.25;
             stroke-linecap: round;
             stroke-linejoin: round;
             transition: stroke 0.28s ease, opacity 0.28s ease;
@@ -4518,8 +4485,8 @@
 
         .zt-pcb-hosting-network__node {
             fill: #ffffff;
-            stroke: rgba(4, 58, 126, 0.24);
-            stroke-width: 1.35;
+            stroke: rgba(4, 58, 126, 0.22);
+            stroke-width: 1.25;
             transition: stroke 0.28s ease, filter 0.28s ease;
         }
 
@@ -4738,13 +4705,14 @@
         .zt-launch-section {
             isolation: isolate;
             overflow: hidden;
-            padding: clamp(70px, 6.5vw, 96px) clamp(18px, 4vw, 56px);
+            padding: clamp(58px, 5.5vw, 82px) clamp(18px, 4vw, 56px);
             background:
-                radial-gradient(circle at 12% 10%, rgba(4, 58, 126, 0.14), transparent 30%),
-                radial-gradient(circle at 88% 74%, rgba(4, 58, 126, 0.1), transparent 34%),
-                radial-gradient(circle at 70% 24%, rgba(223, 164, 8, 0.075), transparent 30%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.36)),
+                radial-gradient(circle at 12% 10%, rgba(4, 58, 126, 0.08), transparent 30%),
+                radial-gradient(circle at 88% 74%, rgba(4, 58, 126, 0.06), transparent 34%),
+                radial-gradient(circle at 70% 24%, rgba(223, 164, 8, 0.045), transparent 30%),
                 #cee9ea;
-            background-size: auto, auto, auto, auto;
+            background-size: auto, auto, auto, auto, auto;
         }
 
         .zt-launch-section::before,
@@ -4762,7 +4730,7 @@
                 linear-gradient(90deg, rgba(4, 58, 126, 0.035) 1px, transparent 1px);
             background-size: 72px 72px;
             mask-image: radial-gradient(circle at 50% 38%, rgba(0, 0, 0, 0.58), transparent 74%);
-            opacity: 0.7;
+            opacity: 0.34;
         }
 
         .zt-launch-section::after {
@@ -4772,7 +4740,7 @@
             width: min(72vw, 820px);
             height: min(42vw, 420px);
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.42), transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 70%);
             filter: blur(12px);
             transform: translateX(-50%);
             animation: zt-launch-ambient 12s ease-in-out infinite;
@@ -4785,7 +4753,7 @@
 
         .zt-launch-header {
             max-width: 760px;
-            margin-bottom: clamp(26px, 3vw, 38px);
+            margin-bottom: clamp(18px, 2.4vw, 28px);
         }
 
         .zt-launch-header h2,
@@ -4811,7 +4779,7 @@
             max-width: 1180px;
             margin: 0 auto;
             align-items: stretch;
-            padding: 14px 0 4px;
+            padding: 10px 0 0;
         }
 
         .zt-launch-path::before,
@@ -4821,7 +4789,7 @@
 
         .zt-launch-lines {
             position: absolute;
-            top: 46px;
+            top: 33px;
             right: calc(12.5% - 6px);
             left: calc(12.5% - 6px);
             z-index: 0;
@@ -4852,20 +4820,19 @@
             position: relative;
             z-index: 2;
             display: grid;
-            min-height: 146px;
+            min-height: 104px;
             height: 100%;
-            grid-template-columns: 48px minmax(0, 1fr);
-            gap: 10px 12px;
+            grid-template-columns: 42px minmax(0, 1fr);
+            gap: 7px 11px;
             align-items: start;
             border: 1px solid rgba(4, 58, 126, 0.13);
-            border-radius: 22px;
-            padding: 20px 18px 18px;
-            background:
-                linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.92));
+            border-radius: 20px;
+            padding: 15px 15px 14px;
+            background: rgba(255, 255, 255, 0.78);
             color: #043a7e;
             box-shadow:
-                0 16px 36px rgba(4, 58, 126, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+                0 12px 28px rgba(4, 58, 126, 0.065),
+                inset 0 1px 0 rgba(255, 255, 255, 0.92);
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             animation: zt-launch-step-active 8s ease-in-out infinite;
         }
@@ -4886,9 +4853,9 @@
             animation: none;
             transform: translateY(-4px);
             box-shadow:
-                0 24px 48px rgba(4, 58, 126, 0.15),
+                0 20px 42px rgba(4, 58, 126, 0.13),
                 0 0 0 1px rgba(4, 58, 126, 0.09),
-                0 0 34px rgba(4, 58, 126, 0.1);
+                0 0 28px rgba(4, 58, 126, 0.09);
         }
 
         .zt-launch-step:hover::before,
@@ -4910,12 +4877,12 @@
         .zt-launch-step__count {
             position: static;
             display: inline-flex;
-            width: 46px;
-            height: 46px;
+            width: 42px;
+            height: 42px;
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(223, 164, 8, 0.36);
-            border-radius: 16px;
+            border-radius: 999px;
             background: rgba(223, 164, 8, 0.1);
             color: #7a6200;
             font-size: 0.92rem;
@@ -4945,21 +4912,21 @@
 
         .zt-launch-step__icon {
             display: inline-flex;
-            width: 34px;
-            height: 34px;
+            width: 30px;
+            height: 30px;
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(4, 58, 126, 0.1);
             border-radius: 12px;
             background: rgba(4, 58, 126, 0.06);
             color: #043a7e;
-            font-size: 0.9rem;
+            font-size: 0.84rem;
         }
 
         .zt-launch-step strong {
             grid-column: 2;
             color: #043a7e;
-            font-size: 0.98rem;
+            font-size: 0.95rem;
             font-weight: 900;
             line-height: 1.24;
         }
@@ -4967,7 +4934,7 @@
         .zt-launch-step > span:last-child {
             grid-column: 1 / -1;
             color: rgba(4, 58, 126, 0.68);
-            font-size: 0.86rem;
+            font-size: 0.82rem;
             font-weight: 700;
             line-height: 1.5;
         }
@@ -4975,7 +4942,7 @@
         .zt-launch-divider {
             max-width: 980px;
             height: 1px;
-            margin: clamp(34px, 4vw, 50px) auto clamp(38px, 4.5vw, 58px);
+            margin: clamp(20px, 2.6vw, 30px) auto clamp(24px, 3vw, 36px);
             background: linear-gradient(90deg, transparent, rgba(4, 58, 126, 0.2), rgba(223, 164, 8, 0.42), rgba(4, 58, 126, 0.2), transparent);
             opacity: 0.78;
         }
@@ -4984,9 +4951,9 @@
             display: grid;
             max-width: 1160px;
             margin: 0 auto;
-            grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1.18fr);
-            gap: clamp(34px, 4vw, 58px);
-            align-items: center;
+            grid-template-columns: minmax(0, 0.8fr) minmax(420px, 1.2fr);
+            gap: clamp(28px, 3.5vw, 48px);
+            align-items: stretch;
             border: 0;
             border-radius: 0;
             padding: 0;
@@ -5004,10 +4971,24 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.82);
         }
 
+        .zt-service-opportunities {
+            display: grid;
+            align-content: start;
+            gap: 16px;
+        }
+
+        .zt-service-opportunities h3 {
+            margin: 0;
+            color: #043a7e;
+            font-size: clamp(1.18rem, 1.7vw, 1.45rem);
+            font-weight: 900;
+            line-height: 1.18;
+        }
+
         .zt-service-chips {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
+            gap: 14px;
             align-items: stretch;
             align-content: center;
             justify-items: stretch;
@@ -5035,8 +5016,16 @@
             justify-self: center;
         }
 
+        .zt-service-chip--one { order: 1; }
+        .zt-service-chip--two { order: 2; }
+        .zt-service-chip--five { order: 3; }
+        .zt-service-chip--six { order: 4; }
+        .zt-service-chip--three { order: 5; }
+        .zt-service-chip--four { order: 6; }
+        .zt-service-chip--seven { order: 7; }
+
         .zt-service-chip {
-            min-height: 58px;
+            min-height: 54px;
             justify-content: flex-start;
             gap: 11px;
             border: 1px solid rgba(4, 58, 126, 0.13);
@@ -5618,21 +5607,21 @@
         }
 
         .zt-launch-section {
-            padding-top: clamp(58px, 5.8vw, 92px);
-            padding-bottom: clamp(60px, 6vw, 96px);
+            padding-top: clamp(54px, 5vw, 78px);
+            padding-bottom: clamp(54px, 5.2vw, 82px);
         }
 
         .zt-launch-header {
-            margin-bottom: clamp(24px, 3.2vw, 42px);
+            margin-bottom: clamp(18px, 2.4vw, 30px);
         }
 
         .zt-launch-divider {
-            margin: clamp(36px, 4vw, 54px) auto;
+            margin: clamp(20px, 2.8vw, 32px) auto clamp(24px, 3vw, 38px);
         }
 
         .zt-service-promo {
             gap: clamp(28px, 3.5vw, 48px);
-            padding: clamp(30px, 3.6vw, 46px);
+            padding: 0;
         }
 
         .zt-review-panel {
@@ -5964,14 +5953,17 @@
                 </a>
             </div>
 
-            <div class="zt-service-chips" aria-label="Zenvik service areas">
-                <span class="zt-service-chip zt-service-chip--one"><i class="fal fa-laptop-code" aria-hidden="true"></i> Build Your Website</span>
-                <span class="zt-service-chip zt-service-chip--two"><i class="fal fa-code" aria-hidden="true"></i> Custom Software</span>
-                <span class="zt-service-chip zt-service-chip--three"><i class="fal fa-cloud" aria-hidden="true"></i> Cloud &amp; Hosting</span>
-                <span class="zt-service-chip zt-service-chip--four"><i class="fal fa-globe" aria-hidden="true"></i> Your Domain</span>
-                <span class="zt-service-chip zt-service-chip--five"><i class="fal fa-brain" aria-hidden="true"></i> AI Solutions</span>
-                <span class="zt-service-chip zt-service-chip--six"><i class="fal fa-bullhorn" aria-hidden="true"></i> Growth &amp; Branding</span>
-                <span class="zt-service-chip zt-service-chip--seven"><i class="fal fa-network-wired" aria-hidden="true"></i> Smart ICT</span>
+            <div class="zt-service-opportunities">
+                <h3>Available Services</h3>
+                <div class="zt-service-chips" aria-label="Zenvik service areas">
+                    <span class="zt-service-chip zt-service-chip--one"><i class="fal fa-laptop-code" aria-hidden="true"></i> Build Your Website</span>
+                    <span class="zt-service-chip zt-service-chip--two"><i class="fal fa-code" aria-hidden="true"></i> Custom Software</span>
+                    <span class="zt-service-chip zt-service-chip--three"><i class="fal fa-cloud" aria-hidden="true"></i> Cloud &amp; Hosting</span>
+                    <span class="zt-service-chip zt-service-chip--four"><i class="fal fa-globe" aria-hidden="true"></i> Your Domain</span>
+                    <span class="zt-service-chip zt-service-chip--five"><i class="fal fa-brain" aria-hidden="true"></i> AI Solutions</span>
+                    <span class="zt-service-chip zt-service-chip--six"><i class="fal fa-bullhorn" aria-hidden="true"></i> Growth &amp; Branding</span>
+                    <span class="zt-service-chip zt-service-chip--seven"><i class="fal fa-network-wired" aria-hidden="true"></i> Smart ICT</span>
+                </div>
             </div>
         </div>
     </section>

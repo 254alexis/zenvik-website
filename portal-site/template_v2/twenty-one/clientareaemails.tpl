@@ -1,3 +1,8 @@
+{assign var=ztAccountActive value='emails'}
+{assign var=ztAccountTitle value='Email History'}
+{assign var=ztAccountIntro value='Review account emails and messages sent through the customer portal.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
 {include file="$template/includes/tablelist.tpl" tableName="EmailsList" noSortColumns="-1"}
 
 <script>
@@ -41,3 +46,5 @@
         <p><i class="fas fa-spinner fa-spin"></i> {lang key='loading'}</p>
     </div>
 </div>
+
+{include file="$template/includes/zt-account-layout-end.tpl"}

@@ -1,5 +1,10 @@
 {include file="$template/includes/flashmessage.tpl"}
 
+{assign var=ztAccountActive value='users'}
+{assign var=ztAccountTitle value='User Permissions'}
+{assign var=ztAccountIntro value='Adjust user access while preserving WHMCS permission handling.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
 <div class="card">
     <div class="card-body">
         <h3 class="card-title">{lang key='userManagement.managePermissions'}</h3>
@@ -36,3 +41,5 @@
 
     </div>
 </div>
+
+{include file="$template/includes/zt-account-layout-end.tpl"}

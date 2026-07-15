@@ -1,4 +1,13 @@
-<div class="card">
+<div class="zt-domain-workspace zt-domain-dns-page">
+    <div class="zt-domain-header">
+        <div>
+            <span class="zt-domain-eyebrow">Domain Workspace</span>
+            <h2>{lang key='domaindnsmanagement'}</h2>
+            <p>Manage DNS records while preserving registrar controls and validation.</p>
+        </div>
+    </div>
+
+<div class="card zt-domain-card zt-domain-form-card">
     <div class="card-body">
         <h3 class="card-title">{lang key='domaindnsmanagement'}</h3>
 
@@ -87,4 +96,5 @@
         {/if}
 
     </div>
+</div>
 </div>

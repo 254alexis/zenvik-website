@@ -1,3 +1,16 @@
+<div class="zt-support-center zt-network-status-page">
+    <div class="zt-support-header">
+        <div>
+            <span class="zt-support-eyebrow">Support Center</span>
+            <h2>{lang key='serverstatustitle'}</h2>
+            <p>{lang key='serverstatusheadingtext'}</p>
+        </div>
+        <a href="submitticket.php" class="btn btn-primary zt-support-header__action">
+            <i class="fas fa-ticket-alt fa-fw"></i>
+            Open Ticket
+        </a>
+    </div>
+
 {if $opencount == 0}
     <div class="alert alert-success">
         <i class="fas fa-check fa-fw"></i>
@@ -14,7 +27,7 @@
 {/if}
 
 {if $servers}
-    <div class="card">
+    <div class="card zt-network-status-card">
         <div class="card-body">
             <h3>{lang key='serverstatustitle'}</h3>
 
@@ -75,7 +88,7 @@
 {/if}
 
 {foreach $issues as $issue}
-    <div class="card">
+    <div class="card zt-network-issue-card">
         <div class="card-header">
             {$issue.title}
             ({$issue.status})
@@ -115,7 +128,10 @@
         </div>
     </div>
 {foreachelse}
-    <p>{$noissuesmsg}</p>
+    <div class="zt-support-empty">
+        <i class="fas fa-check-circle"></i>
+        <strong>{$noissuesmsg}</strong>
+    </div>
 {/foreach}
 
 <nav aria-label="Network issues navigation">
@@ -124,3 +140,4 @@
         <li class="page-item{if !$nextpage} disabled{/if}"><a class="page-link" href="?{if $view}view={$view}&amp;{/if}page={$nextpage}">{lang key='nextpage'}</a></li>
     </ul>
 </nav>
+</div>

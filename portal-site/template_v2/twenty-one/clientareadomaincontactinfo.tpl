@@ -18,7 +18,16 @@
     {include file="$template/includes/alert.tpl" type="error" msg=$error textcenter=true}
 {/if}
 
-<div class="card">
+<div class="zt-domain-workspace zt-domain-contact-page">
+    <div class="zt-domain-header">
+        <div>
+            <span class="zt-domain-eyebrow">Domain Workspace</span>
+            <h2>{lang key='domaincontactinfo'}</h2>
+            <p>Update WHOIS contact details using the existing WHMCS domain contact workflow.</p>
+        </div>
+    </div>
+
+<div class="card zt-domain-card zt-domain-form-card">
     <div class="card-body">
         <h3 class="card-title">{lang key='domaincontactinfo'}</h3>
 
@@ -96,6 +105,7 @@
         </form>
 
     </div>
+</div>
 </div>
 
 {if $domainInformation && $irtpFields}

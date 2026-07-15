@@ -1,6 +1,19 @@
+<div class="zt-support-center zt-ticket-submit-page">
+    <div class="zt-support-header">
+        <div>
+            <span class="zt-support-eyebrow">Support Center</span>
+            <h2>{lang key="createNewSupportRequest"}</h2>
+            <p>Share the details clearly so the support team can respond quickly.</p>
+        </div>
+        <a href="supporttickets.php" class="btn btn-default zt-support-header__action">
+            <i class="fas fa-inbox fa-fw"></i>
+            My Tickets
+        </a>
+    </div>
+
 <form method="post" action="{$smarty.server.PHP_SELF}?step=3" enctype="multipart/form-data" role="form">
 
-<div class="card">
+<div class="card zt-support-form-card">
     <div class="card-body extra-padding">
 
         <h3 class="card-title">{lang key="createNewSupportRequest"}</h3>
@@ -123,6 +136,7 @@
 </div>
 
 </form>
+</div>
 
 {if $kbsuggestions}
     <script>

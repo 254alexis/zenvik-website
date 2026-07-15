@@ -15,10 +15,23 @@
     </div>
 {/if}
 
+<div class="zt-domain-workspace zt-domain-detail-page">
+    <div class="zt-domain-header">
+        <div>
+            <span class="zt-domain-eyebrow">Domain Workspace</span>
+            <h2>{$domain}</h2>
+            <p>Manage renewal, nameservers, registrar lock, WHOIS contacts, and available domain services.</p>
+        </div>
+        <a href="clientarea.php?action=domains" class="btn btn-default zt-domain-header__action">
+            <i class="fas fa-arrow-left fa-fw"></i>
+            My Domains
+        </a>
+    </div>
+
 <div class="tab-content margin-bottom">
     <div class="tab-pane fade show active" id="tabOverview">
 
-        <div class="card">
+        <div class="card zt-domain-card">
             <div class="card-body">
 
                 <h3 class="card-title">{lang key='overview'}</h3>
@@ -40,7 +53,7 @@
                     {include file="$template/includes/alert.tpl" type="error" msg=$smarty.capture.domainUnlockedMsg}
                 {/if}
 
-                <div class="row mb-3">
+                <div class="row mb-3 zt-domain-info-grid">
                     <div class="col-lg-6">
                         <h5>{lang key='clientareahostingdomain'}:</h5>
                         <a href="http://{$domain}" target="_blank">{$domain}</a>
@@ -50,7 +63,7 @@
                         <span>{$firstpaymentamount}</span>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-3 zt-domain-info-grid">
                     <div class="col-lg-6">
                         <h5>{lang key='clientareahostingregdate'}:</h5>
                         <span>{$registrationdate}</span>
@@ -60,7 +73,7 @@
                         {$recurringamount} {lang key='every'} {$registrationperiod} {lang key='orderyears'}
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-3 zt-domain-info-grid">
                     <div class="col-lg-6">
                         <h5>{lang key='clientareahostingnextduedate'}:</h5>
                         {$nextduedate}
@@ -70,7 +83,7 @@
                         {$paymentmethod}
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-3 zt-domain-info-grid">
                     <div class="col-lg-6">
                         <h5>{lang key='clientareastatus'}:</h5>
                         {$status}
@@ -152,7 +165,7 @@
 
                     <h3 class="card-title">{lang key='doToday'}</h3>
 
-                    <ul>
+                    <ul class="zt-domain-action-list">
                         {if $systemStatus == 'Active' && $managementoptions.nameservers}
                             <li>
                                 <a class="tabControlLink" data-toggle="tab" href="#tabNameservers">
@@ -191,7 +204,7 @@
     </div>
     <div class="tab-pane fade" id="tabAutorenew">
 
-        <div class="card">
+        <div class="card zt-domain-card">
             <div class="card-body">
 
                 <h3 class="card-title">{lang key='domainsautorenew'}</h3>
@@ -230,7 +243,7 @@
     </div>
     <div class="tab-pane fade" id="tabNameservers">
 
-        <div class="card">
+        <div class="card zt-domain-card">
             <div class="card-body">
 
                 <h3 class="card-title">{lang key='domainnameservers'}</h3>
@@ -286,7 +299,7 @@
     </div>
     <div class="tab-pane fade" id="tabReglock">
 
-        <div class="card">
+        <div class="card zt-domain-card">
             <div class="card-body">
 
                 <h3 class="card-title">{lang key='domainregistrarlock'}</h3>
@@ -332,7 +345,7 @@
     </div>
     <div class="tab-pane fade" id="tabRelease">
 
-        <div class="card">
+        <div class="card zt-domain-card">
             <div class="card-body">
 
                 <h3 class="card-title">{lang key='domainrelease'}</h3>
@@ -369,7 +382,7 @@
     </div>
     <div class="tab-pane fade" id="tabAddons">
 
-        <div class="card">
+        <div class="card zt-domain-card">
             <div class="card-body">
                 <h3 class="card-title">{lang key='domainaddons'}</h3>
 
@@ -465,4 +478,4 @@
         </div>
     </div>
 </div>
-
+</div>

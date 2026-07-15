@@ -1,4 +1,17 @@
-<form role="form" method="post" action="{routePath('knowledgebase-search')}" class="mb-4">
+<div class="zt-support-center zt-kb-page">
+    <div class="zt-support-header">
+        <div>
+            <span class="zt-support-eyebrow">Support Center</span>
+            <h2>{lang key='knowledgebasetitle'}</h2>
+            <p>Browse support articles and customer resources by category.</p>
+        </div>
+        <a href="submitticket.php" class="btn btn-primary zt-support-header__action">
+            <i class="fas fa-ticket-alt fa-fw"></i>
+            Open Ticket
+        </a>
+    </div>
+
+<form role="form" method="post" action="{routePath('knowledgebase-search')}" class="mb-4 zt-support-search">
     <div class="input-group input-group-lg kb-search">
         <input type="text"  id="inputKnowledgebaseSearch" name="search" class="form-control font-weight-light" placeholder="{lang key='clientHomeSearchKb'}" value="{$searchterm}" />
         <div class="input-group-append">
@@ -10,10 +23,10 @@
 </form>
 
 {if $kbcats}
-    <div class="row">
+    <div class="row zt-kb-category-grid">
         {foreach $kbcats as $category}
             <div class="col-xl-6">
-                <div class="card kb-category mb-4">
+                <div class="card kb-category mb-4 zt-support-resource-card">
                     <a href="{routePath('knowledgebase-category-view', {$category.id}, {$category.urlfriendlyname})}" class="card-body" data-id="{$category.id}">
                         <span class="h5 m-0">
                             <span class="badge badge-info float-right">
@@ -36,7 +49,7 @@
 {/if}
 
 {if $kbarticles || !$kbcats}
-    <div class="card">
+    <div class="card zt-support-list-card">
         <div class="card-body">
             <h3 class="card-title m-0">
                 <i class="fal fa-folder-open fa-fw"></i>
@@ -78,3 +91,4 @@
         {lang key='edit'}
     </a>
 {/if}
+</div>

@@ -4,7 +4,16 @@
 
 {/if}
 
-<div class="card">
+<div class="zt-resource-workspace zt-download-denied-page">
+    <div class="zt-resource-header">
+        <div>
+            <span class="zt-resource-eyebrow">Resource Library</span>
+            <h2>Download Access</h2>
+            <p>Review the access requirement for this protected resource.</p>
+        </div>
+    </div>
+
+<div class="card zt-resource-form-card">
     <div class="card-body">
         {if $reason eq "supportandupdates"}
 
@@ -48,4 +57,5 @@
 
         {/if}
     </div>
+</div>
 </div>

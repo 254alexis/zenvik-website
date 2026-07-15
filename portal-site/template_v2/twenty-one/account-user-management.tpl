@@ -1,5 +1,10 @@
 {include file="$template/includes/flashmessage.tpl"}
 
+{assign var=ztAccountActive value='users'}
+{assign var=ztAccountTitle value='User Management'}
+{assign var=ztAccountIntro value='Invite users, review access, and manage account permissions through WHMCS.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
 <div class="card">
     <div class="card-body">
         <h3 class="card-title">{lang key="navUserManagement"}</h3>
@@ -209,3 +214,5 @@
         });
     });
 </script>
+
+{include file="$template/includes/zt-account-layout-end.tpl"}

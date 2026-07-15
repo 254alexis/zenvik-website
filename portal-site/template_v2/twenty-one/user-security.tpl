@@ -1,5 +1,10 @@
 {include file="$template/includes/flashmessage.tpl"}
 
+{assign var=ztAccountActive value='security'}
+{assign var=ztAccountTitle value='Security'}
+{assign var=ztAccountIntro value='Review account security settings, linked accounts, security questions, and two-factor protection.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
 <p>{lang key='userManagement.settings'}</p>
 
 {if $linkableProviders}
@@ -93,3 +98,5 @@
         </div>
     </div>
 {/if}
+
+{include file="$template/includes/zt-account-layout-end.tpl"}

@@ -1,4 +1,13 @@
-<div class="card">
+<div class="zt-domain-workspace zt-domain-email-page">
+    <div class="zt-domain-header">
+        <div>
+            <span class="zt-domain-eyebrow">Domain Workspace</span>
+            <h2>{lang key='domainemailforwarding'}</h2>
+            <p>Manage forwarding rules for <strong>{$domain}</strong>.</p>
+        </div>
+    </div>
+
+<div class="card zt-domain-card zt-domain-form-card">
     <div class="card-body">
         <h3 class="card-title">{lang key='domainemailforwarding'}</h3>
 
@@ -56,4 +65,5 @@
         {/if}
 
     </div>
+</div>
 </div>

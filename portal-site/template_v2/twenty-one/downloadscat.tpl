@@ -1,4 +1,17 @@
-<form role="form" method="post" action="{routePath('download-search')}">
+<div class="zt-resource-workspace zt-download-page">
+    <div class="zt-resource-header">
+        <div>
+            <span class="zt-resource-eyebrow">Resource Library</span>
+            <h2>{lang key='downloadstitle'}</h2>
+            <p>Browse customer downloads and resource categories.</p>
+        </div>
+        <a href="{routePath('announcement-index')}" class="btn btn-default zt-resource-header__action">
+            <i class="far fa-newspaper fa-fw"></i>
+            Announcements
+        </a>
+    </div>
+
+<form role="form" method="post" action="{routePath('download-search')}" class="zt-resource-search">
     <div class="input-group input-group-lg kb-search margin-bottom">
         <input type="text" name="search" id="inputDownloadsSearch" class="form-control font-weight-light" placeholder="{lang key='downloadssearch'}" value="{$search}" />
         <div class="input-group-append">
@@ -10,10 +23,10 @@
 </form>
 
 {if $dlcats}
-    <div class="row">
+    <div class="row zt-resource-category-grid">
         {foreach $dlcats as $category}
             <div class="col-xl-6">
-                <div class="card kb-category mb-4">
+                <div class="card kb-category mb-4 zt-resource-card">
                     <a href="{routePath('download-by-cat', {$category.id}, {$category.urlfriendlyname})}" class="card-body">
                         <span class="h5 m-0">
                             <i class="fal fa-folder fa-fw"></i>
@@ -30,7 +43,7 @@
     </div>
 {/if}
 
-<div class="card">
+<div class="card zt-resource-list-card">
     <div class="card-body">
         <h3 class="card-title m-0">
             <i class="fal fa-download fa-fw"></i>
@@ -39,7 +52,7 @@
     </div>
     <div class="list-group list-group-flush">
         {foreach $downloads as $download}
-            <a href="{$download.link}" class="list-group-item kb-article-item">
+            <a href="{$download.link}" class="list-group-item kb-article-item zt-resource-download-item">
                 {$download.type|replace:'alt':' class="pr-1" alt'}
                 {$download.title}
                 {if $download.clientsonly}
@@ -57,8 +70,10 @@
                 </small>
             </a>
         {foreachelse}
-            <div class="list-group-item">
-                {lang key='downloadsnone'}
+            <div class="list-group-item zt-resource-empty">
+                <i class="far fa-folder-open"></i>
+                <strong>{lang key='downloadsnone'}</strong>
+                <span>No files are available in this resource category yet.</span>
             </div>
         {/foreach}
     </div>
@@ -67,3 +82,4 @@
 <a href="javascript:history.go(-1)" class="btn btn-default px-4">
     {lang key='clientareabacklink'}
 </a>
+</div>

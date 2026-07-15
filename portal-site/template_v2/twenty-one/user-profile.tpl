@@ -1,5 +1,53 @@
 {include file="$template/includes/flashmessage.tpl"}
 
+{assign var=ztAccountActive value='overview'}
+{assign var=ztAccountTitle value='Profile Overview'}
+{assign var=ztAccountIntro value='Manage your personal profile and account identity from one secure place.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
+<div class="zt-account-overview">
+    <div class="zt-account-overview__identity">
+        <span class="zt-account-overview__avatar" aria-hidden="true">
+            <i class="fas fa-user" aria-hidden="true"></i>
+        </span>
+        <div>
+            <span>Customer Profile</span>
+            <strong>{$user->firstName} {$user->lastName}</strong>
+            <em>{$user->email}</em>
+        </div>
+    </div>
+    <dl class="zt-account-overview__details">
+        {if $clientsdetails.userid}
+            <div>
+                <dt>Customer ID</dt>
+                <dd>#{$clientsdetails.userid}</dd>
+            </div>
+        {/if}
+        {if $clientsdetails.companyname}
+            <div>
+                <dt>Company</dt>
+                <dd>{$clientsdetails.companyname}</dd>
+            </div>
+        {/if}
+        {if $clientsdetails.status}
+            <div>
+                <dt>Status</dt>
+                <dd>{$clientsdetails.status}</dd>
+            </div>
+        {/if}
+        {if $clientsdetails.datecreated}
+            <div>
+                <dt>Registered</dt>
+                <dd>{$clientsdetails.datecreated}</dd>
+            </div>
+        {/if}
+        <div>
+            <dt>Support PIN</dt>
+            <dd>{if $ztSupportPin}{$ztSupportPin|escape}{else}Not Set{/if}</dd>
+        </div>
+    </dl>
+</div>
+
 <div class="card">
     <div class="card-body">
         <h3 class="card-title">{lang key='userProfile.profile'}</h3>
@@ -94,3 +142,5 @@
 
     </div>
 </div>
+
+{include file="$template/includes/zt-account-layout-end.tpl"}

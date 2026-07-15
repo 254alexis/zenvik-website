@@ -1,3 +1,8 @@
+{assign var=ztAccountActive value='security'}
+{assign var=ztAccountTitle value='Security Settings'}
+{assign var=ztAccountIntro value='Manage account-level security options available for your client profile.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
 {if $showSsoSetting}
     <div class="card">
         <div class="card-body">
@@ -25,3 +30,5 @@
         </div>
     </div>
 {/if}
+
+{include file="$template/includes/zt-account-layout-end.tpl"}

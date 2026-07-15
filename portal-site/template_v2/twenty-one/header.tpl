@@ -149,11 +149,103 @@
     {include file="$template/includes/validateuser.tpl"}
     {include file="$template/includes/verifyemail.tpl"}
 
-    <section id="main-body">
-        <div class="{if !$skipMainBodyContainer}container{/if}">
-            <div class="row">
+    {assign var=ztWorkspaceShell value=false}
+    {if $loggedin && !$inShoppingCart && $templatefile != 'homepage'}
+        {assign var=ztWorkspaceShell value=true}
+    {/if}
 
-            {if !$inShoppingCart && ($primarySidebar->hasChildren() || $secondarySidebar->hasChildren())}
+    <section id="main-body"{if $ztWorkspaceShell} class="zt-client-workspace"{/if}>
+        <div class="{if !$skipMainBodyContainer}container{/if}{if $ztWorkspaceShell} zt-client-workspace__container{/if}">
+            <div class="{if $ztWorkspaceShell}zt-client-shell{else}row{/if}">
+
+            {if $ztWorkspaceShell}
+                <button type="button" class="zt-shell-mobile-toggle" data-zt-shell-toggle aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <span>Workspace Menu</span>
+                </button>
+
+                <aside class="zt-client-sidebar" aria-label="Client workspace navigation">
+                    <div class="zt-shell-brand">
+                        <a href="{$WEB_ROOT}/clientarea.php" class="zt-shell-logo" aria-label="Zenvik client workspace">
+                            {if $assetLogoPath}
+                                <img src="{$assetLogoPath}" alt="Zenvik">
+                            {else}
+                                <span>Zenvik</span>
+                            {/if}
+                        </a>
+                        <button type="button" class="zt-shell-icon-btn zt-shell-desktop-collapse" data-zt-shell-collapse aria-label="Collapse workspace sidebar">
+                            <i class="fas fa-angle-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="zt-shell-icon-btn zt-shell-mobile-close" data-zt-shell-toggle aria-label="Close workspace sidebar">
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <div class="zt-support-pin-card">
+                        <input type="checkbox" id="ztSupportPinToggle" class="zt-pin-visibility-toggle" aria-label="Hide Support PIN">
+                        <div class="zt-support-pin-card__top">
+                            <span class="zt-support-pin-card__label">Support PIN</span>
+                            <span class="zt-support-pin-card__actions">
+                                <label for="ztSupportPinToggle" class="zt-support-pin-card__icon" title="Hide or show Support PIN">
+                                    <i class="fas fa-eye zt-pin-eye-show" aria-hidden="true"></i>
+                                    <i class="fas fa-eye-slash zt-pin-eye-hide" aria-hidden="true"></i>
+                                </label>
+                                <button type="button" class="zt-support-pin-card__copy" data-zt-copy-pin data-pin="{$ztSupportPin|escape:'html'}" title="Copy Support PIN">
+                                    <i class="fas fa-copy" aria-hidden="true"></i>
+                                    <span class="sr-only">Copy PIN</span>
+                                </button>
+                            </span>
+                        </div>
+                        <strong class="zt-support-pin-card__value">
+                            <span class="zt-pin-real">{$ztSupportPin|escape}</span>
+                            <span class="zt-pin-mask" aria-hidden="true">******</span>
+                        </strong>
+                        <span class="zt-support-pin-card__copied" data-zt-copy-status>Copied</span>
+                    </div>
+
+                    <nav class="zt-shell-nav" aria-label="Client workspace">
+                        <a href="{$WEB_ROOT}/clientarea.php" class="zt-shell-nav__item{if $templatefile == 'clientareahome'} is-active{/if}">
+                            <i class="fas fa-th-large" aria-hidden="true"></i>
+                            <span>Workspace</span>
+                        </a>
+                        <a href="{$WEB_ROOT}/clientarea.php?action=services" class="zt-shell-nav__item{if $templatefile == 'clientareaproducts' || $templatefile == 'clientareaproductdetails'} is-active{/if}">
+                            <i class="fas fa-server" aria-hidden="true"></i>
+                            <span>My Services</span>
+                        </a>
+                        <a href="{$WEB_ROOT}/clientarea.php?action=invoices" class="zt-shell-nav__item{if $templatefile == 'clientareainvoices' || $templatefile == 'viewinvoice'} is-active{/if}">
+                            <i class="fas fa-credit-card" aria-hidden="true"></i>
+                            <span>Billing</span>
+                        </a>
+                        <a href="{$WEB_ROOT}/supporttickets.php" class="zt-shell-nav__item{if $templatefile == 'supportticketslist' || $templatefile == 'viewticket'} is-active{/if}">
+                            <i class="fas fa-headset" aria-hidden="true"></i>
+                            <span>Support</span>
+                        </a>
+                        <a href="{$WEB_ROOT}/clientarea.php?action=domains" class="zt-shell-nav__item{if $templatefile == 'clientareadomains' || $templatefile == 'clientareadomaindetails'} is-active{/if}">
+                            <i class="fas fa-globe" aria-hidden="true"></i>
+                            <span>Domains</span>
+                        </a>
+                        <a href="{$WEB_ROOT}/downloads.php" class="zt-shell-nav__item{if $templatefile == 'downloads' || $templatefile == 'downloadscat'} is-active{/if}">
+                            <i class="fas fa-download" aria-hidden="true"></i>
+                            <span>Downloads</span>
+                        </a>
+                        <a href="{$WEB_ROOT}/announcements.php" class="zt-shell-nav__item{if $templatefile == 'announcements' || $templatefile == 'announcement'} is-active{/if}">
+                            <i class="fas fa-bullhorn" aria-hidden="true"></i>
+                            <span>Announcements</span>
+                        </a>
+                    </nav>
+
+                    <a href="{$WEB_ROOT}/serverstatus.php" class="zt-shell-status">
+                        <span class="zt-shell-status__dot" aria-hidden="true"></span>
+                        <span>
+                            <strong>System Status</strong>
+                            <em>All Systems Operational</em>
+                        </span>
+                    </a>
+                </aside>
+                <button type="button" class="zt-shell-backdrop" data-zt-shell-toggle aria-label="Close workspace sidebar"></button>
+            {/if}
+
+            {if !$ztWorkspaceShell && !$inShoppingCart && ($primarySidebar->hasChildren() || $secondarySidebar->hasChildren())}
                 <div class="col-lg-4 col-xl-3">
                     <div class="sidebar">
                         {include file="$template/includes/sidebar.tpl" sidebar=$primarySidebar}
@@ -165,4 +257,4 @@
                     {/if}
                 </div>
             {/if}
-            <div class="{if !$inShoppingCart && ($primarySidebar->hasChildren() || $secondarySidebar->hasChildren())}col-lg-8 col-xl-9{else}col-12{/if} primary-content">
+            <div class="{if $ztWorkspaceShell}zt-shell-main{elseif !$inShoppingCart && ($primarySidebar->hasChildren() || $secondarySidebar->hasChildren())}col-lg-8 col-xl-9{else}col-12{/if} primary-content">

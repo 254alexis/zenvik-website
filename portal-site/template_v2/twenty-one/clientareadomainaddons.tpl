@@ -1,4 +1,13 @@
-<div class="card">
+<div class="zt-domain-workspace zt-domain-addon-page">
+    <div class="zt-domain-header">
+        <div>
+            <span class="zt-domain-eyebrow">Domain Workspace</span>
+            <h2>Domain Addons</h2>
+            <p>Review and manage available domain services for <strong>{$domain}</strong>.</p>
+        </div>
+    </div>
+
+<div class="card zt-domain-card">
     <div class="card-body">
 
         <form method="post" action="{$smarty.server.PHP_SELF}?action=domainaddons">
@@ -91,3 +100,4 @@
 <a href="clientarea.php?action=domaindetails&id={$domainid}" class="btn btn-default">
     {lang key='clientareabacklink'}
 </a>
+</div>

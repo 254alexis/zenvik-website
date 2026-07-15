@@ -1,3 +1,8 @@
+{assign var=ztAccountActive value='password'}
+{assign var=ztAccountTitle value='Change Password'}
+{assign var=ztAccountIntro value='Update your account password using the existing WHMCS security workflow.'}
+{include file="$template/includes/zt-account-layout-start.tpl"}
+
 <div class="card">
     <div class="card-body">
         <h3 class="card-title">{lang key='sidebars.viewAccount.changePassword'}</h3>
@@ -37,3 +42,5 @@
 
     </div>
 </div>
+
+{include file="$template/includes/zt-account-layout-end.tpl"}

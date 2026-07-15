@@ -18,38 +18,67 @@
     });
 </script>
 
-<div class="table-container clearfix">
-    <table id="tableQuotesList" class="table table-list w-hidden">
-        <thead>
-            <tr>
-                <th>{lang key='quotenumber'}</th>
-                <th>{lang key='quotesubject'}</th>
-                <th>{lang key='quotedatecreated'}</th>
-                <th>{lang key='quotevaliduntil'}</th>
-                <th>{lang key='quotestage'}</th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            {foreach $quotes as $quote}
-                <tr onclick="clickableSafeRedirect(event, 'viewquote.php?id={$quote.id}', true)">
-                    <td>{$quote.id}</td>
-                    <td>{$quote.subject}</td>
-                    <td><span class="w-hidden">{$quote.normalisedDateCreated}</span>{$quote.datecreated}</td>
-                    <td><span class="w-hidden">{$quote.normalisedValidUntil}</span>{$quote.validuntil}</td>
-                    <td><span class="label status status-{$quote.stageClass}">{$quote.stage}</span></td>
-                    <td class="text-center">
-                        <form method="post" action="dl.php">
-                            <input type="hidden" name="type" value="q" />
-                            <input type="hidden" name="id" value="{$quote.id}" />
-                            <button type="submit" class="btn btn-default btn-sm"><i class="fas fa-download"></i> {lang key='quotedownload'}</button>
-                        </form>
-                    </td>
-                </tr>
-            {/foreach}
-        </tbody>
-    </table>
-    <div class="text-center" id="tableLoading">
-        <p><i class="fas fa-spinner fa-spin"></i> {lang key='loading'}</p>
-    </div>
+<div class="zt-billing-workspace">
+    <section class="zt-billing-header">
+        <div>
+            <span class="zt-billing-eyebrow">Billing Workspace</span>
+            <h1>Quotes</h1>
+            <p>Review proposals, validity dates, current stages, and downloads.</p>
+        </div>
+    </section>
+
+    <section class="zt-billing-list">
+        <div class="zt-billing-list__header">
+            <div>
+                <span>Quote List</span>
+                <h2>Available quotes</h2>
+            </div>
+        </div>
+
+        <div class="table-container clearfix zt-billing-table-wrap">
+            <table id="tableQuotesList" class="table table-list zt-billing-table w-hidden">
+                <thead>
+                    <tr>
+                        <th>{lang key='quotenumber'}</th>
+                        <th>{lang key='quotesubject'}</th>
+                        <th>{lang key='quotedatecreated'}</th>
+                        <th>{lang key='quotevaliduntil'}</th>
+                        <th>{lang key='quotestage'}</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {foreach $quotes as $quote}
+                        <tr class="zt-billing-row" onclick="clickableSafeRedirect(event, 'viewquote.php?id={$quote.id}', true)">
+                            <td class="zt-billing-primary"><strong>#{$quote.id}</strong><small>{lang key='quotenumber'}</small></td>
+                            <td><strong>{$quote.subject}</strong><small>{lang key='quotesubject'}</small></td>
+                            <td><span class="w-hidden">{$quote.normalisedDateCreated}</span><strong>{$quote.datecreated}</strong><small>{lang key='quotedatecreated'}</small></td>
+                            <td><span class="w-hidden">{$quote.normalisedValidUntil}</span><strong>{$quote.validuntil}</strong><small>{lang key='quotevaliduntil'}</small></td>
+                            <td><span class="zt-billing-status zt-billing-status--{$quote.stageClass}">{$quote.stage}</span></td>
+                            <td class="zt-billing-action-cell">
+                                <form method="post" action="dl.php" onclick="event.stopPropagation()">
+                                    <input type="hidden" name="type" value="q" />
+                                    <input type="hidden" name="id" value="{$quote.id}" />
+                                    <button type="submit" class="zt-billing-row-action"><i class="fas fa-download"></i> {lang key='quotedownload'}</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {foreachelse}
+                        <tr class="zt-billing-empty-row">
+                            <td colspan="6">
+                                <div class="zt-billing-empty">
+                                    <i class="fas fa-file-signature" aria-hidden="true"></i>
+                                    <strong>No quotes found</strong>
+                                    <span>Quotes and proposals will appear here when available.</span>
+                                </div>
+                            </td>
+                        </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+            <div class="text-center zt-billing-loading" id="tableLoading">
+                <p><i class="fas fa-spinner fa-spin"></i> {lang key='loading'}</p>
+            </div>
+        </div>
+    </section>
 </div>

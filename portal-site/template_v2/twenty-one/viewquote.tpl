@@ -10,11 +10,68 @@
     <link href="{assetPath file='theme.min.css'}?v={$versionHash}" rel="stylesheet">
     <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
     <link href="{assetPath file='invoice.min.css'}?v={$versionHash}" rel="stylesheet">
+    <style>
+        body.zt-quote-detail-page {
+            background: linear-gradient(135deg, #f8fbff 0%, #eef7ff 48%, #ffffff 100%);
+            color: #153457;
+        }
+        .zt-quote-detail {
+            max-width: 1120px;
+            margin: 24px auto;
+            padding: clamp(18px, 2.4vw, 30px);
+            border: 1px solid rgba(4, 58, 126, 0.08);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 24px 70px rgba(4, 58, 126, 0.12);
+        }
+        .zt-quote-detail > .row:first-of-type {
+            align-items: center;
+            padding: 18px;
+            border: 1px solid rgba(4, 58, 126, 0.08);
+            border-radius: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+        }
+        .zt-quote-detail h2,
+        .zt-quote-detail h3,
+        .zt-quote-detail .card-title {
+            color: #043a7e;
+            font-weight: 850;
+        }
+        .zt-quote-detail .invoice-status span {
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-weight: 850;
+        }
+        .zt-quote-detail .card {
+            overflow: hidden;
+            border: 1px solid rgba(4, 58, 126, 0.08);
+            border-radius: 18px;
+            box-shadow: none;
+        }
+        .zt-quote-detail .card-header {
+            border-bottom: 1px solid rgba(4, 58, 126, 0.08);
+            background: #ffffff;
+        }
+        .zt-quote-detail .table td,
+        .zt-quote-detail .table th {
+            border-color: rgba(4, 58, 126, 0.08);
+        }
+        .zt-quote-detail .btn {
+            border-radius: 999px;
+        }
+        .zt-quote-back {
+            margin-bottom: 28px;
+        }
+        .zt-quote-back a {
+            color: #043a7e;
+            font-weight: 800;
+        }
+    </style>
     <script src="{assetPath file='scripts.min.js'}?v={$versionHash}"></script>
 </head>
-<body>
+<body class="zt-quote-detail-page">
 
-    <div class="container-fluid invoice-container">
+    <div class="container-fluid invoice-container zt-quote-detail">
 
         {if $invalidQuoteIdRequested}
 
@@ -175,7 +232,7 @@
 
     </div>
 
-    <p class="text-center d-print-none"><a href="clientarea.php">{lang key='invoicesbacktoclientarea'}</a></a></p>
+    <p class="text-center d-print-none zt-quote-back"><a href="clientarea.php">{lang key='invoicesbacktoclientarea'}</a></p>
 
     <form method="post" action="viewquote.php?id={$quoteid}&amp;action=accept">
         <div class="modal fade" id="acceptQuoteModal">

@@ -1,10 +1,23 @@
-<div class="card">
+<div class="zt-resource-workspace zt-announcements-page">
+    <div class="zt-resource-header">
+        <div>
+            <span class="zt-resource-eyebrow">Updates Center</span>
+            <h2>{lang key="announcementstitle"}</h2>
+            <p>Read company updates, maintenance notices, and platform announcements.</p>
+        </div>
+        <a href="downloads.php" class="btn btn-default zt-resource-header__action">
+            <i class="fas fa-download fa-fw"></i>
+            Downloads
+        </a>
+    </div>
+
+<div class="card zt-resource-list-card zt-announcement-feed">
     <div class="card-body">
         <h3 class="card-title">{lang key="announcementstitle"}</h3>
 
         <div class="announcements">
             {foreach $announcements as $announcement}
-                <div class="announcement">
+                <div class="announcement zt-announcement-card">
                     <h1>
                         <a href="{routePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}">
                             {$announcement.title}
@@ -32,13 +45,17 @@
                         {/if}
                     </article>
 
-                    <a href="{routePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" class="btn btn-default btn-sm">
+                    <a href="{routePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" class="btn btn-default btn-sm zt-resource-readmore">
                         {lang key="announcementscontinue"}
                         <i class="far fa-arrow-right"></i>
                     </a>
                 </div>
             {foreachelse}
-                {include file="$template/includes/alert.tpl" type="info" msg="{lang key='noannouncements'}" textcenter=true}
+                <div class="zt-resource-empty">
+                    <i class="far fa-newspaper"></i>
+                    <strong>{lang key='noannouncements'}</strong>
+                    <span>Company updates and maintenance notices will appear here.</span>
+                </div>
             {/foreach}
         </div>
 
@@ -56,6 +73,7 @@
         </ul>
     </nav>
 {/if}
+</div>
 
 {if $announcementsFbRecommend}
     <script>

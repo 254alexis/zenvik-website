@@ -11,7 +11,8 @@
 {/if}
 
 {if !$invalidTicketId}
-    <div class="card view-ticket">
+    <div class="zt-support-center zt-ticket-detail-page">
+    <div class="card view-ticket zt-ticket-thread">
         <div class="card-body p-3">
             <h3 class="card-title">
                 {lang key='supportticketsviewticket'} #{$tid}
@@ -44,7 +45,7 @@
 
         {foreach $descreplies as $reply}
             <div class="card-body">
-                <div class="ticket-reply markdown-content{if $reply.admin} staff{/if}">
+                <div class="ticket-reply markdown-content zt-ticket-reply{if $reply.admin} staff{/if}">
                     <div class="posted-by">
                         {lang key="support.postedBy" name="<span class=\"posted-by-name\">{$reply.requestor.name}</span>" date="<span class=\"posted-on\">{$reply.date}</span>" requestorType="<span class=\"label requestor-badge requestor-type-{$reply.requestor.type_normalised} float-md-right\">{lang key='support.requestor.'|cat:$reply.requestor.type_normalised}</span>"}
                     </div>
@@ -116,7 +117,7 @@
         {/foreach}
     </div>
 
-    <div class="card d-print-none" id="ticketReplyContainer">
+    <div class="card d-print-none zt-support-form-card zt-ticket-reply-form" id="ticketReplyContainer">
         <div class="card-body">
             <h3 class="card-title">{lang key='supportticketsreply'}</h3>
 
@@ -176,5 +177,6 @@
             </form>
 
         </div>
+    </div>
     </div>
 {/if}

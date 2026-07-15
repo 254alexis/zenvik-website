@@ -1,17 +1,26 @@
-{if $addfundsdisabled}
-    {include file="$template/includes/alert.tpl" type="error" msg="{lang key='clientareaaddfundsdisabled'}" textcenter=true}
-{elseif $notallowed}
-    {include file="$template/includes/alert.tpl" type="error" msg="{lang key='clientareaaddfundsnotallowed'}" textcenter=true}
-{elseif $errormessage}
-    {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage textcenter=true}
-{/if}
+<div class="zt-billing-workspace">
+    <section class="zt-billing-header">
+        <div>
+            <span class="zt-billing-eyebrow">Billing Workspace</span>
+            <h1>{lang key='addfunds'}</h1>
+            <p>Review funding limits and add credit using the existing secure payment workflow.</p>
+        </div>
+    </section>
 
-{if !$addfundsdisabled}
+    {if $addfundsdisabled}
+        {include file="$template/includes/alert.tpl" type="error" msg="{lang key='clientareaaddfundsdisabled'}" textcenter=true}
+    {elseif $notallowed}
+        {include file="$template/includes/alert.tpl" type="error" msg="{lang key='clientareaaddfundsnotallowed'}" textcenter=true}
+    {elseif $errormessage}
+        {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage textcenter=true}
+    {/if}
+
+    {if !$addfundsdisabled}
 
     <div class="row">
 
         <div class="col-md-8 offset-md-2">
-            <div class="card">
+            <div class="card zt-billing-card">
                 <table class="table table-striped">
                     <tbody>
                         <tr>
@@ -32,7 +41,7 @@
         </div>
 
         <div class="col-md-8 offset-md-2">
-            <div class="card">
+            <div class="card zt-billing-card">
                 <div class="card-body">
                     <form method="post" action="{$smarty.server.PHP_SELF}?action=addfunds">
                         <fieldset>
@@ -63,4 +72,5 @@
 
     </div>
 
-{/if}
+    {/if}
+</div>

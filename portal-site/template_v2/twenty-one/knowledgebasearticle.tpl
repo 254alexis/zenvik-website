@@ -2,7 +2,8 @@
     {include file="$template/includes/alert.tpl" type="success alert-bordered-left" msg="{lang key="knowledgebaseArticleRatingThanks"}" textcenter=true}
 {/if}
 
-<div class="card">
+<div class="zt-support-center zt-kb-article-page">
+<div class="card zt-kb-article-card">
     <div class="card-body">
         <h1>
             {$kbarticle.title}
@@ -52,7 +53,7 @@
 </div>
 
 {if $kbarticles}
-    <div class="card">
+    <div class="card zt-support-list-card">
         <div class="card-body">
             <h3 class="card-title m-0">
                 <i class="fal fa-folder-open fa-fw"></i>
@@ -90,3 +91,4 @@
         {lang key='edit'}
     </a>
 {/if}
+</div>
