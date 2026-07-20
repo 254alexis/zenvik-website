@@ -61,140 +61,127 @@
     </div>
 {/function}
 
-<div class="zt-dashboard">
-    <section class="zt-dashboard-welcome">
-        <div>
-            <span class="zt-dashboard-eyebrow">Client Workspace</span>
-            <h1>
-                Welcome back{if $clientsdetails.firstname}, {$clientsdetails.firstname}{elseif $clientfirstname}, {$clientfirstname}{/if}
-            </h1>
-            <p>Your Zenvik workspace is ready. Review services, billing, support, and recent account activity from one place.</p>
-        </div>
-        <div class="zt-dashboard-status">
-            <span class="zt-dashboard-status__dot" aria-hidden="true"></span>
-            <span>
-                <strong>Workspace Status</strong>
-                <em>Connected and ready</em>
-            </span>
-        </div>
-    </section>
+<section class="zt-dashboard-welcome">
+    <h1>
+        Welcome back{if $clientsdetails.firstname}, {$clientsdetails.firstname}{elseif $clientfirstname}, {$clientfirstname}{/if}
+    </h1>
+</section>
 
-    <section class="zt-dashboard-section">
-        <div class="zt-dashboard-section__header">
-            <span>Account Summary</span>
-            <h2>What needs your attention</h2>
-        </div>
-        <div class="zt-dashboard-metrics">
-            <a href="clientarea.php?action=services" class="zt-dashboard-metric">
-                <span class="zt-dashboard-metric__icon"><i class="fas fa-cube" aria-hidden="true"></i></span>
-                <strong>{$clientsstats.productsnumactive}</strong>
-                <em>Active Services</em>
-                {if !$clientsstats.productsnumactive}
-                    <small>No active services yet</small>
-                {/if}
-            </a>
-            <a href="clientarea.php?action=domains" class="zt-dashboard-metric">
-                <span class="zt-dashboard-metric__icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
-                <strong>{$clientsstats.numactivedomains}</strong>
-                <em>Active Domains</em>
-                {if !$clientsstats.numactivedomains}
-                    <small>No active domains</small>
-                {/if}
-            </a>
-            <a href="supporttickets.php" class="zt-dashboard-metric">
-                <span class="zt-dashboard-metric__icon"><i class="fas fa-headset" aria-hidden="true"></i></span>
-                <strong>{$clientsstats.numactivetickets}</strong>
-                <em>Open Support Tickets</em>
-                {if !$clientsstats.numactivetickets}
-                    <small>No open tickets</small>
-                {/if}
-            </a>
-            <a href="clientarea.php?action=invoices" class="zt-dashboard-metric{if $clientsstats.numunpaidinvoices} is-attention{/if}">
-                <span class="zt-dashboard-metric__icon"><i class="fas fa-credit-card" aria-hidden="true"></i></span>
-                <strong>{$clientsstats.numunpaidinvoices}</strong>
-                <em>Outstanding Invoices</em>
-                {if !$clientsstats.numunpaidinvoices}
-                    <small>Nothing outstanding</small>
-                {/if}
-            </a>
-        </div>
-    </section>
-
-    <section class="zt-dashboard-section">
-        <div class="zt-dashboard-section__header">
-            <span>Quick Actions</span>
-            <h2>Common tasks</h2>
-        </div>
-        <div class="zt-dashboard-actions">
-            <a href="submitticket.php" class="zt-dashboard-action">
-                <i class="fas fa-plus-circle" aria-hidden="true"></i>
-                <span>Open Support Ticket</span>
-            </a>
-            <a href="clientarea.php?action=services" class="zt-dashboard-action">
-                <i class="fas fa-server" aria-hidden="true"></i>
-                <span>View My Services</span>
-            </a>
-            <a href="clientarea.php?action=invoices" class="zt-dashboard-action">
-                <i class="fas fa-receipt" aria-hidden="true"></i>
-                <span>Pay Invoice</span>
-            </a>
-            <a href="clientarea.php?action=domains" class="zt-dashboard-action">
-                <i class="fas fa-globe-africa" aria-hidden="true"></i>
-                <span>Manage Domains</span>
-            </a>
-            <a href="downloads.php" class="zt-dashboard-action">
-                <i class="fas fa-download" aria-hidden="true"></i>
-                <span>Downloads</span>
-            </a>
-        </div>
-    </section>
-
-    <div class="zt-dashboard-grid">
-        <section class="zt-dashboard-section zt-dashboard-section--activity">
-            <div class="zt-dashboard-section__header">
-                <span>Recent Activity</span>
-                <h2>Latest account updates</h2>
-            </div>
-            <div class="zt-dashboard-panels">
-                {assign var=ztActivityPanels value=0}
-                {foreach $panels as $item}
-                    {if $item->getName() != 'Recent News' && $item->getName() != 'Announcements' && $item->getName() != 'announcements'}
-                        {assign var=ztActivityPanels value=$ztActivityPanels+1}
-                        {outputHomePanels}
-                    {/if}
-                {/foreach}
-                {if !$ztActivityPanels}
-                    <div class="zt-dashboard-empty">
-                        <i class="fas fa-stream" aria-hidden="true"></i>
-                        <strong>No recent activity</strong>
-                        <span>Recent invoices, ticket updates, and service activity will appear here.</span>
-                    </div>
-                {/if}
-            </div>
-        </section>
-
-        <section class="zt-dashboard-section zt-dashboard-section--announcements">
-            <div class="zt-dashboard-section__header">
-                <span>Announcements</span>
-                <h2>Portal news</h2>
-            </div>
-            <div class="zt-dashboard-panels">
-                {assign var=ztAnnouncementPanels value=0}
-                {foreach $panels as $item}
-                    {if $item->getName() == 'Recent News' || $item->getName() == 'Announcements' || $item->getName() == 'announcements'}
-                        {assign var=ztAnnouncementPanels value=$ztAnnouncementPanels+1}
-                        {outputHomePanels}
-                    {/if}
-                {/foreach}
-                {if !$ztAnnouncementPanels}
-                    <div class="zt-dashboard-empty">
-                        <i class="fas fa-bullhorn" aria-hidden="true"></i>
-                        <strong>No announcements</strong>
-                        <span>Important Zenvik portal updates will appear here when available.</span>
-                        <a href="announcements.php">Browse announcements</a>
-                    </div>
-                {/if}
-            </div>
-        </section>
+<section class="zt-dashboard-section">
+    <div class="zt-dashboard-section__header">
+        <span>Account Summary</span>
+        <h2>What needs your attention</h2>
     </div>
+    <div class="zt-dashboard-metrics">
+        <a href="clientarea.php?action=services" class="zt-dashboard-metric">
+            <span class="zt-dashboard-metric__icon"><i class="fas fa-cube" aria-hidden="true"></i></span>
+            <strong>{$clientsstats.productsnumactive}</strong>
+            <em>Active Services</em>
+            {if !$clientsstats.productsnumactive}
+                <small>No active services yet</small>
+            {/if}
+        </a>
+        <a href="clientarea.php?action=domains" class="zt-dashboard-metric">
+            <span class="zt-dashboard-metric__icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
+            <strong>{$clientsstats.numactivedomains}</strong>
+            <em>Active Domains</em>
+            {if !$clientsstats.numactivedomains}
+                <small>No active domains</small>
+            {/if}
+        </a>
+        <a href="supporttickets.php" class="zt-dashboard-metric">
+            <span class="zt-dashboard-metric__icon"><i class="fas fa-headset" aria-hidden="true"></i></span>
+            <strong>{$clientsstats.numactivetickets}</strong>
+            <em>Open Support Tickets</em>
+            {if !$clientsstats.numactivetickets}
+                <small>No open tickets</small>
+            {/if}
+        </a>
+        <a href="clientarea.php?action=invoices" class="zt-dashboard-metric{if $clientsstats.numunpaidinvoices} is-attention{/if}">
+            <span class="zt-dashboard-metric__icon"><i class="fas fa-credit-card" aria-hidden="true"></i></span>
+            <strong>{$clientsstats.numunpaidinvoices}</strong>
+            <em>Outstanding Invoices</em>
+            {if !$clientsstats.numunpaidinvoices}
+                <small>Nothing outstanding</small>
+            {/if}
+        </a>
+    </div>
+</section>
+
+<section class="zt-dashboard-section">
+    <div class="zt-dashboard-section__header">
+        <span>Quick Actions</span>
+        <h2>Common tasks</h2>
+    </div>
+    <div class="zt-dashboard-actions">
+        <a href="submitticket.php" class="zt-dashboard-action">
+            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+            <span>Open Support Ticket</span>
+        </a>
+        <a href="clientarea.php?action=services" class="zt-dashboard-action">
+            <i class="fas fa-server" aria-hidden="true"></i>
+            <span>View My Services</span>
+        </a>
+        <a href="clientarea.php?action=invoices" class="zt-dashboard-action">
+            <i class="fas fa-receipt" aria-hidden="true"></i>
+            <span>Pay Invoice</span>
+        </a>
+        <a href="clientarea.php?action=domains" class="zt-dashboard-action">
+            <i class="fas fa-globe-africa" aria-hidden="true"></i>
+            <span>Manage Domains</span>
+        </a>
+        <a href="downloads.php" class="zt-dashboard-action">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            <span>Downloads</span>
+        </a>
+    </div>
+</section>
+
+<div class="zt-dashboard-grid">
+    <section class="zt-dashboard-section zt-dashboard-section--activity">
+        <div class="zt-dashboard-section__header">
+            <span>Recent Activity</span>
+            <h2>Latest account updates</h2>
+        </div>
+        <div class="zt-dashboard-panels">
+            {assign var=ztActivityPanels value=0}
+            {foreach $panels as $item}
+                {if $item->getName() != 'Recent News' && $item->getName() != 'Announcements' && $item->getName() != 'announcements'}
+                    {assign var=ztActivityPanels value=$ztActivityPanels+1}
+                    {outputHomePanels}
+                {/if}
+            {/foreach}
+            {if !$ztActivityPanels}
+                <div class="zt-dashboard-empty">
+                    <i class="fas fa-stream" aria-hidden="true"></i>
+                    <strong>No recent activity</strong>
+                    <span>Recent invoices, ticket updates, and service activity will appear here.</span>
+                </div>
+            {/if}
+        </div>
+    </section>
+
+    <section class="zt-dashboard-section zt-dashboard-section--announcements">
+        <div class="zt-dashboard-section__header">
+            <span>Announcements</span>
+            <h2>Portal news</h2>
+        </div>
+        <div class="zt-dashboard-panels">
+            {assign var=ztAnnouncementPanels value=0}
+            {foreach $panels as $item}
+                {if $item->getName() == 'Recent News' || $item->getName() == 'Announcements' || $item->getName() == 'announcements'}
+                    {assign var=ztAnnouncementPanels value=$ztAnnouncementPanels+1}
+                    {outputHomePanels}
+                {/if}
+            {/foreach}
+            {if !$ztAnnouncementPanels}
+                <div class="zt-dashboard-empty">
+                    <i class="fas fa-bullhorn" aria-hidden="true"></i>
+                    <strong>No announcements</strong>
+                    <span>Important Zenvik portal updates will appear here when available.</span>
+                    <a href="announcements.php">Browse announcements</a>
+                </div>
+            {/if}
+        </div>
+    </section>
 </div>

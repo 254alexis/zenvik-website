@@ -11,131 +11,172 @@
     {if $captcha}{$captcha->getMarkup()}{/if}
     {$headeroutput}
 
-    <header id="header" class="header">
-        {if $loggedin}
-            <div class="topbar">
-                <div class="container">
-                    <div class="d-flex">
-                        <div class="mr-auto">
-                            <button type="button" class="btn" data-toggle="popover" id="accountNotifications" data-placement="bottom">
-                                <i class="far fa-flag"></i>
-                                {if count($clientAlerts) > 0}
-                                    {count($clientAlerts)}
-                                    <span class="d-none d-sm-inline">{lang key='notifications'}</span>
-                                {else}
-                                    <span class="d-sm-none">0</span>
-                                    <span class="d-none d-sm-inline">{lang key='nonotifications'}</span>
-                                {/if}
-                            </button>
-                            <div id="accountNotificationsContent" class="w-hidden">
-                                <ul class="client-alerts">
-                                {foreach $clientAlerts as $alert}
-                                    <li>
-                                        <a href="{$alert->getLink()}">
-                                            <i class="fas fa-fw fa-{if $alert->getSeverity() == 'danger'}exclamation-circle{elseif $alert->getSeverity() == 'warning'}exclamation-triangle{elseif $alert->getSeverity() == 'info'}info-circle{else}check-circle{/if}"></i>
-                                            <div class="message">{$alert->getMessage()}</div>
-                                        </a>
-                                    </li>
-                                {foreachelse}
-                                    <li class="none">
-                                        {lang key='notificationsnone'}
-                                    </li>
-                                {/foreach}
-                                </ul>
-                            </div>
-                        </div>
+    {* Layer 1: Notification Strip *}
+    {include file="$template/includes/zt-notification-strip.tpl"}
 
-                        <div class="ml-auto">
-                            <div class="input-group active-client" role="group">
-                                <div class="input-group-prepend d-none d-md-inline">
-                                    <span class="input-group-text">{lang key='loggedInAs'}:</span>
-                                </div>
-                                <div class="btn-group">
-                                    <a href="{$WEB_ROOT}/clientarea.php?action=details" class="btn btn-active-client">
-                                        <span>
-                                            {if $client.companyname}
-                                                {$client.companyname}
-                                            {else}
-                                                {$client.fullName}
-                                            {/if}
-                                        </span>
-                                    </a>
-                                    <a href="{routePath('user-accounts')}" class="btn" data-toggle="tooltip" data-placement="bottom" title="Switch Account">
-                                        <i class="fad fa-random"></i>
-                                    </a>
-                                    {if $adminMasqueradingAsClient || $adminLoggedIn}
-                                        <a href="{$WEB_ROOT}/logout.php?returntoadmin=1" class="btn btn-return-to-admin" data-toggle="tooltip" data-placement="bottom" title="{if $adminMasqueradingAsClient}{lang key='adminmasqueradingasclient'} {lang key='logoutandreturntoadminarea'}{else}{lang key='adminloggedin'} {lang key='returntoadminarea'}{/if}">
-                                            <i class="fas fa-redo-alt"></i>
-                                            <span class="d-none d-md-inline-block">{lang key="admin.returnToAdmin"}</span>
-                                        </a>
-                                    {/if}
-                                </div>
-                            </div>
-                        </div>
+    {* Layer 2: Floating Sticky Header *}
+    <header class="zt-header">
+        <div class="zt-header__container">
+            
+            {* LEFT SECTION: LOGO *}
+            <div class="zt-header__left">
+                {* Zenvik Logo - Same as main website *}
+                <a href="{$WEB_ROOT}/index.php" class="zt-header__logo-link" title="Go to Portal Home">
+                    <div class="zt-header__logo">
+                        <img src="/logo.png" alt="Zenvik Technologies" loading="lazy" width="190" height="34">
                     </div>
-                </div>
+                </a>
             </div>
-        {/if}
 
-        <div class="navbar navbar-light">
-            <div class="container">
-                <a class="navbar-brand mr-3" href="{$WEB_ROOT}/index.php">
-                    {if $assetLogoPath}
-                        <img src="{$assetLogoPath}" alt="{$companyname}" class="logo-img">
-                    {else}
-                        {$companyname}
-                    {/if}
+            {* CENTER NAVIGATION *}
+            <nav class="zt-header__center" aria-label="Main navigation">
+                
+                {* Portal Home - Only show in header when breadcrumb not visible *}
+                {if !isset($breadcrumbs) || !$breadcrumbs || count($breadcrumbs) == 0}
+                    <a href="{if $loggedin}{$WEB_ROOT}/clientarea.php{else}{$WEB_ROOT}/index.php{/if}" 
+                       class="zt-header__nav-item{if $page == 'home' || $page == 'clientareahome'} active{/if}"
+                       title="{if $loggedin}Go to Dashboard{else}Go to Portal Home{/if}">
+                        Portal Home
+                    </a>
+                {/if}
+
+                {* Domains Dropdown *}
+                <div class="zt-header__nav-item--dropdown" 
+                     onclick="this.classList.toggle('open')" 
+                     onblur="this.classList.remove('open')"
+                     tabindex="0"
+                     role="button"
+                     aria-expanded="false"
+                     aria-haspopup="menu">
+                    <span>Domains</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <nav class="zt-header__dropdown" role="menu" aria-label="Domains submenu">
+                    <a href="{$WEB_ROOT}/cart.php?a=add&domain=register" class="zt-header__dropdown-item" role="menuitem">
+                        <span>Register Domain</span>
+                    </a>
+                    <a href="{$WEB_ROOT}/cart.php?a=add&domain=transfer" class="zt-header__dropdown-item" role="menuitem">
+                        <span>Transfer Domain</span>
+                    </a>
+                    <a href="{if $loggedin}{$WEB_ROOT}/clientarea.php?action=domains{else}{$WEB_ROOT}/cart.php?a=add&domain=register{/if}" class="zt-header__dropdown-item" role="menuitem">
+                        <span>Search Domains</span>
+                    </a>
+                    <a href="{if $loggedin}{$WEB_ROOT}/clientarea.php?action=domains{else}#{/if}" class="zt-header__dropdown-item" role="menuitem"{if !$loggedin} disabled{/if}>
+                        <span>Renew Domain</span>
+                    </a>
+                </nav>
+
+                {* Support Link *}
+                <a href="{routePath('knowledgebase')}" class="zt-header__nav-item" title="Visit Support & Knowledgebase">
+                    Support
                 </a>
 
-                <form method="post" action="{routePath('knowledgebase-search')}" class="form-inline ml-auto">
-                    <div class="input-group search d-none d-xl-flex">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-default" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                        <input class="form-control appended-form-control font-weight-light" type="text" name="search" placeholder="{lang key="searchOurKnowledgebase"}...">
+            </nav>
+
+            {* RIGHT SECTION: ACTIONS & USER MENU *}
+            <div class="zt-header__right">
+                
+                {* Knowledgebase Search *}
+                <form method="post" action="{routePath('knowledgebase-search')}" class="zt-header__search">
+                    <div class="zt-header__search-form">
+                        <input type="text" 
+                               name="search" 
+                               class="zt-header__search-input" 
+                               placeholder="Search KB..." 
+                               autocomplete="off">
+                        <button type="submit" class="zt-header__search-button" title="Search Knowledgebase">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
                 </form>
 
-                <ul class="navbar-nav toolbar">
-                    <li class="nav-item ml-3">
-                        <a class="btn nav-link cart-btn" href="{$WEB_ROOT}/cart.php?a=view">
-                            <i class="far fa-shopping-cart fa-fw"></i>
-                            <span id="cartItemCount" class="badge badge-info">{$cartitemcount}</span>
-                            <span class="sr-only">{lang key="carttitle"}</span>
-                        </a>
-                    </li>
-                    <li class="nav-item ml-3 d-xl-none">
-                        <button class="btn nav-link" type="button" data-toggle="collapse" data-target="#mainNavbar">
-                            <span class="fas fa-bars fa-fw"></span>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="navbar navbar-expand-xl main-navbar-wrapper">
-            <div class="container">
-                <div class="collapse navbar-collapse" id="mainNavbar">
-                    <form method="post" action="{routePath('knowledgebase-search')}" class="d-xl-none">
-                        <div class="input-group search w-100 mb-2">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                            <input class="form-control prepended-form-control" type="text" name="search" placeholder="{lang key="searchOurKnowledgebase"}...">
+                {* Shopping Cart *}
+                <a href="{$WEB_ROOT}/cart.php?a=view" class="zt-header__cart" title="View Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    {if $cartitemcount > 0}
+                        <span class="zt-header__cart-badge">{$cartitemcount}</span>
+                    {/if}
+                </a>
+
+                {* User Menu *}
+                {if $loggedin}
+                    {* Authenticated User *}
+                    <button class="zt-header__user" 
+                            onclick="this.classList.toggle('open'); this.blur();"
+                            title="Account Menu"
+                            aria-expanded="false"
+                            aria-haspopup="menu">
+                        <div class="zt-header__user-icon">
+                            <i class="fas fa-user"></i>
                         </div>
-                    </form>
-                    <ul id="nav" class="navbar-nav mr-auto">
-                        {include file="$template/includes/navbar.tpl" navbar=$primaryNavbar}
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        {include file="$template/includes/navbar.tpl" navbar=$secondaryNavbar rightDrop=true}
-                    </ul>
-                </div>
+                        <span class="zt-header__user-name">
+                            Hi, {if $client.firstname}{$client.firstname|escape}{else}{$client.fullName|escape}{/if}
+                        </span>
+                        <i class="fas fa-chevron-down" style="font-size: 12px; margin-left: 4px;"></i>
+                    </button>
+                    <nav class="zt-header__user-dropdown" role="menu" aria-label="Account menu">
+                        <a href="{$WEB_ROOT}/clientarea.php?action=details" class="zt-header__user-dropdown-item" role="menuitem">
+                            Your Profile
+                        </a>
+                        <a href="{$WEB_ROOT}/logout.php" class="zt-header__user-dropdown-item" role="menuitem">
+                            Logout
+                        </a>
+                    </nav>
+                {else}
+                    {* Guest User *}
+                    <button class="zt-header__user" 
+                            onclick="this.classList.toggle('open'); this.blur();"
+                            title="Account Menu"
+                            aria-expanded="false"
+                            aria-haspopup="menu">
+                        <div class="zt-header__user-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <i class="fas fa-chevron-down" style="font-size: 12px; margin-left: 4px;"></i>
+                    </button>
+                    <nav class="zt-header__user-dropdown" role="menu" aria-label="Account menu">
+                        <a href="{$WEB_ROOT}/login.php" class="zt-header__user-dropdown-item" role="menuitem">
+                            Sign In
+                        </a>
+                        <a href="{$WEB_ROOT}/register.php" class="zt-header__user-dropdown-item" role="menuitem">
+                            Create Account
+                        </a>
+                    </nav>
+                {/if}
+
+                {* Mobile Menu Toggle (hidden on desktop) *}
+                <button class="zt-header__menu-toggle" 
+                        onclick="document.getElementById('ztMobileNav').classList.toggle('open')"
+                        title="Toggle Menu"
+                        aria-expanded="false"
+                        aria-controls="ztMobileNav">
+                    <i class="fas fa-bars"></i>
+                </button>
+
             </div>
+
         </div>
+
+        {* Mobile Navigation Menu *}
+        <nav class="zt-header__mobile-nav" id="ztMobileNav" aria-label="Mobile navigation">
+            {if !isset($breadcrumbs) || !$breadcrumbs || count($breadcrumbs) == 0}
+                <a href="{if $loggedin}{$WEB_ROOT}/clientarea.php{else}{$WEB_ROOT}/index.php{/if}" 
+                   class="zt-header__mobile-nav-item"
+                   onclick="document.getElementById('ztMobileNav').classList.remove('open')">
+                    Portal Home
+                </a>
+            {/if}
+            <a href="{$WEB_ROOT}/cart.php?a=add&domain=register" class="zt-header__mobile-nav-item" onclick="document.getElementById('ztMobileNav').classList.remove('open')">
+                Register Domain
+            </a>
+            <a href="{$WEB_ROOT}/cart.php?a=add&domain=transfer" class="zt-header__mobile-nav-item" onclick="document.getElementById('ztMobileNav').classList.remove('open')">
+                Transfer Domain
+            </a>
+            <a href="{routePath('knowledgebase')}" class="zt-header__mobile-nav-item" onclick="document.getElementById('ztMobileNav').classList.remove('open')">
+                Support
+            </a>
+        </nav>
+
     </header>
 
     {include file="$template/includes/network-issues-notifications.tpl"}
@@ -205,8 +246,8 @@
 
                     <nav class="zt-shell-nav" aria-label="Client workspace">
                         <a href="{$WEB_ROOT}/clientarea.php" class="zt-shell-nav__item{if $templatefile == 'clientareahome'} is-active{/if}">
-                            <i class="fas fa-th-large" aria-hidden="true"></i>
-                            <span>Workspace</span>
+                            <i class="fas fa-tachometer-alt" aria-hidden="true"></i>
+                            <span>Dashboard</span>
                         </a>
                         <a href="{$WEB_ROOT}/clientarea.php?action=services" class="zt-shell-nav__item{if $templatefile == 'clientareaproducts' || $templatefile == 'clientareaproductdetails'} is-active{/if}">
                             <i class="fas fa-server" aria-hidden="true"></i>

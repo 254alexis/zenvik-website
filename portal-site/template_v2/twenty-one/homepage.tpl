@@ -5895,7 +5895,7 @@
         </div>
     </section>
 
-    <section class="zt-launch-section" aria-labelledby="zt-launch-title">
+    <section class="zt-launch-section zt-launch-section--journey" aria-labelledby="zt-launch-title">
         <div class="zt-launch-header">
             <h2 id="zt-launch-title">Get Started in Minutes</h2>
             <p>

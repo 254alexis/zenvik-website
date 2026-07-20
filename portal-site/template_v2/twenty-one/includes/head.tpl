@@ -6,6 +6,12 @@
 {assetExists file="custom.css"}
 <link href="{$__assetPath__}?v={$versionHash}-zt-portal-v2" rel="stylesheet">
 {/assetExists}
+{assetExists file="workspace-redesign.css"}
+<link href="{$__assetPath__}?v={$versionHash}-zt-workspace" rel="stylesheet">
+{/assetExists}
+{assetExists file="header-redesign.css"}
+<link href="{$__assetPath__}?v={$versionHash}-zt-header" rel="stylesheet">
+{/assetExists}
 
 <script>
     var csrfToken = '{$token}',

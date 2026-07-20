@@ -8179,3 +8179,473 @@ body.zt-shell-sidebar-collapsed #main-body.zt-client-workspace .zt-client-sideba
         padding: 16px;
     }
 }
+
+/* Section 3 complete layout redesign - customer journey only */
+.zt-launch-section.zt-launch-section--journey {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(56px, 6vw, 82px) clamp(18px, 4vw, 56px);
+    background:
+        radial-gradient(circle at 12% 10%, rgba(4, 58, 126, 0.08), transparent 34rem),
+        radial-gradient(circle at 88% 92%, rgba(223, 164, 8, 0.06), transparent 28rem),
+        linear-gradient(180deg, #fbfdff 0%, #f4f9fc 48%, #ffffff 100%);
+}
+
+.zt-launch-section--journey::before,
+.zt-launch-section--journey::after {
+    display: none;
+}
+
+.zt-launch-section--journey .zt-launch-header {
+    max-width: 780px;
+    margin: 0 auto clamp(28px, 3.4vw, 42px);
+    text-align: center;
+}
+
+.zt-launch-section--journey .zt-launch-header h2,
+.zt-launch-section--journey .zt-service-promo__content h2 {
+    margin: 0;
+    color: #043a7e;
+    font-weight: 850;
+    letter-spacing: 0;
+}
+
+.zt-launch-section--journey .zt-launch-header h2 {
+    font-size: clamp(2rem, 3.4vw, 3rem);
+}
+
+.zt-launch-section--journey .zt-launch-header p {
+    max-width: 660px;
+    margin: 12px auto 0;
+    color: #496985;
+    font-size: clamp(1rem, 1.25vw, 1.12rem);
+    line-height: 1.65;
+}
+
+.zt-launch-section--journey .zt-launch-path {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+    gap: clamp(16px, 2.4vw, 28px);
+    max-width: 1120px;
+    min-height: 0;
+    margin: 0 auto clamp(24px, 3.2vw, 38px);
+    padding: 20px 0 8px;
+}
+
+.zt-launch-section--journey .zt-launch-lines {
+    position: absolute;
+    z-index: 0;
+    top: 45px;
+    left: calc(12.5% + 14px);
+    width: calc(75% - 28px);
+    height: 16px;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.zt-launch-section--journey .zt-launch-line {
+    fill: none;
+    stroke: rgba(4, 58, 126, 0.2);
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.zt-launch-section--journey .zt-launch-line::before {
+    content: none;
+}
+
+.zt-launch-section--journey .zt-launch-pulse {
+    fill: #dfa408;
+    filter: drop-shadow(0 0 9px rgba(223, 164, 8, 0.8));
+}
+
+.zt-launch-section--journey .zt-launch-step,
+.zt-launch-section--journey .zt-launch-step--account,
+.zt-launch-section--journey .zt-launch-step--verify,
+.zt-launch-section--journey .zt-launch-step--service,
+.zt-launch-section--journey .zt-launch-step--manage {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 0;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #17385b;
+    text-align: center;
+    text-decoration: none;
+    transform: none;
+    animation: none;
+}
+
+.zt-launch-section--journey .zt-launch-step::before,
+.zt-launch-section--journey .zt-launch-step::after {
+    display: none;
+}
+
+.zt-launch-section--journey .zt-launch-step__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin: 0;
+    border: 2px solid rgba(4, 58, 126, 0.15);
+    border-radius: 999px;
+    background: #ffffff;
+    color: #043a7e;
+    font-size: 0.9rem;
+    font-weight: 900;
+    box-shadow: 0 14px 30px rgba(4, 58, 126, 0.1);
+    animation: zt-journey-step-active 8s ease-in-out infinite;
+}
+
+.zt-launch-section--journey .zt-launch-step:nth-of-type(2) .zt-launch-step__count {
+    animation-delay: 2s;
+}
+
+.zt-launch-section--journey .zt-launch-step:nth-of-type(3) .zt-launch-step__count {
+    animation-delay: 4s;
+}
+
+.zt-launch-section--journey .zt-launch-step:nth-of-type(4) .zt-launch-step__count {
+    animation-delay: 6s;
+}
+
+.zt-launch-section--journey .zt-launch-step__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin: 4px 0 0;
+    border-radius: 14px;
+    background: rgba(4, 58, 126, 0.07);
+    color: #dfa408;
+    font-size: 1rem;
+    transition: background-color 260ms ease, color 260ms ease, box-shadow 260ms ease;
+}
+
+.zt-launch-section--journey .zt-launch-step strong {
+    max-width: 180px;
+    color: #043a7e;
+    font-size: 1rem;
+    font-weight: 850;
+    line-height: 1.25;
+}
+
+.zt-launch-section--journey .zt-launch-step > span:last-child {
+    max-width: 210px;
+    color: #5a7690;
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+.zt-launch-section--journey .zt-launch-step:hover,
+.zt-launch-section--journey .zt-launch-step:focus {
+    color: #043a7e;
+    text-decoration: none;
+}
+
+.zt-launch-section--journey .zt-launch-step:hover .zt-launch-step__count,
+.zt-launch-section--journey .zt-launch-step:focus .zt-launch-step__count {
+    border-color: rgba(223, 164, 8, 0.55);
+    box-shadow: 0 18px 36px rgba(4, 58, 126, 0.13), 0 0 0 6px rgba(223, 164, 8, 0.12);
+}
+
+.zt-launch-section--journey .zt-launch-step:hover .zt-launch-step__icon,
+.zt-launch-section--journey .zt-launch-step:focus .zt-launch-step__icon {
+    background: rgba(223, 164, 8, 0.12);
+    box-shadow: 0 12px 24px rgba(223, 164, 8, 0.14);
+}
+
+.zt-launch-section--journey .zt-launch-divider {
+    width: min(920px, 100%);
+    height: 1px;
+    margin: 0 auto clamp(22px, 3vw, 34px);
+    background: linear-gradient(90deg, transparent, rgba(4, 58, 126, 0.16), transparent);
+}
+
+.zt-launch-section--journey .zt-service-promo {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+    gap: clamp(24px, 4vw, 54px);
+    align-items: center;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 46px);
+    border: 1px solid rgba(4, 58, 126, 0.12);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 8% 12%, rgba(4, 58, 126, 0.06), transparent 22rem),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 255, 0.96));
+    box-shadow: 0 24px 70px rgba(4, 58, 126, 0.12);
+}
+
+.zt-launch-section--journey .zt-service-promo__content {
+    display: grid;
+    align-content: center;
+    gap: 14px;
+    min-height: 100%;
+    padding: 0;
+    text-align: left;
+}
+
+.zt-launch-section--journey .zt-service-promo__content h2 {
+    font-size: clamp(1.65rem, 2.4vw, 2.3rem);
+}
+
+.zt-launch-section--journey .zt-service-promo__content p {
+    max-width: 420px;
+    margin: 0;
+    color: #496985;
+    line-height: 1.7;
+}
+
+.zt-launch-section--journey .zt-service-promo__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: start;
+    gap: 8px;
+    min-height: 46px;
+    margin-top: 4px;
+    padding: 0 18px;
+    border: 1px solid rgba(223, 164, 8, 0.45);
+    border-radius: 999px;
+    background: #dfa408;
+    color: #043a7e;
+    font-weight: 850;
+    text-decoration: none;
+    box-shadow: 0 14px 30px rgba(223, 164, 8, 0.18);
+    transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+}
+
+.zt-launch-section--journey .zt-service-promo__link:hover,
+.zt-launch-section--journey .zt-service-promo__link:focus {
+    border-color: rgba(4, 58, 126, 0.34);
+    color: #043a7e;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 38px rgba(4, 58, 126, 0.14);
+}
+
+.zt-launch-section--journey .zt-service-promo__link span {
+    transition: transform 260ms ease;
+}
+
+.zt-launch-section--journey .zt-service-promo__link:hover span,
+.zt-launch-section--journey .zt-service-promo__link:focus span {
+    transform: translateX(3px);
+}
+
+.zt-launch-section--journey .zt-service-opportunities {
+    min-width: 0;
+}
+
+.zt-launch-section--journey .zt-service-opportunities h3 {
+    margin: 0 0 16px;
+    color: #043a7e;
+    font-size: 1.05rem;
+    font-weight: 850;
+}
+
+.zt-launch-section--journey .zt-service-chips {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: row;
+    gap: 14px;
+    min-height: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    transform: none;
+}
+
+.zt-launch-section--journey .zt-service-chips::before,
+.zt-launch-section--journey .zt-service-chips::after {
+    display: none;
+}
+
+.zt-launch-section--journey .zt-service-chip,
+.zt-launch-section--journey .zt-service-chip--one,
+.zt-launch-section--journey .zt-service-chip--two,
+.zt-launch-section--journey .zt-service-chip--three,
+.zt-launch-section--journey .zt-service-chip--four,
+.zt-launch-section--journey .zt-service-chip--five,
+.zt-launch-section--journey .zt-service-chip--six,
+.zt-launch-section--journey .zt-service-chip--seven {
+    position: static;
+    inset: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+    padding: 13px 15px;
+    border: 1px solid rgba(4, 58, 126, 0.12);
+    border-radius: 16px;
+    background: #ffffff;
+    color: #17385b;
+    font-size: 0.94rem;
+    font-weight: 820;
+    line-height: 1.25;
+    white-space: normal;
+    box-shadow: 0 12px 28px rgba(4, 58, 126, 0.07);
+    transform: none;
+    animation: none;
+    transition: border-color 260ms ease, box-shadow 260ms ease, transform 260ms ease, color 260ms ease;
+}
+
+.zt-launch-section--journey .zt-service-chip--seven {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, calc(50% - 7px));
+}
+
+.zt-launch-section--journey .zt-service-chip::after {
+    display: none;
+}
+
+.zt-launch-section--journey .zt-service-chip i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    border-radius: 11px;
+    background: rgba(4, 58, 126, 0.07);
+    color: #dfa408;
+    font-size: 0.95rem;
+    transition: background-color 260ms ease, box-shadow 260ms ease, color 260ms ease;
+}
+
+.zt-launch-section--journey .zt-service-chip:hover {
+    border-color: rgba(4, 58, 126, 0.36);
+    color: #043a7e;
+    box-shadow: 0 18px 38px rgba(4, 58, 126, 0.13);
+    transform: translateY(-3px);
+}
+
+.zt-launch-section--journey .zt-service-chip:hover i {
+    background: rgba(223, 164, 8, 0.14);
+    box-shadow: 0 10px 20px rgba(223, 164, 8, 0.16);
+}
+
+@keyframes zt-journey-step-active {
+    0%, 20%, 100% {
+        border-color: rgba(4, 58, 126, 0.15);
+        color: #043a7e;
+        box-shadow: 0 14px 30px rgba(4, 58, 126, 0.1);
+        transform: translateY(0);
+    }
+
+    8%, 14% {
+        border-color: rgba(223, 164, 8, 0.64);
+        color: #7a6200;
+        box-shadow: 0 18px 36px rgba(4, 58, 126, 0.13), 0 0 0 6px rgba(223, 164, 8, 0.12);
+        transform: translateY(-3px);
+    }
+}
+
+@media (max-width: 991.98px) {
+    .zt-launch-section.zt-launch-section--journey {
+        padding: 48px 18px;
+    }
+
+    .zt-launch-section--journey .zt-launch-path {
+        gap: 14px;
+    }
+
+    .zt-launch-section--journey .zt-service-promo {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .zt-launch-section--journey .zt-service-promo__content {
+        text-align: center;
+    }
+
+    .zt-launch-section--journey .zt-service-promo__content p,
+    .zt-launch-section--journey .zt-service-promo__link {
+        justify-self: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .zt-launch-section--journey .zt-launch-path {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 520px;
+        padding-left: 22px;
+    }
+
+    .zt-launch-section--journey .zt-launch-lines {
+        display: none;
+    }
+
+    .zt-launch-section--journey .zt-launch-path::before {
+        content: "";
+        position: absolute;
+        top: 46px;
+        bottom: 54px;
+        left: 47px;
+        width: 2px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, rgba(4, 58, 126, 0.18), rgba(223, 164, 8, 0.36), rgba(4, 58, 126, 0.18));
+        pointer-events: none;
+    }
+
+    .zt-launch-section--journey .zt-launch-step,
+    .zt-launch-section--journey .zt-launch-step--account,
+    .zt-launch-section--journey .zt-launch-step--verify,
+    .zt-launch-section--journey .zt-launch-step--service,
+    .zt-launch-section--journey .zt-launch-step--manage {
+        grid-template-columns: 52px 38px minmax(0, 1fr);
+        justify-items: start;
+        column-gap: 12px;
+        text-align: left;
+    }
+
+    .zt-launch-section--journey .zt-launch-step strong {
+        max-width: none;
+        align-self: end;
+    }
+
+    .zt-launch-section--journey .zt-launch-step > span:last-child {
+        grid-column: 3;
+        max-width: none;
+    }
+
+    .zt-launch-section--journey .zt-service-chips {
+        grid-template-columns: 1fr;
+    }
+
+    .zt-launch-section--journey .zt-service-chip--seven {
+        grid-column: auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 479.98px) {
+    .zt-launch-section.zt-launch-section--journey {
+        padding: 42px 14px;
+    }
+
+    .zt-launch-section--journey .zt-service-promo {
+        padding: 20px;
+        border-radius: 22px;
+    }
+}
